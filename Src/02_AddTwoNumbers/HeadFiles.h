@@ -1,8 +1,7 @@
 #pragma once
-#include <catch2/catch.hpp>
-#include <iostream>
+#include <memory>
+#include <string>
 #include <vector>
-
 struct ListNode
 {
     int val;
@@ -24,19 +23,21 @@ struct ListNode
     }
 };
 
-inline void printListNode(const ListNode* ListNodeParam)
+inline std::string transListNode2Str(const ListNode& ListNodeParam)
 {
-    while (ListNodeParam != nullptr)
+    std::string retStr;
+    const ListNode* tmpNode = &ListNodeParam;
+    while (tmpNode != nullptr)
     {
-        std::cout << ListNodeParam->val;
-        if (ListNodeParam->next)
-            std::cout << " -> ";
-        ListNodeParam = ListNodeParam->next;
+        retStr += std::to_string(tmpNode->val);
+        if (tmpNode->next)
+            retStr += " -> ";
+        tmpNode = tmpNode->next;
     }
-    std::cout << std::endl;
+    return retStr;
 }
 
-inline ListNode* initListNode(std::vector<int> param)
+inline std::unique_ptr<ListNode> initListNode(std::vector<int> param)
 {
     ListNode* retVal = nullptr;
     for (int i = param.size() - 1; i >= 0; i--)
@@ -44,7 +45,7 @@ inline ListNode* initListNode(std::vector<int> param)
         retVal = new ListNode(param[i], retVal);
     }
 
-    return retVal;
+    return std::make_unique<ListNode>(*retVal);
 }
 
 inline void releaseListNode(ListNode* Node)
@@ -56,42 +57,3 @@ inline void releaseListNode(ListNode* Node)
         Node = nextPtr;
     }
 }
-
-class IsEqualListNode : public Catch::MatcherBase<ListNode>
-{
-public:
-    IsEqualListNode(ListNode& ListNodeParam)
-            : m_listNode(ListNodeParam)
-    {
-    }
-    bool match(ListNode const& Arg) const override
-    {
-        const ListNode* tmpPtr = &Arg;
-        const ListNode* tmpPtr2 = &m_listNode;
-
-        while (tmpPtr != nullptr && tmpPtr2 != nullptr)
-        {
-
-            if (tmpPtr->val != tmpPtr2->val)
-            {
-                printListNode(&Arg);
-                std::cout << " != " << std::endl;
-                printListNode(&m_listNode);
-                return false;
-            }
-            tmpPtr = tmpPtr->next;
-            tmpPtr2 = tmpPtr2->next;
-        }
-
-        if (tmpPtr != nullptr || tmpPtr2 != nullptr)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    virtual std::string describe() const override { return "is empty about  Address Info"; }
-
-private:
-    ListNode& m_listNode;
-};

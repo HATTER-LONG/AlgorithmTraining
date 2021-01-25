@@ -12,7 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-Wall -pedantic)
 
 find_package(Threads)
-set(LOCAL_LINK_LIB pthread)
+find_package(spdlog REQUIRED CONFIG)
+set(LOCAL_LINK_LIB spdlog::spdlog pthread)
 include_directories(Src)
 
 add_subdirectory(Src)

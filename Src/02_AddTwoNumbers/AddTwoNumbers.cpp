@@ -1,4 +1,6 @@
-#include "HeadFiles.h"
+#include "CustomMatcher.h"
+
+#include <tuple>
 
 using namespace Catch;
 using namespace std;
@@ -77,36 +79,29 @@ public:
     }
 };
 
-// TODO: 重构下这部分重复代码
 TEST_CASE("Check Solution addTwoNumbers method work successfully")
 {
     Solution solution;
+    using ListNodePtr = std::unique_ptr<ListNode>;
 
-    SECTION("default data")
-    {
-        ListNode* LeftVal = initListNode({ 2, 4, 3 });
-        ListNode* RightVal = initListNode({ 5, 6, 4 });
-        ListNode* ResultVal = initListNode({ 7, 0, 8 });
+    vector<int> LeftParm, RightParm, ResultParm;
+    // clang-format off
+        tie(LeftParm, RightParm, ResultParm) = 
+            GENERATE(table<vector<int>, vector<int>, vector<int>>
+                (
+                    {
+                        make_tuple(vector<int> { 2, 4, 3 }, vector<int> { 5, 6, 4 }, vector<int> { 7, 0, 8 }),
 
-        REQUIRE_THAT(*(solution.addTwoNumbers(LeftVal, RightVal)), IsEqualListNode(*ResultVal));
-
-        releaseListNode(LeftVal);
-        releaseListNode(RightVal);
-        releaseListNode(ResultVal);
-    }
-
-    SECTION("Unmatched data")
-    {
-        ListNode* LeftVal = initListNode({ 9, 9, 9, 9, 9, 9, 9 });
-        ListNode* RightVal = initListNode({ 9, 9, 9, 9 });
-        ListNode* ResultVal = initListNode({ 8, 9, 9, 9, 0, 0, 0, 1 });
-
-        ListNode* Answer = solution.addTwoNumbers(LeftVal, RightVal);
-
-        REQUIRE_THAT(*(Answer), IsEqualListNode(*ResultVal));
-
-        releaseListNode(LeftVal);
-        releaseListNode(RightVal);
-        releaseListNode(ResultVal);
-    }
+                        make_tuple(vector<int> { 9, 9, 9, 9, 9, 9, 9 }, 
+                                   vector<int> { 9, 9, 9, 9 }, 
+                                   vector<int> { 8, 9, 9, 9, 0, 0, 0, 1 }),
+                    }
+                    
+                )
+            );
+    // clang-format on
+    ListNodePtr LeftVal = initListNode(LeftParm);
+    ListNodePtr RightVal = initListNode(RightParm);
+    ListNodePtr ResultVal = initListNode(ResultParm);
+    REQUIRE_THAT(*(solution.addTwoNumbers(LeftVal.get(), RightVal.get())), IsEqualListNode(*ResultVal));
 }
