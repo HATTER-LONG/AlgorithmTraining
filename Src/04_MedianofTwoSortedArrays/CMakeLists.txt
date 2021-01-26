@@ -4,9 +4,11 @@ FILE(GLOB SRCFILELIST
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
    )
 
-add_executable(03_LongestSubstringWithoutRepeatingCharacters ${SRCFILELIST})
+add_executable(04_MedianofTwoSortedArrays
+ ${SRCFILELIST}
+ )
 
-target_link_libraries(03_LongestSubstringWithoutRepeatingCharacters
+target_link_libraries(04_MedianofTwoSortedArrays
     Catch2::Catch2WithMain
     ${LOCAL_LINK_LIB} 
     )

@@ -4,9 +4,9 @@ FILE(GLOB SRCFILELIST
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
    )
 
-add_executable(AddTwoNumbers ${SRCFILELIST})
+add_executable(02_AddTwoNumbers ${SRCFILELIST})
 
-target_link_libraries(AddTwoNumbers
+target_link_libraries(02_AddTwoNumbers
     Catch2::Catch2WithMain
     ${LOCAL_LINK_LIB} 
     )
