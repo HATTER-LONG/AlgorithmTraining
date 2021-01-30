@@ -44,7 +44,7 @@ public:
 };
 
 
-TEST_CASE("heck Solution lengthOfLongestSubstring method work successfully ")
+TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ")
 {
     Solution solution;
 

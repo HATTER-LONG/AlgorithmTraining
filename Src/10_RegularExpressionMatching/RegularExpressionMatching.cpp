@@ -70,7 +70,7 @@ public:
 
 
 
-TEST_CASE("heck Solution isMatch method work successfully ")
+TEST_CASE("Check Solution isMatch method work successfully ")
 {
     Solution solution;
 
