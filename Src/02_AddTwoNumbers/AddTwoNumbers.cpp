@@ -82,7 +82,6 @@ public:
 TEST_CASE("Check Solution addTwoNumbers method work successfully")
 {
     Solution solution;
-    using ListNodePtr = std::unique_ptr<ListNode>;
 
     vector<int> LeftParm, RightParm, ResultParm;
     // clang-format off

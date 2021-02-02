@@ -11,7 +11,6 @@ struct ListNode
     ListNode* next;
     // NOTE 用于删除链表释放内存
     ListNode* nextback;
-
     ListNode()
             : val(0)
             , next(nullptr)
