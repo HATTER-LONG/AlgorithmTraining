@@ -29,7 +29,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution addTwoNumbers method work successfully")
+TEST_CASE("Check Solution removeNthFromEnd method work successfully")
 {
     Solution solution;
 

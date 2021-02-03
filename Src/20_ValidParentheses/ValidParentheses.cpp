@@ -43,7 +43,7 @@ public:
 };
 
 
-TEST_CASE("Check Solution threeSum method work successfully ")
+TEST_CASE("Check Solution isValid method work successfully ")
 {
     Solution solution;
 
