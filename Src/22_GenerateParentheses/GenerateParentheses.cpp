@@ -15,13 +15,13 @@ public:
             return { "()" };
 
         vector<vector<string>> dp(n + 1);
-        dp[0] = { "" };
-        dp[1] = { "()" };
-        for (int i = 2; i <= n; i++)
+        dp[0] = { "" };                // 0 组括号为空
+        dp[1] = { "()" };              // 1 组括号只有一种情况
+        for (int i = 2; i <= n; i++)   // 开始计算 i 组括号时括号的组合
         {
-            for (int j = 0; j < i; j++)
+            for (int j = 0; j < i; j++)   // 开始遍历 p q , 其中 p + q = i - 1， j 为索引
             {
-                for (string p : dp[j])
+                for (string p : dp[j])   // p = j 括号时的组合情况 与 q 组合情况进行全排列
                 {
                     for (string q : dp[i - j - 1])
                     {
