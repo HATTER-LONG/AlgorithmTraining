@@ -1,6 +1,6 @@
 #! /bin/bash
 
-filelist=`find ./build/test -type f`
+filelist=`find ./build/Src -type f`
 
 for file in $filelist
 do
