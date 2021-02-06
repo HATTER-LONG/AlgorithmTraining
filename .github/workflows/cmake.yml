@@ -32,8 +32,8 @@ jobs:
         path: my-tools
     - name: Install_spdlog
       run:  |
-            mkdir my-tools/spdlog/MBuild
-            cd my-tools/spdlog/MBuild
+            mkdir ${{ github.workspace }}/my-tools/spdlog/MBuild
+            cd ${{ github.workspace }}/my-tools/spdlog/MBuild
             cmake ..
             sudo make install -j32
     - name: CK_Catch2
@@ -44,8 +44,8 @@ jobs:
         path: my-tools
     - name: Install_Catch2
       run:  |
-            mkdir my-tools/Catch2/MBuild
-            cd my-tools/Catch2/MBuild
+            mkdir ${{ github.workspace }}/my-tools/Catch2/MBuild
+            cd ${{ github.workspace }}/my-tools/Catch2/MBuild
             cmake ..
             sudo make install -j32
       shell: bash
