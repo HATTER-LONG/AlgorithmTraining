@@ -20,26 +20,28 @@ jobs:
             build_type: [Release]
             std: [17]
     steps:
-    - name: install_AlgorithmTraining
+    - name: AlgorithmTraining
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-    - name: install_spdlog
+    - name: CK_spdlog
       uses: actions/checkout@v24
       with:
         fetch-depth: 1
         repository: gabime/spdlog
         path: ~/my-tools/
+    - name: Install_spdlog
       run:  |
             cd ~/my-tools/spdlog/build
             cmake ..
             sudo make install -j32
-    - name: install_Catch2
+    - name: CK_Catch2
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
         repository: catchorg/Catch2
         path: ~/my-tools/
+    - name: Install_Catch2
       run:  |
             cd ~/my-tools/Catch2/build
             cmake ..
