@@ -1,7 +1,7 @@
 #! /bin/bash
 
 filelist=`find ./build/Src -type f`
-#num=0
+num=0
 for file in $filelist
 do
 	if [ -x $file ]

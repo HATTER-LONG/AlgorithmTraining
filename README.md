@@ -99,8 +99,8 @@
 [stars-url]: https://github.com/HATTER-LONG/AlgorithmTraining/stargazers
 [issues-shield]: https://img.shields.io/github/issues/HATTER-LONG/AlgorithmTraining.svg?style=flat
 [issues-url]: https://github.com/HATTER-LONG/AlgorithmTraining/issues
-[license-shield]: https://img.shields.io/github/license/HATTER-LONG/AlgorithmTraining.svg?style=flat
-[license-url]: https://github.com/HATTER-LONG/AlgorithmTraining/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/HATTER-LONG/AlgorithmTraining?style=flat
+[license-url]: https://github.com/HATTER-LONG/AlgorithmTraining/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [build-url]: https://github.com/HATTER-LONG/AlgorithmTraining/workflows/CMake/badge.svg?style=flat
