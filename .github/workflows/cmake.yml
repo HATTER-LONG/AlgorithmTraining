@@ -28,7 +28,7 @@ jobs:
         # A list of files, directories, and wildcard patterns to cache and restore
         path: ${{ github.workspace }}
         # An explicit key for restoring and saving the cache
-        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}
+        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-updateCache
     - name: AlgorithmTraining
       uses: actions/checkout@v2
       with:
