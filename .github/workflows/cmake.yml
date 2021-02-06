@@ -8,10 +8,6 @@ env:
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally
-    # well on Windows or Mac.  You can convert this to a matrix build if you need
-    # cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: macos-latest
     strategy:
           matrix:
@@ -20,11 +16,25 @@ jobs:
             build_type: [Release]
             std: [17]
     steps:
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "::set-output name=date::$(/bin/date -u "+%Y%m")"
+      shell: bash
+    - name: Cache
+      uses: actions/cache@v2.1.4
+      with:
+        id: EnvCache
+        # A list of files, directories, and wildcard patterns to cache and restore
+        path: ${{ github.workspace }}
+        # An explicit key for restoring and saving the cache
+        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('**/lockfiles') }}
     - name: AlgorithmTraining
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
     - name: CK_spdlog
+      if: steps.EnvCache.outputs.cache-hit != 'true'
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
@@ -32,12 +42,14 @@ jobs:
         path: spdlog
         ref: v1.8.2
     - name: Install_spdlog
+      if: steps.EnvCache.outputs.cache-hit != 'true'
       run:  |
             mkdir ${{ github.workspace }}/spdlog/MBuild
             cd ${{ github.workspace }}/spdlog/MBuild
             cmake ..
             sudo make install -j32
     - name: CK_Catch2
+      if: steps.EnvCache.outputs.cache-hit != 'true'
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
@@ -45,12 +57,22 @@ jobs:
         path: Catch2
         ref: v2.13.4
     - name: Install_Catch2
+      if: steps.EnvCache.outputs.cache-hit != 'true'
       run:  |
             mkdir ${{ github.workspace }}/Catch2/MBuild
             cd ${{ github.workspace }}/Catch2/MBuild
             cmake ..
             sudo make install -j32
       shell: bash
+    - name: Install_CacheEnv
+      if: steps.EnvCache.outputs.cache-hit == 'true'
+      run:  |
+            cd ${{ github.workspace }}/spdlog/MBuild
+            cmake ../
+            sudo make install -j32
+            cd ${{ github.workspace }}/Catch2/MBuild
+            cmake ../
+            sudo make install -j32
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
