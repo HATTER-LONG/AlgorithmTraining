@@ -29,10 +29,10 @@ jobs:
       with:
         fetch-depth: 1
         repository: gabime/spdlog
-        path: ~/my-tools/
+        path: my-tools
     - name: Install_spdlog
       run:  |
-            cd ~/my-tools/spdlog/build
+            cd my-tools/spdlog/build
             cmake ..
             sudo make install -j32
     - name: CK_Catch2
@@ -40,10 +40,10 @@ jobs:
       with:
         fetch-depth: 1
         repository: catchorg/Catch2
-        path: ~/my-tools/
+        path: my-tools
     - name: Install_Catch2
       run:  |
-            cd ~/my-tools/Catch2/build
+            cd my-tools/Catch2/build
             cmake ..
             sudo make install -j32
       shell: bash
