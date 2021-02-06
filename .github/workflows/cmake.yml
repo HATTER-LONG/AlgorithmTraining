@@ -23,12 +23,12 @@ jobs:
       shell: bash
     - name: Cache
       uses: actions/cache@v2.1.4
+      id: EnvCache
       with:
-        id: EnvCache
         # A list of files, directories, and wildcard patterns to cache and restore
         path: ${{ github.workspace }}
         # An explicit key for restoring and saving the cache
-        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('**/lockfiles') }}
+        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('${{ github.workspace }}/**/lockfiles') }}
     - name: AlgorithmTraining
       uses: actions/checkout@v2
       with:
