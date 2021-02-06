@@ -32,9 +32,6 @@ jobs:
         path: spdlog
     - name: Install_spdlog
       run:  |
-            pwd
-            ls
-            ls ${{ github.workspace }}
             mkdir ${{ github.workspace }}/spdlog/MBuild
             cd ${{ github.workspace }}/spdlog/MBuild
             cmake ..
@@ -44,11 +41,11 @@ jobs:
       with:
         fetch-depth: 1
         repository: catchorg/Catch2
-        path: my-tools
+        path: Catch2
     - name: Install_Catch2
       run:  |
-            mkdir ${{ github.workspace }}/my-tools/Catch2/MBuild
-            cd ${{ github.workspace }}/my-tools/Catch2/MBuild
+            mkdir ${{ github.workspace }}/Catch2/MBuild
+            cd ${{ github.workspace }}/Catch2/MBuild
             cmake ..
             sudo make install -j32
       shell: bash
