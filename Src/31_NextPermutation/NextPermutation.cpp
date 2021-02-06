@@ -60,7 +60,7 @@ TEST_CASE("Check Solution generateParenthesis method work successfully")
         make_tuple(vector<int> { 1, 1, 5 }, vector<int> { 1, 5, 1 }),
         make_tuple(vector<int> { 1, 3, 2 }, vector<int> { 2, 1, 3 }),
         make_tuple(vector<int> { 1, 4, 3, 2, 1 }, vector<int> { 2, 1, 1, 3, 4 }),
-        make_tuple(vector<int> { 2, 3, 1 }, vector<int> { 3, 1, 1 }),
+        make_tuple(vector<int> { 2, 3, 1 }, vector<int> { 3, 1, 2 }),
     }));
     solution.nextPermutation(InputParam);
     REQUIRE_THAT(InputParam, Equals(ResultParm));
