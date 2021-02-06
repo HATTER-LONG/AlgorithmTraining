@@ -33,19 +33,20 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
+        path: SourceCode
     - name: CK_spdlog
       if: steps.EnvCache.outputs.cache-hit != 'true'
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
         repository: gabime/spdlog
-        path: spdlog
+        path: Env/spdlog
         ref: v1.8.2
     - name: Install_spdlog
       if: steps.EnvCache.outputs.cache-hit != 'true'
       run:  |
-            mkdir ${{ github.workspace }}/spdlog/MBuild
-            cd ${{ github.workspace }}/spdlog/MBuild
+            mkdir ${{ github.workspace }}/Env/spdlog/MBuild
+            cd ${{ github.workspace }}/Env/spdlog/MBuild
             cmake ..
             sudo make install -j32
     - name: CK_Catch2
@@ -54,42 +55,42 @@ jobs:
       with:
         fetch-depth: 1
         repository: catchorg/Catch2
-        path: Catch2
+        path: Env/Catch2
         ref: v2.13.4
     - name: Install_Catch2
       if: steps.EnvCache.outputs.cache-hit != 'true'
       run:  |
-            mkdir ${{ github.workspace }}/Catch2/MBuild
-            cd ${{ github.workspace }}/Catch2/MBuild
+            mkdir ${{ github.workspace }}/Env/Catch2/MBuild
+            cd ${{ github.workspace }}/Env/Catch2/MBuild
             cmake ..
             sudo make install -j32
       shell: bash
     - name: Install_CacheEnv
       if: steps.EnvCache.outputs.cache-hit == 'true'
       run:  |
-            cd ${{ github.workspace }}/spdlog/MBuild
+            cd ${{ github.workspace }}/Env/spdlog/MBuild
             cmake ../
             sudo make install -j32
-            cd ${{ github.workspace }}/Catch2/MBuild
+            cd ${{ github.workspace }}/Env/Catch2/MBuild
             cmake ../
             sudo make install -j32
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
-      run: cmake -E make_directory ${{github.workspace}}/build
+      run: cmake -E make_directory ${{github.workspace}}/SourceCode/build
 
     - name: Configure CMake
       # Use a bash shell so we can use the same syntax for environment variable
       # access regardless of the host operating system
       shell: bash
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{github.workspace}}/SourceCode/build
       # Note the current convention is to use the -S and -B options here to specify source 
       # and build directories, but this is only available with CMake 3.13 and higher.  
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
       run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
     - name: Build
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{github.workspace}}/SourceCode/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config $BUILD_TYPE
@@ -99,4 +100,4 @@ jobs:
       shell: bash
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ${{github.workspace}}/Run.sh
+      run: ${{github.workspace}}/SourceCode/Run.sh
