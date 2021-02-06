@@ -1,4 +1,3 @@
-#include <bits/c++config.h>
 #include <catch2/catch.hpp>
 #include <cstddef>
 #include <string>
