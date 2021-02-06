@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-Wall -pedantic -fno-limit-debug-info)
 
 find_package(Threads)
-find_package(spdlog REQUIRED CONFIG)
+find_package(spdlog 1.8.2 REQUIRED CONFIG)
 set(LOCAL_LINK_LIB spdlog::spdlog pthread)
 include_directories(Src)
 
