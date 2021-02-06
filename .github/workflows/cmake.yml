@@ -28,9 +28,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-        repository: gabime/spdlog@1.8.2
+        repository: gabime/spdlog
         path: spdlog
-        ref: v1.x
+        ref: v1.8.2
     - name: Install_spdlog
       run:  |
             mkdir ${{ github.workspace }}/spdlog/MBuild
@@ -41,9 +41,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-        repository: catchorg/Catch2@2.13.4
+        repository: catchorg/Catch2
         path: Catch2
-        ref: v2.x
+        ref: v2.13.4
     - name: Install_Catch2
       run:  |
             mkdir ${{ github.workspace }}/Catch2/MBuild
