@@ -52,7 +52,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution mergeTwoLists method work successfully")
+TEST_CASE("Check Solution mergeKLists method work successfully")
 {
     Solution solution;
 
