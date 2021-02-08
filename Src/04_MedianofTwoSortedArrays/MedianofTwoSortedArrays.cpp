@@ -37,9 +37,10 @@ public:
         }
 
         // Ci
-        // 为第i个数组的割,比如C1为2时表示第1个数组只有2个元素。LMaxi为第i个数组割后的左元素。RMini为第i个数组割后的右元素。
-        int LMax1, LMax2, RMin1, RMin2, c1, c2, lo = 0,
-                                                hi = 2 * n;   //我们目前是虚拟加了'#'所以数组1是2*n长度
+        // 为第i个数组的割,比如C1为2时表示第1个数组只有2个元素。
+        // LMaxi为第i个数组割后的左元素。RMini为第i个数组割后的右元素。
+        int LMax1, LMax2, RMin1, RMin2, c1, c2, lo = 0;
+        int hi = 2 * n;   //我们目前是虚拟加了'#'所以数组1是2*n长度
 
         while (lo <= hi)   //二分
         {
