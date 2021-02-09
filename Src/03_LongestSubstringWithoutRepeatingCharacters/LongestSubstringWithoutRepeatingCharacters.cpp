@@ -19,9 +19,9 @@ public:
         // 整个循环从 l == 0; r == -1 这个空窗口开始
         // 到l == s.size(); r == s.size()-1 这个空窗口截止
         // 在每次循环里逐渐改变窗口, 维护freq, 并记录当前窗口中是否找到了一个新的最优值
-        while (l < s.size())
+        while (l < static_cast<int>(s.size()))
         {
-            if (r + 1 < s.size() && freq[static_cast<int>(s[r + 1])] == 0)
+            if (r + 1 < static_cast<int>(s.size()) && freq[static_cast<int>(s[r + 1])] == 0)
             {
                 r++;
                 freq[static_cast<int>(s[r])]++;

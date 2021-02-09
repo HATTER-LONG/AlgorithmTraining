@@ -37,7 +37,7 @@ public:
             {
                 continue;
             }
-            int third = NUMSSIZE - 1;
+            size_t third = NUMSSIZE - 1;
             int target = -nums[first];
 
             for (size_t second = first + 1; second < NUMSSIZE; second++)

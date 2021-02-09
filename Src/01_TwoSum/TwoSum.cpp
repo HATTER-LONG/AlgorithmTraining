@@ -11,7 +11,7 @@ public:
     vector<int> twoSum(vector<int>& Nums, int Target)
     {
         unordered_map<int, int> record;
-        for (int i = 0; i < Nums.size(); i++)
+        for (size_t i = 0; i < Nums.size(); i++)
         {
             int complement = Target - Nums[i];
             auto iter = record.find(complement);
@@ -24,7 +24,7 @@ public:
 
                 return { l, r };
             }
-            record[Nums[i]] = i;
+            record[Nums[i]] = static_cast<int>(i);
         }
         return {};
     }

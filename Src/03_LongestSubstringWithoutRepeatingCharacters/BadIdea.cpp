@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstddef>
 #include <string>
 
 using namespace std;
@@ -7,10 +8,10 @@ class Solution
 public:
     int lengthOfLongestSubstring(string s)
     {
-        int count = 0;
+        size_t count = 0;
 
         string tmpstr;
-        for (int i = 0; i < s.length(); i++)
+        for (size_t i = 0; i < s.length(); i++)
         {
             string::size_type pos;
             pos = tmpstr.find(s[i]);
@@ -36,12 +37,12 @@ public:
                 count = tmpstr.length();
             }
         }
-        return count;
+        return static_cast<int>(count);
     }
 
     bool hasRepeatingChar(const string& str)
     {
-        for (int i = 0; i < str.length(); i++)
+        for (size_t i = 0; i < str.length(); i++)
         {
             if (count(str.begin(), str.end(), str[i]) > 1)
             {

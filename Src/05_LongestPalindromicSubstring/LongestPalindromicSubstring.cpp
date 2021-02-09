@@ -13,7 +13,7 @@ class Solution
 public:
     pair<int, int> expainStr(const string& s, int left, int right)
     {
-        while (left >= 0 && right < s.length() && s[left] == s[right])
+        while (left >= 0 && right < static_cast<int>(s.length()) && s[left] == s[right])
         {
             left--;
             right++;
