@@ -1,10 +1,11 @@
-#include <bits/c++config.h>
 #include <string>
 #include <vector>
+
+template <class T>
 class ToolBox
 {
 public:
-    std::string transVector2String(const std::vector<int>& InVec)
+    std::string transVector2String(const std::vector<T>& InVec)
     {
         std::string retStr = "[";
         for (std::size_t index = 0; index < InVec.size(); index++)
