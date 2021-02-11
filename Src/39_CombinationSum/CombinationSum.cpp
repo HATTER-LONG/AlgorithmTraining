@@ -6,6 +6,7 @@ using namespace Catch;
 using namespace std;
 
 //回溯
+// https://leetcode-cn.com/problems/combination-sum/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-2/
 class Solution
 {
 public:
