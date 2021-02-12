@@ -18,7 +18,7 @@ public:
             return res;
         }
         vector<bool> used(len, false);
-        vector<int> path(len);
+        vector<int> path;
         dfs(nums, len, 0, path, used, res);
         return res;
     }
