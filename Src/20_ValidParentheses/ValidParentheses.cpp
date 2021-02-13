@@ -1,7 +1,4 @@
 #include <catch2/catch.hpp>
-#include <cstddef>
-#include <iterator>
-#include <spdlog/spdlog.h>
 #include <stack>
 #include <string>
 #include <tuple>
@@ -9,7 +6,9 @@
 #include <vector>
 using namespace std;
 using namespace Catch;
-using namespace spdlog;
+
+// 栈
+
 class Solution
 {
 public:
@@ -25,7 +24,7 @@ public:
         stack<char> stk;
         for (char ch : s)
         {
-            if (pairs.count(ch))
+            if (pairs.count(ch))   // 判断是否有此类型右括号
             {
                 if (stk.empty() || stk.top() != pairs[ch])
                 {

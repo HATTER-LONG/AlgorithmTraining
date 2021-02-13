@@ -6,35 +6,38 @@ using namespace Catch;
 using namespace std;
 
 //回溯
-// https://leetcode-cn.com/problems/combination-sum/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-2/
+
 class Solution
 {
 public:
-    void dfs(vector<int>& candidates, int target, vector<vector<int>>& ans, vector<int>& combine, size_t idx)
-    {
-        if (idx == candidates.size())
-        {
-            return;
-        }
-        if (target == 0)
-        {
-            ans.emplace_back(combine);
-            return;
-        }
-        dfs(candidates, target, ans, combine, idx + 1);
-        if (target - candidates[idx] >= 0)
-        {
-            combine.emplace_back(candidates[idx]);   //选中当前 idx
-            dfs(candidates, target - candidates[idx], ans, combine, idx);
-            combine.pop_back();   // 撤销当前选择
-        }
-    }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target)
     {
         vector<vector<int>> ans;
         vector<int> combine;
-
-        dfs(candidates, target, ans, combine, 0);
+        int sum = 0;
+        size_t n = candidates.size();
+        function<void(int)> dfs = [&](int back) {
+            if (sum == target)
+            {
+                ans.emplace_back(combine.begin(), combine.end());
+            }
+            else if (sum > target)
+            {
+                return;
+            }
+            else
+            {
+                for (size_t i = back; i != n; i++)
+                {
+                    combine.push_back(candidates[i]);
+                    sum += candidates[i];
+                    dfs(i);
+                    sum -= candidates[i];
+                    combine.pop_back();
+                }
+            }
+        };
+        dfs(0);
         return ans;
     }
 };

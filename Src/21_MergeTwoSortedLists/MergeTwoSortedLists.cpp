@@ -5,10 +5,10 @@
 using namespace Catch;
 using namespace std;
 
+//  递归算法
 class Solution
 {
 public:
-    //  递归算法
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
     {
         if (l1 == nullptr)

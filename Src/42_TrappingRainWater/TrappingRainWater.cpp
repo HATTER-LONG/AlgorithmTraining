@@ -41,6 +41,7 @@ TEST_CASE("Check Solution trap method work successfully")
     int resultParm;
 
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, int>({
+        make_tuple(vector<int> { 1, 0, 0, 7 }, 2),
         make_tuple(vector<int> { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }, 6),
         make_tuple(vector<int> { 4, 2, 0, 3, 2, 5 }, 9),
         make_tuple(vector<int> { 4, 0, 0, 1, 0, 2 }, 7),

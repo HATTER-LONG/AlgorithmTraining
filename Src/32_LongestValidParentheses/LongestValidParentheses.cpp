@@ -40,8 +40,6 @@ public:
         return maxans;
     }
     // 栈
-    // https://leetcode-cn.com/problems/longest-valid-parentheses/solution/zui-chang-you-xiao-gua-hao-by-leetcode-solution/
-    // 题解的动图好理解些
     int longestValidParenthesesStack(string s)
     {
         int maxans = 0, n = static_cast<int>(s.length());

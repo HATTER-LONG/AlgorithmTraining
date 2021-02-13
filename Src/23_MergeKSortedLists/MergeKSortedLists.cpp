@@ -5,6 +5,8 @@
 using namespace Catch;
 using namespace std;
 
+//分治合并
+
 class Solution
 {
 public:
@@ -30,7 +32,6 @@ public:
         return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
     }
 
-    //  递归算法
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
     {
         if (l1 == nullptr)

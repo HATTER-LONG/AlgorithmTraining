@@ -6,8 +6,8 @@
 using namespace Catch;
 using namespace std;
 
-//思路： 从后向前找到 index > index - 1 的地方，然后将已经遍历过的尾处最小数字移动 到 index -1 ，然后将index
-//-1 到尾处反转
+//两遍扫描
+
 class Solution
 {
 public:
