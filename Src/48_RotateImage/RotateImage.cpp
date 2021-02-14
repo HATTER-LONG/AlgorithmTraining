@@ -39,7 +39,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution permute method work successfully")
+TEST_CASE("Check Solution rotate method work successfully")
 {
     Solution solution;
 

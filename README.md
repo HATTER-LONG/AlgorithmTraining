@@ -47,6 +47,7 @@
   - [42_双指针_接雨水](#42_双指针_接雨水)
   - [46_回溯_全排列](#46_回溯_全排列)
   - [48_数组例题原地计算_旋转图像](#48_数组例题原地计算_旋转图像)
+  - [49_哈希或质数相乘_字母异位词分组](#49_哈希或质数相乘_字母异位词分组)
 
 ## [01_桶_两数之和](./Src/01_TwoSum/TwoSum.cpp)
 
@@ -427,3 +428,23 @@ candidates 中的数字可以无限制重复被选取。
 ```
 
 [原地计算法](https://leetcode-cn.com/problems/rotate-image/solution/xuan-zhuan-tu-xiang-by-leetcode-solution-vu3m/)。
+
+## [49_哈希或质数相乘_字母异位词分组](./src/../Src/49_GroupAnagrams/GroupAnagrams.cpp)
+
+```shell
+给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+
+输入: ["eat", "tea", "tan", "ate", "nat", "bat"]
+输出:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+```
+
+**哈希或质数相乘**。
+
+基础方法就是排序、置入 map 中、map 查对应插入。
+
+本例中使用 哈希 或者 质数相乘 获得每个子串 `ID`，通过 map 查进行分类。
