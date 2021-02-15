@@ -463,4 +463,5 @@ candidates 中的数字可以无限制重复被选取。
 **动态规划||分治**。
 
 动态规划：比较好理解，结果是求解最大和，动态规划记录前边最大的 pre 即可，这样比对 pre + cur 是否大于 cur，如果小于则 pre 就变为 cur 值。
+
 分治：[需要再看吧](https://leetcode-cn.com/problems/maximum-subarray/solution/zui-da-zi-xu-he-by-leetcode-solution/)。
