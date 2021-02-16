@@ -49,6 +49,7 @@
   - [48_数组例题原地计算_旋转图像](#48_数组例题原地计算_旋转图像)
   - [49_哈希或质数相乘_字母异位词分组](#49_哈希或质数相乘_字母异位词分组)
   - [53_动态规划||分治_最大子序和](#53_动态规划分治_最大子序和)
+  - [55_貪心算法_跳跃游戏](#55_貪心算法_跳跃游戏)
 
 ## [01_桶_两数之和](./Src/01_TwoSum/TwoSum.cpp)
 
@@ -430,7 +431,7 @@ candidates 中的数字可以无限制重复被选取。
 
 [原地计算法](https://leetcode-cn.com/problems/rotate-image/solution/xuan-zhuan-tu-xiang-by-leetcode-solution-vu3m/)。
 
-## [49_哈希或质数相乘_字母异位词分组](./src/../Src/49_GroupAnagrams/GroupAnagrams.cpp)
+## [49_哈希或质数相乘_字母异位词分组](./Src/49_GroupAnagrams/GroupAnagrams.cpp)
 
 ```shell
 给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
@@ -465,3 +466,21 @@ candidates 中的数字可以无限制重复被选取。
 动态规划：比较好理解，结果是求解最大和，动态规划记录前边最大的 pre 即可，这样比对 pre + cur 是否大于 cur，如果小于则 pre 就变为 cur 值。
 
 分治：[需要再看吧](https://leetcode-cn.com/problems/maximum-subarray/solution/zui-da-zi-xu-he-by-leetcode-solution/)。
+
+## [55_貪心算法_跳跃游戏](./Src/55_JumpGame/JumpGame.cpp)
+
+```shell
+给定一个非负整数数组 nums ，你最初位于数组的 第一个下标 。
+
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+
+判断你是否能够到达最后一个下标。
+
+输入：nums = [2,3,1,1,4]
+输出：true
+解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
+```
+
+**贪心算法**。
+
+当前跳跃步骤能到达的最远点超过 size - 1 ，即必然能到达数组末尾。因此维护一个能到达最远点的 rightpos ，当超过数组 size 时返回。
