@@ -16,6 +16,7 @@ public:
     {
         // 按照二维数组第一列的大小对每个一维数组升序排序
         size_t n = intervals.size();
+        sort(intervals.begin(), intervals.end());
         vector<vector<int>> ans;
         for (size_t i = 0; i < n;)
         {
@@ -46,6 +47,7 @@ TEST_CASE("Check Solution merge method work successfully")
             vector<vector<int>> { { 1, 6 }, { 8, 10 }, { 15, 18 } }),
 
         make_tuple(vector<vector<int>> { { 1, 4 }, { 4, 5 } }, vector<vector<int>> { { 1, 5 } }),
+        make_tuple(vector<vector<int>> { { 1, 4 }, { 0, 4 } }, vector<vector<int>> { { 0, 4 } }),
     }));
 
     CAPTURE(inputParm, resultParm);
