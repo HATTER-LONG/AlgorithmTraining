@@ -1,7 +1,6 @@
 #include "Tools/BinaryTreeNodeTools.h"
 
 #include <algorithm>
-#include <bits/c++config.h>
 #include <catch2/catch.hpp>
 #include <cmath>
 #include <cstddef>
