@@ -27,13 +27,12 @@ public:
 TEST_CASE("Check Solution maxDepth method work successfully")
 {
     Solution solution;
+    string imputParm;
+    int result;
+    tie(imputParm, result) = GENERATE(table<string, int>({
+        make_tuple("3(9,20(15,7))", 3),
+    }));
+    auto* treeNode = createTreeNode(imputParm);
 
-    TreeNode TreeNode9(9);
-    TreeNode TreeNode15(15);
-    TreeNode TreeNode7(7);
-
-    TreeNode TreeNode20(20, &TreeNode15, &TreeNode7);
-    TreeNode TreeNode3(3, &TreeNode9, &TreeNode20);
-
-    REQUIRE(solution.maxDepth(&TreeNode3) == 3);
+    REQUIRE(solution.maxDepth(treeNode) == 3);
 }

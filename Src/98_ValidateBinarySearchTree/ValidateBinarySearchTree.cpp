@@ -66,24 +66,13 @@ public:
 TEST_CASE("Check Solution isValidBST method work successfully")
 {
     Solution solution;
-    SECTION("True Branch")
-    {
-        TreeNode TreeNode1(1);
-        TreeNode TreeNode3(3);
-        TreeNode inputParm(2, &TreeNode1, &TreeNode3);
 
-        CAPTURE(inputParm);
-        REQUIRE(solution.isValidBST(&inputParm));
-    }
-    SECTION("False Branch")
-    {
-        TreeNode TreeNode1(1);
-        TreeNode TreeNode3(3);
-        TreeNode TreeNode6(6);
-
-        TreeNode TreeNode4(4, &TreeNode3, &TreeNode6);
-        TreeNode inputParm(5, &TreeNode1, &TreeNode4);
-
-        REQUIRE_FALSE(solution.isValidBST(&inputParm));
-    }
+    string imputParm;
+    bool result;
+    tie(imputParm, result) = GENERATE(table<string, bool>({
+        make_tuple("2(1,3)", true),
+        make_tuple("5(1,4(3,6))", false),
+    }));
+    auto* treeNode = createTreeNode(imputParm);
+    REQUIRE(solution.isValidBST(treeNode) == result);
 }

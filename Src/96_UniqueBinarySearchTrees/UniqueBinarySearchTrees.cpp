@@ -38,7 +38,6 @@ TEST_CASE("Check Solution numTrees method work successfully")
     Solution solution;
     int inputParm = 0, result = 0;
 
-
     tie(inputParm, result) = GENERATE(table<int, int>({
         make_tuple(3, 5),
     }));

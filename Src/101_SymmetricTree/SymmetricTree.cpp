@@ -64,28 +64,13 @@ public:
 TEST_CASE("Check Solution isSymmetric method work successfully")
 {
     Solution solution;
-    SECTION("TRUE Branch")
-    {
-        TreeNode TreeNode3(3);
-        TreeNode TreeNode4(4);
-        TreeNode inputParm2(2, &TreeNode3, &TreeNode4);
 
-        TreeNode TreeNoder3(3);
-        TreeNode TreeNoder4(4);
-        TreeNode inputParmar2(2, &TreeNoder4, &TreeNoder3);
-
-        TreeNode inputParm(1, &inputParm2, &inputParmar2);
-        CAPTURE(inputParm);
-        REQUIRE(solution.isSymmetric(&inputParm));
-    }
-    SECTION("FALSE Branch")
-    {
-        TreeNode TreeNode2(2);
-        TreeNode inputParm2(2, &TreeNode2, nullptr);
-
-        TreeNode TreeNoder3(2);
-        TreeNode inputParmar2(2, &TreeNoder3, nullptr);
-        TreeNode inputParm(1, &inputParm2, &inputParmar2);
-        REQUIRE_FALSE(solution.isSymmetric(&inputParm));
-    }
+    string imputParm;
+    bool result;
+    tie(imputParm, result) = GENERATE(table<string, bool>({
+        make_tuple("1(2(3,4),2(4,3))", true),
+        make_tuple("1(2(2,),2(2,))", false),
+    }));
+    auto* treeNode = createTreeNode(imputParm);
+    REQUIRE(solution.isSymmetric(treeNode) == result);
 }

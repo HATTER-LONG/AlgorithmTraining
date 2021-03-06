@@ -39,12 +39,12 @@ TEST_CASE("Check Solution levelOrder method work successfully")
 {
     Solution solution;
 
-    TreeNode TreeNode9(9);
-    TreeNode TreeNode15(15);
-    TreeNode TreeNode7(7);
+    string imputParm;
+    vector<vector<int>> result;
+    tie(imputParm, result) = GENERATE(table<string, vector<vector<int>>>({
+        make_tuple("3(9,20(15,7))", vector<vector<int>> { { 3 }, { 9, 20 }, { 15, 7 } }),
+    }));
+    auto* treeNode = createTreeNode(imputParm);
 
-    TreeNode TreeNode20(20, &TreeNode15, &TreeNode7);
-    TreeNode TreeNode3(3, &TreeNode9, &TreeNode20);
-
-    REQUIRE(solution.levelOrder(&TreeNode3) == vector<vector<int>> { { 3 }, { 9, 20 }, { 15, 7 } });
+    REQUIRE(solution.levelOrder(treeNode) == result);
 }

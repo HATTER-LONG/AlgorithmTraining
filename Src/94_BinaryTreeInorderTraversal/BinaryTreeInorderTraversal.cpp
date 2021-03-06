@@ -60,12 +60,12 @@ public:
 TEST_CASE("Check Solution inorderTraversal method work successfully")
 {
     Solution solution;
-    TreeNode tmp1(3);
-    TreeNode tmp2(2, &tmp1, nullptr);
-    TreeNode inputParm(1, nullptr, &(tmp2));
+    string imputParm;
+    vector<int> result;
+    tie(imputParm, result) = GENERATE(table<string, vector<int>>({
+        make_tuple("1(,2(3,))", vector<int> { 1, 3, 2 }),
+    }));
+    auto* treenode = createTreeNode(imputParm);
 
-    vector<int> result { 1, 3, 2 };
-
-    CAPTURE(inputParm, result);
-    REQUIRE_THAT(solution.inorderTraversal(&inputParm), Equals(result));
+    REQUIRE_THAT(solution.inorderTraversal(treenode), Equals(result));
 }
