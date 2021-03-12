@@ -28,7 +28,6 @@ public:
         dp[0] = true;
         for (size_t i = 0; i < s.size(); i++)
         {
-            // 只需匹配基于前一个有效的分割点
             if (dp[i])
             {
                 for (auto& word : wordDict)
