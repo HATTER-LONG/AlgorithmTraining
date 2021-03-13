@@ -34,7 +34,9 @@ inline std::string transListNode2Str(const ListNode& ListNodeParam)
 {
     std::string retStr;
     const ListNode* tmpNode = &ListNodeParam;
-    while (tmpNode != nullptr)
+    const int deepth = 1000;
+    int i = 0;
+    while (tmpNode != nullptr && i++ < deepth)
     {
         retStr += std::to_string(tmpNode->val);
         if (tmpNode->next)
@@ -55,13 +57,21 @@ inline void releaseListNode(ListNode* Node)
 }
 
 using ListNodePtr = std::unique_ptr<ListNode, std::function<void(ListNode*)>>;
-inline ListNodePtr initListNode(std::vector<int> param)
+inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
 {
     ListNode* retVal = nullptr;
+    ListNode* loopNode = nullptr;
+    ListNode* lastNode = nullptr;
     for (int i = param.size() - 1; i >= 0; i--)
     {
         retVal = new ListNode(param[i], retVal);
+        if (loop == i)
+            loopNode = retVal;
+        if (i == static_cast<int>(param.size() - 1))
+            lastNode = retVal;
     }
+
+    lastNode->next = loopNode;
     return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
 }
 
