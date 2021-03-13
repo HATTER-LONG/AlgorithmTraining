@@ -70,8 +70,8 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
         if (i == static_cast<int>(param.size() - 1))
             lastNode = retVal;
     }
-
-    lastNode->next = loopNode;
+    if (lastNode)
+        lastNode->next = loopNode;
     return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
 }
 
