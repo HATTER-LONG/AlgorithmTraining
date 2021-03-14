@@ -75,6 +75,19 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
     return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
 }
 
+inline ListNode* findLinstNode(ListNode* headList, int pos)
+{
+    ListNode* res = pos == -1 ? nullptr : headList;
+
+    for (int i = 0; i < pos; i++)
+    {
+        if (res == nullptr)
+            break;
+        res = res->next;
+    }
+    return res;
+}
+
 #undef CATCH_CONFIG_FALLBACK_STRINGIFIER
 #define CATCH_CONFIG_FALLBACK_STRINGIFIER(value) transListNode2Str(value)
 
