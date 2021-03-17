@@ -135,9 +135,9 @@ public:
     }
 };
 
-TEST_CASE("Check Solution LRUCache method work successfully")
+TEST_CASE("Check Solution sortList method work successfully")
 {
-    Solution solution {};
+    Solution solution;
     vector<int> inputParm;
     vector<int> result;
 
