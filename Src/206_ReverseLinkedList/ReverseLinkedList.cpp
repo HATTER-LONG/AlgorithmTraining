@@ -31,6 +31,7 @@ public:
         return prev;
     }
 };
+
 TEST_CASE("Check Solution reverseList method work successfully")
 {
     Solution solution;
