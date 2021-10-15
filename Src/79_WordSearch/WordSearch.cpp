@@ -100,7 +100,7 @@ public:
         {
             return true;
         }
-        if (posx - 1 >= 0 && prepos != LEFT && dfs(board, posx - 1, posy, RIGHT, keypos + 1))
+        if (posx >= 1 && prepos != LEFT && dfs(board, posx - 1, posy, RIGHT, keypos + 1))
         {
             return true;
         }
@@ -108,7 +108,7 @@ public:
         {
             return true;
         }
-        if (posy - 1 >= 0 && prepos != TOP && dfs(board, posx, posy - 1, DOWN, keypos + 1))
+        if (posy >= 1 && prepos != TOP && dfs(board, posx, posy - 1, DOWN, keypos + 1))
         {
             return true;
         }
