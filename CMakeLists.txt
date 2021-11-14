@@ -17,9 +17,13 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug" OR CMAKE_BUILD_TYPE MATCHES "RelWithDebInfo"
     endif()
 endif()
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/library)   
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/library) 
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin) # exe 
+
 find_package(Threads)
-find_package(spdlog REQUIRED CONFIG)
-set(LOCAL_LINK_LIB spdlog::spdlog pthread)
+find_package(glog REQUIRED CONFIG)
+set(LOCAL_LINK_LIB glog::glog pthread)
 include_directories(Src)
 
 add_subdirectory(Src)

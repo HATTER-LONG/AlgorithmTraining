@@ -1,8 +1,7 @@
 #pragma once
-
 #include <cstddef>
 #include <functional>
-#include <spdlog/spdlog.h>
+#include <glog/logging.h>
 #include <stack>
 #include <string>
 #include <vector>
@@ -36,7 +35,8 @@ struct TreeNode
 inline std::string transBinTreeNode2Str(const TreeNode& TreeNodeParm)
 {
     std::function<std::string(const TreeNode* const TreeNode)> dfs =
-        [&](const TreeNode* const TreeNode) -> std::string {
+        [&](const TreeNode* const TreeNode) -> std::string
+    {
         if (TreeNode == nullptr)
             return "";
         std::string left = dfs(TreeNode->left);
@@ -64,7 +64,8 @@ inline TreeNode* createTreeNode(std::string str)
         LEFT = 1,
         RIGHT
     };
-    auto getValue = [](const std::string& str, size_t& j) -> int {
+    auto getValue = [](const std::string& str, size_t& j) -> int
+    {
         int tmp = j - 1;
         char tmpCh = 0;
         int num = 0;
@@ -77,7 +78,7 @@ inline TreeNode* createTreeNode(std::string str)
             }
             if (tmpCh < '0' || tmpCh > '9')
             {
-                spdlog::warn("Input Error char[{}], only number", tmpCh);
+                LOG(WARNING) << "Input Error char " << tmpCh << ", only number";
                 return -1;
             }
             num = num * 10 + tmpCh - '0';
