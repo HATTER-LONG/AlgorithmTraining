@@ -1,3 +1,4 @@
+add_subdirectory(Greedy)
 add_subdirectory(DataStruct)
 add_subdirectory(TestTool)
 add_subdirectory(01_TwoSum)

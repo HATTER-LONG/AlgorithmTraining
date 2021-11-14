@@ -1,6 +1,6 @@
 #! /bin/bash
 
-filelist=`find ./bin/ -type f`
+filelist=`find ./bin -type f`
 num=0
 for file in $filelist
 do
