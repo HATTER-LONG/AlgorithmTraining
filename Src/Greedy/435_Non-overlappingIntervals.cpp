@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <catch2/catch.hpp>
-
+using namespace std;
 /*
  * 题目描述
  *   给定多个区间，计算让这些区间互不重叠所需要移除区间的最少个数。
@@ -21,18 +21,16 @@ int eraseOverlapIntervals(std::vector<std::vector<int>>& intervals)
 {
     if (intervals.empty())
         return 0;
-    size_t size = intervals.size();
-    std::sort(intervals.begin(), intervals.end(),
-        [](std::vector<int>& a, std::vector<int>& b)
-        {
-            return a[1] < b[1]; /* check right line */
-        });
-    int removed = 0, prev = intervals[0][1];
-    for (size_t i = 1; i < size; i++)
+    int size = intervals.size();
+    sort(intervals.begin(), intervals.end(),
+        [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
+    int prev = intervals[0][1];
+    int removed = 0;
+    for (int i = 1; i < size; i++)
     {
         if (intervals[i][0] < prev)
         {
-            ++removed;
+            removed++;
         }
         else
         {

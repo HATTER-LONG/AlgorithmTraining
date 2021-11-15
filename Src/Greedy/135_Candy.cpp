@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 #include <numeric>
-
+using namespace std;
 /*
  * 题目描述
  * 一群孩子站成一排，每一个孩子有自己的评分。
@@ -18,27 +18,25 @@
 
 int candy(std::vector<int>& ratings)
 {
-    size_t size = ratings.size();
+    int size = ratings.size();
     if (size < 2)
-    {
         return size;
-    }
-    std::vector<int> num(size, 1);
-    for (size_t i = 1; i < size; i++)
+    vector<int> num(size, 1);
+    for (int i = 1; i < size; i++)
     {
         if (ratings[i] > ratings[i - 1])
         {
             num[i] = num[i - 1] + 1;
         }
     }
-    for (size_t i = size - 1; i > 0; i--)
+    for (int i = size - 1; i > 0; i--)
     {
         if (ratings[i - 1] > ratings[i])
         {
-            num[i - 1] = std::max(num[i - 1], num[i] + 1);
+            num[i - 1] = max(num[i - 1], num[i] + 1);
         }
     }
-    return std::accumulate(num.begin(), num.end(), 0);
+    return accumulate(num.begin(), num.end(), 0);
 }
 
 TEST_CASE("Distribute candy")
