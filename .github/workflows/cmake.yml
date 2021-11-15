@@ -35,19 +35,19 @@ jobs:
       with:
         fetch-depth: 1
         path: SourceCode
-    - name: CK_spdlog
+    - name: CK_glog
       if: steps.EnvCache.outputs.cache-hit != 'true'
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
-        repository: gabime/spdlog
-        path: Env/spdlog
-        ref: v1.8.2
-    - name: Install_spdlog
+        repository: google/glog
+        path: Env/glog
+        ref: v0.5.0
+    - name: Install_glog
       if: steps.EnvCache.outputs.cache-hit != 'true'
       run:  |
-            mkdir ${{ github.workspace }}/Env/spdlog/MBuild
-            cd ${{ github.workspace }}/Env/spdlog/MBuild
+            mkdir ${{ github.workspace }}/Env/glog/MBuild
+            cd ${{ github.workspace }}/Env/glog/MBuild
             cmake ..
             sudo make install DESTDIR=${{ github.workspace }}/Env/ -j32
     - name: CK_Catch2
