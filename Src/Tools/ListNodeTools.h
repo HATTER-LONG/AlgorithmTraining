@@ -6,53 +6,53 @@
 
 struct ListNode
 {
-    int val;
-    ListNode* next;
+    int m_val;
+    ListNode* m_next;
     // NOTE 用于删除链表释放内存
-    ListNode* nextback;
+    ListNode* m_nextback;
     ListNode()
-            : val(0)
-            , next(nullptr)
-            , nextback(next)
+            : m_val(0)
+            , m_next(nullptr)
+            , m_nextback(m_next)
     {
     }
     ListNode(int x)
-            : val(x)
-            , next(nullptr)
-            , nextback(next)
+            : m_val(x)
+            , m_next(nullptr)
+            , m_nextback(m_next)
     {
     }
     ListNode(int x, ListNode* next)
-            : val(x)
-            , next(next)
-            , nextback(next)
+            : m_val(x)
+            , m_next(next)
+            , m_nextback(next)
     {
     }
 };
 
-inline std::string transListNode2Str(const ListNode& ListNodeParam)
+inline std::string transListNode2Str(const ListNode& listNodeParam)
 {
     std::string retStr;
-    const ListNode* tmpNode = &ListNodeParam;
+    const ListNode* tmpNode = &listNodeParam;
     const int deepth = 1000;
     int i = 0;
     while (tmpNode != nullptr && i++ < deepth)
     {
-        retStr += std::to_string(tmpNode->val);
-        if (tmpNode->next)
+        retStr += std::to_string(tmpNode->m_val);
+        if (tmpNode->m_next)
             retStr += " -> ";
-        tmpNode = tmpNode->next;
+        tmpNode = tmpNode->m_next;
     }
     return retStr;
 }
 
-inline void releaseListNode(ListNode* Node)
+inline void releaseListNode(ListNode* node)
 {
-    while (Node != nullptr)
+    while (node != nullptr)
     {
-        ListNode* nextPtr = Node->nextback;
-        delete Node;
-        Node = nextPtr;
+        ListNode* nextPtr = node->m_nextback;
+        delete node;
+        node = nextPtr;
     }
 }
 
@@ -71,7 +71,7 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
             lastNode = retVal;
     }
     if (lastNode)
-        lastNode->next = loopNode;
+        lastNode->m_next = loopNode;
     return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
 }
 
@@ -83,7 +83,7 @@ inline ListNode* findLinstNode(ListNode* headList, int pos)
     {
         if (res == nullptr)
             break;
-        res = res->next;
+        res = res->m_next;
     }
     return res;
 }
@@ -96,24 +96,24 @@ inline ListNode* findLinstNode(ListNode* headList, int pos)
 class IsEqualListNode : public Catch::MatcherBase<ListNode>
 {
 public:
-    IsEqualListNode(ListNode& ListNodeParam)
-            : m_listNode(ListNodeParam)
+    IsEqualListNode(ListNode& listNodeParam)
+            : m_listNode(listNodeParam)
     {
     }
-    bool match(ListNode const& Arg) const override
+    bool match(ListNode const& arg) const override
     {
-        const ListNode* LeftPtr = &Arg;
-        const ListNode* RightPtr = &m_listNode;
-        while (LeftPtr != nullptr && RightPtr != nullptr)
+        const ListNode* leftPtr = &arg;
+        const ListNode* rightPtr = &m_listNode;
+        while (leftPtr != nullptr && rightPtr != nullptr)
         {
-            if (LeftPtr->val != RightPtr->val)
+            if (leftPtr->m_val != rightPtr->m_val)
             {
                 return false;
             }
-            LeftPtr = LeftPtr->next;
-            RightPtr = RightPtr->next;
+            leftPtr = leftPtr->m_next;
+            rightPtr = rightPtr->m_next;
         }
-        if (LeftPtr != nullptr || RightPtr != nullptr)
+        if (leftPtr != nullptr || rightPtr != nullptr)
         {
             return false;
         }
@@ -122,9 +122,9 @@ public:
 
     virtual std::string describe() const override
     {
-        std::string LeftValue = transListNode2Str(m_listNode);
-        LeftValue = "\nThe ListNode mismatching\n" + LeftValue;
-        return LeftValue;
+        std::string leftValue = transListNode2Str(m_listNode);
+        leftValue = "\nThe ListNode mismatching\n" + leftValue;
+        return leftValue;
     }
 
 private:

@@ -9,51 +9,51 @@
 
 struct TreeNode
 {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
+    int m_val;
+    TreeNode* m_left;
+    TreeNode* m_right;
     TreeNode()
-            : val(0)
-            , left(nullptr)
-            , right(nullptr)
+            : m_val(0)
+            , m_left(nullptr)
+            , m_right(nullptr)
     {
     }
     TreeNode(int x)
-            : val(x)
-            , left(nullptr)
-            , right(nullptr)
+            : m_val(x)
+            , m_left(nullptr)
+            , m_right(nullptr)
     {
     }
     TreeNode(int x, TreeNode* left, TreeNode* right)
-            : val(x)
-            , left(left)
-            , right(right)
+            : m_val(x)
+            , m_left(left)
+            , m_right(right)
     {
     }
 };
 
-inline std::string transBinTreeNode2Str(const TreeNode& TreeNodeParm)
+inline std::string transBinTreeNode2Str(const TreeNode& treeNodeParm)
 {
-    std::function<std::string(const TreeNode* const TreeNode)> dfs =
-        [&](const TreeNode* const TreeNode) -> std::string
+    std::function<std::string(const TreeNode* const treeNode)> dfs =
+        [&](const TreeNode* const treeNode) -> std::string
     {
-        if (TreeNode == nullptr)
+        if (treeNode == nullptr)
             return "";
-        std::string left = dfs(TreeNode->left);
-        std::string right = dfs(TreeNode->right);
+        std::string left = dfs(treeNode->m_left);
+        std::string right = dfs(treeNode->m_right);
         if (left.empty() && right.empty())
         {
-            return std::to_string(TreeNode->val);
+            return std::to_string(treeNode->m_val);
         }
         std::string res;
-        res += std::to_string(TreeNode->val);
+        res += std::to_string(treeNode->m_val);
         res += "(" + left + ",";
         if (!right.empty())
             res += right;
         res += ")";
         return res;
     };
-    return dfs(&TreeNodeParm);
+    return dfs(&treeNodeParm);
 }
 
 // TODO: 智能指针管理 New 出的内存
@@ -112,7 +112,7 @@ inline TreeNode* createTreeNode(std::string str)
                 int num = getValue(str, pos);
                 if (num == -1)
                     return nullptr;
-                node->val = num;
+                node->m_val = num;
                 if (root == nullptr)
                 {
                     root = node;
@@ -122,10 +122,10 @@ inline TreeNode* createTreeNode(std::string str)
                     switch (direction)
                     {
                         case LEFT:
-                            nodeStack.top()->left = node;
+                            nodeStack.top()->m_left = node;
                             break;
                         case RIGHT:
-                            nodeStack.top()->right = node;
+                            nodeStack.top()->m_right = node;
                             break;
                     }
                 }
@@ -135,15 +135,17 @@ inline TreeNode* createTreeNode(std::string str)
     return root;
 }
 
-inline bool compareTreeNode(const TreeNode* const T1, const TreeNode* const T2)
+inline bool compareTreeNode(   // NOLINT
+    const TreeNode* const t1, const TreeNode* const t2)
 {
-    if (T1 && T2 && (T1->val == T2->val))
+    if (t1 && t2 && (t1->m_val == t2->m_val))
     {
-        if (compareTreeNode(T1->left, T2->left) && compareTreeNode(T1->right, T2->right))
+        if (compareTreeNode(t1->m_left, t2->m_left)
+            && compareTreeNode(t1->m_right, t2->m_right))
             return true;
         return false;
     }
-    if (T1 == nullptr && T2 == nullptr)
+    if (t1 == nullptr && t2 == nullptr)
         return true;
     return false;
 }
@@ -157,23 +159,23 @@ inline bool compareTreeNode(const TreeNode* const T1, const TreeNode* const T2)
 class IsEqualTreeNode : public Catch::MatcherBase<TreeNode>
 {
 public:
-    IsEqualTreeNode(TreeNode& TreeNodeParam)
-            : m_treeNode(TreeNodeParam)
+    IsEqualTreeNode(TreeNode& treeNodeParam)
+            : m_treeNode(treeNodeParam)
     {
     }
-    bool match(TreeNode const& Arg) const override
+    bool match(TreeNode const& arg) const override
     {
-        const TreeNode* LeftPtr = &Arg;
-        const TreeNode* RightPtr = &m_treeNode;
+        const TreeNode* leftPtr = &arg;
+        const TreeNode* rightPtr = &m_treeNode;
 
-        return compareTreeNode(LeftPtr, RightPtr);
+        return compareTreeNode(leftPtr, rightPtr);
     }
 
     virtual std::string describe() const override
     {
-        std::string LeftValue = transBinTreeNode2Str(m_treeNode);
-        LeftValue = "\nThe TreeNode mismatching\n" + LeftValue;
-        return LeftValue;
+        std::string leftValue = transBinTreeNode2Str(m_treeNode);
+        leftValue = "\nThe TreeNode mismatching\n" + leftValue;
+        return leftValue;
     }
 
 private:
