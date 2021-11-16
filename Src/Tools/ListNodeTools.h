@@ -7,24 +7,24 @@
 struct ListNode
 {
     int m_val;
-    ListNode* m_next;
+    ListNode* next;
     // NOTE 用于删除链表释放内存
     ListNode* m_nextback;
     ListNode()
             : m_val(0)
-            , m_next(nullptr)
-            , m_nextback(m_next)
+            , next(nullptr)
+            , m_nextback(next)
     {
     }
     ListNode(int x)
             : m_val(x)
-            , m_next(nullptr)
-            , m_nextback(m_next)
+            , next(nullptr)
+            , m_nextback(next)
     {
     }
     ListNode(int x, ListNode* next)
             : m_val(x)
-            , m_next(next)
+            , next(next)
             , m_nextback(next)
     {
     }
@@ -39,9 +39,9 @@ inline std::string transListNode2Str(const ListNode& listNodeParam)
     while (tmpNode != nullptr && i++ < deepth)
     {
         retStr += std::to_string(tmpNode->m_val);
-        if (tmpNode->m_next)
+        if (tmpNode->next)
             retStr += " -> ";
-        tmpNode = tmpNode->m_next;
+        tmpNode = tmpNode->next;
     }
     return retStr;
 }
@@ -71,11 +71,11 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
             lastNode = retVal;
     }
     if (lastNode)
-        lastNode->m_next = loopNode;
+        lastNode->next = loopNode;
     return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
 }
 
-inline ListNode* findLinstNode(ListNode* headList, int pos)
+inline ListNode* findListNode(ListNode* headList, int pos)
 {
     ListNode* res = pos == -1 ? nullptr : headList;
 
@@ -83,7 +83,7 @@ inline ListNode* findLinstNode(ListNode* headList, int pos)
     {
         if (res == nullptr)
             break;
-        res = res->m_next;
+        res = res->next;
     }
     return res;
 }
@@ -110,8 +110,8 @@ public:
             {
                 return false;
             }
-            leftPtr = leftPtr->m_next;
-            rightPtr = rightPtr->m_next;
+            leftPtr = leftPtr->next;
+            rightPtr = rightPtr->next;
         }
         if (leftPtr != nullptr || rightPtr != nullptr)
         {

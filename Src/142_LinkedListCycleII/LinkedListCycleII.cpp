@@ -63,7 +63,7 @@ TEST_CASE("Check Solution detectCycle method work successfully")
     }));
 
     auto listNodeHead = initListNode(inputParm, inputParm2);
-    auto* resultParm = findLinstNode(listNodeHead.get(), inputParm2);
+    auto* resultParm = findListNode(listNodeHead.get(), inputParm2);
     CAPTURE(resultParm);
 
     REQUIRE(solution.detectCycle(listNodeHead.get()) == (resultParm));
