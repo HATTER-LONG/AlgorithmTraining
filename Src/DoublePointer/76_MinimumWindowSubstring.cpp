@@ -2,45 +2,43 @@
 
 string minWindow(string s, string t)
 {
-    vector<int> chars(128, 0);   // 记录存在的字符情况
+    VecInt charInput(128, 0);
     vector<bool> flags(128, false);
-
-    for (size_t i = 0; i < t.length(); i++)
+    int tSize = t.length();
+    int sSize = s.length();
+    for (int i = 0; i < tSize; i++)
     {
+        charInput[t[i]]++;
         flags[t[i]] = true;
-        ++chars[t[i]];
-    }   // O(n)
+    }
 
-    // 移动滑动窗口，不断更改统计数据
-    int cnt = 0, l = 0, minL = 0, minSize = s.length() + 1;
-    int length = s.length();
-    for (int r = 0; r < length; r++)
+    int cnt = 0, l = 0, minL = 0, minSize = sSize + 1;
+    for (int r = 0; r < sSize; r++)
     {
         if (flags[s[r]])
         {
-            if (--chars[s[r]] >= 0)
+            if (--charInput[s[r]] >= 0)
             {
-                ++cnt;
+                cnt++;
             }
 
-            // 若目前滑动窗口已包含 T 中全部字符，
-            // 则尝试将 l 右移，在不影响结果的情况下获得最短字符串
-            while (cnt == static_cast<int>(t.size()))
+            while (cnt == tSize)
             {
                 if (r - l + 1 < minSize)
                 {
                     minL = l;
                     minSize = r - l + 1;
                 }
-                if (flags[s[l]] && ++chars[s[l]] > 0)
+
+                if (flags[s[l]] && ++charInput[s[l]] > 0)
                 {
-                    --cnt;
+                    cnt--;
                 }
-                ++l;
+                l++;
             }
         }
     }
-    return minSize > static_cast<int>(s.size()) ? "" : s.substr(minL, minSize);
+    return minSize > sSize ? "" : s.substr(minL, minSize);
 }
 
 

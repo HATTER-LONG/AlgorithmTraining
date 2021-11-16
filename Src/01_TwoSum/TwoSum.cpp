@@ -36,5 +36,6 @@ TEST_CASE("Check Solution twoSum method work successfully")
     vector<int> inputParam { 2, 7, 11, 15 };
     int target = 9;
 
-    REQUIRE_THAT(solution.twoSum(inputParam, target), Equals(vector<int> { 0, 1 }));
+    REQUIRE_THAT(
+        solution.twoSum(inputParam, target), Equals(vector<int> { 0, 1 }));
 }
