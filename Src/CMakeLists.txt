@@ -1,5 +1,6 @@
 add_subdirectory(Greedy)
 add_subdirectory(DoublePointer)
+add_subdirectory(Middle)
 add_subdirectory(DataStruct)
 add_subdirectory(TestTool)
 add_subdirectory(01_TwoSum)

@@ -8,12 +8,12 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int>& Nums, int Target)
+    vector<int> twoSum(vector<int>& nums, int target)
     {
         unordered_map<int, int> record;
-        for (size_t i = 0; i < Nums.size(); i++)
+        for (size_t i = 0; i < nums.size(); i++)
         {
-            int complement = Target - Nums[i];
+            int complement = target - nums[i];
             auto iter = record.find(complement);
             if (iter != record.end())
             {
@@ -24,7 +24,7 @@ public:
 
                 return { l, r };
             }
-            record[Nums[i]] = static_cast<int>(i);
+            record[nums[i]] = static_cast<int>(i);
         }
         return {};
     }
