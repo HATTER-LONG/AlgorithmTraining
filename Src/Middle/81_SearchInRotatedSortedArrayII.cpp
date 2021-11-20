@@ -23,10 +23,11 @@ bool search(vector<int>& nums, int target)
         if (nums[mid] == target)
             return true;
 
-        if (nums[l] == nums[mid])
+        if (nums[l] == nums[mid] && nums[mid] == nums[r])
         {
-            //此种情况没法分别左侧是否为递增排序 1,0,1,1,2
+            //此种情况没法分别左侧是否为递增排序
             l++;
+            r--;
         }
         else if (nums[mid] <= nums[r])
         {
