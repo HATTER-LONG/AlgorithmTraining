@@ -5,8 +5,8 @@ FILE(GLOB SRCFILELIST
     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
    )
 
-add_executable(STL ${SRCFILELIST})
-target_link_libraries(STL
+add_executable(Array ${SRCFILELIST})
+target_link_libraries(Array
     Catch2::Catch2
     ${LOCAL_LINK_LIB} 
     )

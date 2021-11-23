@@ -1,48 +1,21 @@
-#include <catch2/catch.hpp>
-#include <string>
-#include <tuple>
+#include "Tools/Tools.hpp"
 
-using namespace Catch;
-using namespace std;
-
-// 数组例题 原地计算
-
-class Solution
+void rotate(vector<vector<int>>& matrix)
 {
-public:
-    void rotate(vector<vector<int>>& matrix)
+    size_t n = matrix.size();
+    for (size_t i = 0; i < n / 2; i++)
     {
-        size_t n = matrix.size();
-        for (size_t i = 0; i < n / 2; i++)
+        for (size_t j = 0; j < (n + 1) / 2; j++)
         {
-            for (size_t j = 0; j < (n + 1) / 2; j++)
-            {
-                swap(matrix[i][j], matrix[n - j - 1][i]);
-                swap(matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1]);
-                swap(matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1]);
-            }
+            swap(matrix[i][j], matrix[n - j - 1][i]);
+            swap(matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1]);
+            swap(matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1]);
         }
     }
-
-    void rotate_mine(vector<vector<int>>& matrix)
-    {
-        size_t n = matrix.size();
-        reverse(matrix.begin(), matrix.end());   // 反转数组
-
-        for (size_t i = 0; i < n; i++)
-        {
-            for (size_t j = i; j < n; j++)   //对角线交换
-            {
-                swap(matrix[i][j], matrix[j][i]);
-            }
-        }
-    }
-};
+}
 
 TEST_CASE("Check Solution rotate method work successfully")
 {
-    Solution solution;
-
     vector<vector<int>> inputParm;
 
     vector<vector<int>> resultParm;
@@ -76,6 +49,6 @@ TEST_CASE("Check Solution rotate method work successfully")
         }));
 
     CAPTURE(inputParm, resultParm);
-    solution.rotate(inputParm);
-    REQUIRE_THAT(inputParm, Equals(resultParm));
+    rotate(inputParm);
+    REQUIRE_THAT(inputParm, Catch::Equals(resultParm));
 }
