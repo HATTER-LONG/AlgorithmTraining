@@ -6,24 +6,24 @@
 
 struct ListNode
 {
-    int m_val;
+    int val;
     ListNode* next;
     // NOTE 用于删除链表释放内存
     ListNode* m_nextback;
     ListNode()
-            : m_val(0)
+            : val(0)
             , next(nullptr)
             , m_nextback(next)
     {
     }
     ListNode(int x)
-            : m_val(x)
+            : val(x)
             , next(nullptr)
             , m_nextback(next)
     {
     }
     ListNode(int x, ListNode* next)
-            : m_val(x)
+            : val(x)
             , next(next)
             , m_nextback(next)
     {
@@ -38,7 +38,7 @@ inline std::string transListNode2Str(const ListNode& listNodeParam)
     int i = 0;
     while (tmpNode != nullptr && i++ < deepth)
     {
-        retStr += std::to_string(tmpNode->m_val);
+        retStr += std::to_string(tmpNode->val);
         if (tmpNode->next)
             retStr += " -> ";
         tmpNode = tmpNode->next;
@@ -106,7 +106,7 @@ public:
         const ListNode* rightPtr = &m_listNode;
         while (leftPtr != nullptr && rightPtr != nullptr)
         {
-            if (leftPtr->m_val != rightPtr->m_val)
+            if (leftPtr->val != rightPtr->val)
             {
                 return false;
             }
