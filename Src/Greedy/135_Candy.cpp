@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <catch2/catch.hpp>
 #include <numeric>
 using namespace std;
@@ -23,7 +24,6 @@ int candy(std::vector<int>& ratings)
     {
         return size;
     }
-
     vector<int> num(size, 1);
     // 左侧遍历
     for (int i = 1; i < size; i++)
