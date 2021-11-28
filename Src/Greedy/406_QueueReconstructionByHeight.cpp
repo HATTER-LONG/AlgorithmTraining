@@ -37,18 +37,19 @@ using namespace std;
 
 vector<vector<int>> reconstructQueue(vector<vector<int>>& people)
 {
-    vector<vector<int>> ans;
+    int s = people.size();
+    if (s == 0)
+        return {};
+
     sort(people.begin(), people.end(),
         [](vector<int>& a, vector<int>& b)
-        {
-            //  一般这种数对，还涉及排序的，根据第一个元素正向排序，
-            //  第二个元素反向排序或者反过来，往往可以简化解题过程。
+        { return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]); });
 
-            return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]);
-        });
+    vector<vector<int>> ans;
+
     for (auto& person : people)
     {
-        if (ans.size() < static_cast<size_t>(person[1]))
+        if (ans.size() <= static_cast<size_t>(person[1]))
         {
             ans.push_back(person);
         }

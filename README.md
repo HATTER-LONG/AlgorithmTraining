@@ -35,6 +35,9 @@
     - [605_CanPlaceFlowers](#605_canplaceflowers)
     - [452_MinimumNumberOfArrowsToBurstBalloons](#452_minimumnumberofarrowstoburstballoons)
     - [763_PartitionLabels](#763_partitionlabels)
+    - [122_BestTimeToBuyAndSellStockII](#122_besttimetobuyandsellstockii)
+    - [406_QueueReconstructionByHeight](#406_queuereconstructionbyheight)
+    - [665_Non-decreasingArray](#665_non-decreasingarray)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -102,4 +105,28 @@
 
 - 总结：作为贪心策略，保证每次查找的字符串总是尽量长的，对于字符串位置的问题使用此类 map 进行辅助可以优先考虑。在处理数组前，统计一遍信息（如频率、个数、第一次/最后一次出现的位置等）可以简化问题难度。
 
+### [122_BestTimeToBuyAndSellStockII](./Src/Greedy/122_BestTimeToBuyAndSellStock.cpp)
 
+- [leetcode](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
+
+- 思路：简单的贪心算法，由题意可知不能同时多次买入，并且有利润就会买入，则此题就简化为两天之间的利润值相加即可。
+
+- 总结：股票买卖题，贪心算法进行遍历，只需要计算临近两天之间利润即可。
+
+### [406_QueueReconstructionByHeight](./Src/Greedy/406_QueueReconstructionByHeight.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)
+
+- 思路：根据描述进行重新排序队列，涉及到重新对队列排序可以先对数组进行排序，这里身高高的往往前面比当前身高更高的人更少，因此可以针对第一个元素进行降序排序，当身高相同时则在对第二个元素进行升序。排序完成后再通过贪心的策略对数组进行遍历，将按照描述的第二个参数向结果队列中进行添加即可。
+
+- 总结：针对这种数对还要排序的问题，往往根据第一个元素正向排序，第二个元素反向排序往往可以简化问题。
+
+### [665_Non-decreasingArray](./Src/Greedy/665_NonDecreasingArray.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/non-decreasing-array/)
+
+- 思路：本题初看起来能确认的便是需要遍历数组，可以使用贪心策略。其可以改变一个数字来促使数列符合规则，那么在判断过程中完全可以尝试比对相邻两个数字(a|b)，当其不符合规则时判断是 b 过小还是 a 过大。
+  1. 如果当 b 小于 b - 2 时，说明 b 过小了应该修改 b 为 a。
+  2. 如果当 b 大于 b - 2 或者 a b 为数列的 1、2 位置的数字时，将 a 修改为 b 避免影响后续的数字。
+
+- 总结：本题难在如何分解贪心策略的最小判断条件，可以发现数列顺序查找往往都是前后进行判断，而需要跳跃对称更适合栈。此题重点在于比对前一个值并更新不符合的值，使得贪心策略简化为前后两个数字对比即可。
