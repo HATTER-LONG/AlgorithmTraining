@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <catch2/catch.hpp>
+#include <ios>
 using namespace std;
 /*
  * 题目描述
@@ -21,23 +22,21 @@ int eraseOverlapIntervals(std::vector<std::vector<int>>& intervals)
 {
     if (intervals.empty())
         return 0;
-    int size = intervals.size();
+
     sort(intervals.begin(), intervals.end(),
         [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
-    int prev = intervals[0][1];
-    int removed = 0;
-    for (int i = 1; i < size; i++)
+
+    int res = 0, cur = 0;
+    for (int i = 1; i < static_cast<int>(intervals.size()); i++)
     {
-        if (intervals[i][0] < prev)
+        if (intervals[cur][1] > intervals[i][0])
         {
-            removed++;
+            res++;
+            continue;
         }
-        else
-        {
-            prev = intervals[i][1];
-        }
+        cur = i;
     }
-    return removed;
+    return res;
 }
 
 TEST_CASE("test erase overlap intervals")

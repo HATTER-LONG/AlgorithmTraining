@@ -23,33 +23,38 @@ true ，不能则返回 false。
 
 bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
 {
-    int count = 0;
-    size_t size = flowerbed.size();
-    int prev = -1;
-
-    for (size_t i = 0; i < size; i++)
+    int s = flowerbed.size();
+    if (s < n)
     {
-        if (prev < 0)
-        {
-            count += i / 2; // begin with 0
-        }
-        else
-        {
-            count += (i - prev - 2) / 2; // normal status 
-        }
-        if (count > n)
-        {
-            return true;
-        }
-        prev = i;
+        return false;
     }
+
+    int prev = -1, count = 0;
+    for (int i = 0; i < s; i++)
+    {
+        if (flowerbed[i] == 1)
+        {
+            if (prev < 0)
+            {
+                count += i / 2;
+            }
+            else
+            {
+                count += (i - prev - 2) / 2;
+            }
+            if (count >= n)
+                return true;
+            prev = i;
+        }
+    }
+
     if (prev < 0)
     {
-        count += (size + 1) / 2;
+        count += (s + 1) / 2;
     }
     else
     {
-        count += (size - prev - 1) / 2;
+        count += (s - 1 - prev) / 2;
     }
     return count >= n;
 }

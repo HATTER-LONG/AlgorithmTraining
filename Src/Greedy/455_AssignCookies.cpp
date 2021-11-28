@@ -24,8 +24,8 @@ int findContentChildren(std::vector<int>& children, std::vector<int>& cookies)
            && cookie < static_cast<int>(cookies.size()))
     {
         if (children[child] <= cookies[cookie])
-            child++;
-        cookie++;
+            ++child;
+        ++cookie;
     }
     return child;
 }

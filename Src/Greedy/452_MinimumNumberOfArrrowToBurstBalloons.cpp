@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <glog/logging.h>
 #include <tuple>
-
+using namespace std;
 /*
 在二维空间中有许多球形的气球。
 对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。
@@ -30,21 +30,20 @@
 using namespace std;
 int findMinArrowShots(std::vector<std::vector<int>>& points)
 {
-    if (points.empty())
+    int s = points.size();
+    if (s == 0)
     {
         return 0;
     }
-    size_t size = points.size();
     sort(points.begin(), points.end(),
-        [](std::vector<int>& a, std::vector<int>& b) { return a[1] < b[1]; });
-
-    int count = 1, prev = points[0][1];
-    for (size_t i = 1; i < size; i++)
+        [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
+    int cur = 0, count = 0;
+    for (int i = 1; i < s; i++)
     {
-        if (points[i][0] > prev)
+        if (points[i][0] > points[cur][1])
         {
-            prev = points[i][1];
             count++;
+            cur = i;
         }
     }
     return count;
