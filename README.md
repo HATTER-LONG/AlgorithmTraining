@@ -27,6 +27,15 @@
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [build-url]: https://github.com/HATTER-LONG/AlgorithmTraining/workflows/CMake/badge.svg?style=flat
 
+- [LeetCode 算法刷题](#leetcode-算法刷题)
+  - [Greedy 贪心算法](#greedy-贪心算法)
+    - [455_AssignCookie](#455_assigncookie)
+    - [135_Candy](#135_candy)
+    - [435_Non-overlappingIntervals](#435_non-overlappingintervals)
+    - [605_CanPlaceFlowers](#605_canplaceflowers)
+    - [452_MinimumNumberOfArrowsToBurstBalloons](#452_minimumnumberofarrowstoburstballoons)
+    - [763_PartitionLabels](#763_partitionlabels)
+
 ## [Greedy 贪心算法](./Src/Greedy)
 
 - 贪心策略：保证每次操作都是局部最优解，从而使最后得出的结论使全局最优的。
@@ -82,3 +91,15 @@
 - 思路：与 435 题很类似的同型题，都是判断相重叠的区域，区别在于相等时也是算重合的。这样只有当两个区域完全不重合时 count++。⚠️ count 初始值就应当为 1，不要漏掉第一个气球。
 
 - 结论：同样是连续比对所有重合的区间，通过贪心策略找出所有重合的以计算出最少的箭数。
+
+### [763_PartitionLabels](./Greedy/../Src/Greedy/763_PartitionLabels.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/partition-labels/)
+
+- 思路：同样是连续比对重复字符串现的范围，切割字符串。对于字符出现位置的问题，可以使用 map 表记录所有字符最后出现的问题，实时的更新地址 end 为当前字符最后出现的位置，当遍历的位置等于 end 时则包含了所有字符可以切割。
+  1. 先遍历一次字符串创建 map 表，记录每个字符最后出现的问题。
+  2. 遍历字符串，实时更新当前所包含字符的最远端，当遍历的位置等于 end，则切割。
+
+- 总结：作为贪心策略，保证每次查找的字符串总是尽量长的，对于字符串位置的问题使用此类 map 进行辅助可以优先考虑。在处理数组前，统计一遍信息（如频率、个数、第一次/最后一次出现的位置等）可以简化问题难度。
+
+

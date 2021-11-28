@@ -1,5 +1,6 @@
 #include <catch2/catch.hpp>
 #include <glog/logging.h>
+#include <map>
 #include <unordered_map>
 using namespace std;
 
@@ -25,24 +26,28 @@ using namespace std;
 
 vector<int> partitionLabels(string s)
 {
-    vector<int> result;
+    int size = s.length();
+    if (size == 0)
+        return {};
+
     unordered_map<char, int> map;
-    int start = 0, end = 0;
-    int length = s.length();
-    for (int i = 0; i < length; i++)
+    for (int i = 0; i < size; i++)
     {
         map[s[i]] = i;
     }
-    for (int i = 0; i < length; i++)
+
+    int start = 0, end = 0;
+    vector<int> res;
+    for (int i = 0; i < size; i++)
     {
         end = max(end, map[s[i]]);
         if (i == end)
         {
-            result.push_back(end - start + 1);
+            res.push_back(end - start + 1);
             start = i + 1;
         }
     }
-    return result;
+    return res;
 }
 
 TEST_CASE("test partiton labels func")

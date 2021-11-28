@@ -37,7 +37,7 @@ int findMinArrowShots(std::vector<std::vector<int>>& points)
     }
     sort(points.begin(), points.end(),
         [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
-    int cur = 0, count = 0;
+    int cur = 0, count = 1;
     for (int i = 1; i < s; i++)
     {
         if (points[i][0] > points[cur][1])
