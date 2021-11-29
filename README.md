@@ -38,6 +38,11 @@
     - [122_BestTimeToBuyAndSellStockII](#122_besttimetobuyandsellstockii)
     - [406_QueueReconstructionByHeight](#406_queuereconstructionbyheight)
     - [665_Non-decreasingArray](#665_non-decreasingarray)
+  - [DoublePointer 双指针](#doublepointer-双指针)
+    - [167_TwoSumII](#167_twosumii)
+    - [88_MergeSortedArray](#88_mergesortedarray)
+    - [142_LinkedListCycleII](#142_linkedlistcycleii)
+    - [76_MinimumWindwSubstring](#76_minimumwindwsubstring)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -130,3 +135,49 @@
   2. 如果当 b 大于 b - 2 或者 a b 为数列的 1、2 位置的数字时，将 a 修改为 b 避免影响后续的数字。
 
 - 总结：本题难在如何分解贪心策略的最小判断条件，可以发现数列顺序查找往往都是前后进行判断，而需要跳跃对称更适合栈。此题重点在于比对前一个值并更新不符合的值，使得贪心策略简化为前后两个数字对比即可。
+
+## [DoublePointer 双指针](./Src/DoublePointer/)
+
+- 双指针主要应用在几个方面：
+  1. 遍历数组：两个指针指向不同的元素，从而协同完成任务。也可以延伸到多个数组多个指针。
+  2. 区间搜索：两个指针指向同一数组，遍历方向相同切不会相交，则也称为滑动窗口。
+  3. 搜索：两个指针指向同一数组，遍历方向相反，主要用于搜索且往往待搜索的数组是排好序的。
+
+### [167_TwoSumII](./Src/DoublePointer/167_TwoSum.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
+
+- 思路：题目中`已经非递减排序的数组`已经指示了通过双指针进行搜索。双指针进行方向相反的遍历，当双指针指向的数字相加结果大于目标，则 l++，反之 r--。
+
+- 结论：对于排好序且有解的数组通过双指针搜索可以找到最优解，此题的双指针与贪心的区别在于，贪心策略往往是当前数据左右两侧进行比对寻求局部最优解，而此题的双指针则是在整个数列中寻找另一个届。
+
+### [88_MergeSortedArray](./Src/DoublePointer/88_MergeSortedArray.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/merge-sorted-array/)
+
+- 思路：已经排好序的数组往往预示着需要双指针了。两个数组进行合并，可以将双指针分别放在两个数列的末尾，每次将较大的数字复制到 nums1 的后边，然后向前进位。
+  1. m、n 指针指向两个数列的末尾，第三个 pos 指针起始位置为 m + n - 1。
+  2. 每次向前移动 m 和 n 时，也要向前移动 pos。
+  3. 如果 nums1 复制完成，需要继续将 nums2 的都复制过来；反之 nums2 先完成则直接结束。
+
+- 结论：对于已排好序的数组合并都可以采用这种方式。
+
+### [142_LinkedListCycleII](./Src/DoublePointer/142_LinkedListCycleII.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+- 思路：对于链表找环路的问题，有一个通用的解法——快慢指针(Floyd 判圈法)。给定两个指针， 分别命名为 slow 和 fast，起始位置在链表的开头。每次 fast 前进两步，slow 前进一步。如果 fast 可以走到尽头，那么说明没有环路;如果 fast 可以无限走下去，那么说明一定有环路，且一定存 在一个时刻 slow 和 fast 相遇。当 slow 和 fast 第一次相遇时，我们将 fast 重新移动到链表开头，并让 slow 和 fast 每次都前进一步。当 slow 和 fast 第二次相遇时，相遇的节点即为环路的开始点。
+
+- 总结：针对查找环路问题的固定套路**快慢指针**。
+
+### [76_MinimumWindwSubstring](./Src/DoublePointer/76_MinimumWindowSubstring.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/minimum-window-substring/)
+
+- 思路：在一个字符串中查找包含另一个字符串所有字符的最短子串，此类往往使用滑动窗口进行求解。l、r 指针都从左开始，r 向右遍历，当包含了字符串所有字符后，移动 l 尽量缩短，直到 r 遍历完成整个字符串。这里有个技巧便是针对字符记录可以使用 128 的数组来映射字符，或者使用哈希表替代，其中 chars 表示目前每个字符缺少的数量，flag 表示每个字符是否在 T 中存在。
+  1. 统计 T 字符串信息，包含的字符、数量。
+  2. 先移动 r 指针扩大窗口直到包含了 T 的所有字符。
+  3. 接下来移动 l 指针尽量缩小窗口。
+  4. 当缩小的窗口不再包含所有的 T 字符，继续向右扩展。
+
+- 总结：滑动窗口适合用来查找最小子范围项，需要设计好如何控制左右边的移动。
