@@ -46,6 +46,9 @@
     - [633_SumOfSquareNumbers](#633_sumofsquarenumbers)
     - [680_ValidPalindromeII](#680_validpalindromeii)
     - [524_LongestWordInDictionaryThroughDeleting](#524_longestwordindictionarythroughdeleting)
+  - [Binary search method 二分查找法](#binary-search-method-二分查找法)
+    - [69_Sqrt](#69_sqrt)
+    - [34_FindFirstAndLastPositionOfElementInSortedArray](#34_findfirstandlastpositionofelementinsortedarray)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -219,3 +222,21 @@
   3. 判断长度与字符序来确认最优答案。
 
 - 总结：此题可以与 76 题对比来看，76 题是通过滑动窗口来找出包含目标字符串所有字符的最小子串，而本体使通过双指针判断所有在源字符串中包括的目标字符串找出其中最长的。
+
+## [Binary search method 二分查找法](./Src/Middle/)
+
+二分查找也常被称为二分法或者折半查找，每次查找时通过将待查找区间分成两部分并只取 一部分继续查找，将查找的复杂度大大减少。对于一个长度为 O(n) 的数组，二分查找的时间复 杂度为 O(log n)。二分查找也可以看作双指针的一种特殊情况，但我们一般会将二者区分。双指针类型的题， 指针通常是一步一步移动的，而在二分查找里，指针每次移动半个区间长度。
+
+### [69_Sqrt](./Src/Middle/69_Sqrt.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/sqrtx/)
+
+- 思路：二分查找法也是先确定左右边界，与双指针不同之处在于它取中间值，如果中间值过大或过小来移动左右边界。此题可以先从输入的 x/2 判断其平方后是否等于 x，如果大于则移动 r 到 middle 的位置，再重新取 middle 进行计算，反之左侧同理。
+
+- 总结：计算中间值可以采用 `mid = l + (r-l)/2` 的方式避免 l + r 溢出。
+
+### [34_FindFirstAndLastPositionOfElementInSortedArray](./Src/Middle/34_FindFirstAndLastPos.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+- 思路

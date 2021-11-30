@@ -54,8 +54,8 @@ vector<int> searchRange(vector<int>& nums, int target)
         return { -1, -1 };
 
     int lower = lowerBound(nums, target);
-    int upper = upperBound(nums, target)
-                - 1;   // 由于中心向右偏移 l = mid + 1, 这里要 - 1
+    // 由于中心向右偏移 l = mid + 1, 这里要 - 1
+    int upper = upperBound(nums, target) - 1;
     if (lower == static_cast<int>(nums.size()) || nums[lower] != target)
     {
         return { -1, -1 };

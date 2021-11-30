@@ -27,24 +27,18 @@ int mySqrt2(int a)
 int mySqrt(int a)
 {
     if (a == 0)
-        return a;
-    int l = 0, r = a, mid, sqr;
+        return 0;
+    int l = 1, r = a, mid, sqrtl = 0;
     while (l <= r)
     {
         mid = l + (r - l) / 2;
-        sqr = a / mid;
-        if (sqr == mid)
-        {
+        sqrtl = a / mid;
+        if (sqrtl == mid)
             return mid;
-        }
-        if (sqr < mid)
-        {
+        if (mid > sqrtl)
             r = mid - 1;
-        }
         else
-        {
             l = mid + 1;
-        }
     }
     return r;
 }
