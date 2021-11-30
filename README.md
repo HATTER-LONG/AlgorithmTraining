@@ -43,6 +43,9 @@
     - [88_MergeSortedArray](#88_mergesortedarray)
     - [142_LinkedListCycleII](#142_linkedlistcycleii)
     - [76_MinimumWindwSubstring](#76_minimumwindwsubstring)
+    - [633_SumOfSquareNumbers](#633_sumofsquarenumbers)
+    - [680_ValidPalindromeII](#680_validpalindromeii)
+    - [524_LongestWordInDictionaryThroughDeleting](#524_longestwordindictionarythroughdeleting)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -181,3 +184,38 @@
   4. 当缩小的窗口不再包含所有的 T 字符，继续向右扩展。
 
 - 总结：滑动窗口适合用来查找最小子范围项，需要设计好如何控制左右边的移动。
+
+### [633_SumOfSquareNumbers](./Src/DoublePointer/633_SumOfSquareNumbers.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/sum-of-square-numbers/)
+
+- 思路：此题可以将思路转化为一个排序后的数列中找到两个整数的平方和等于目标，而这个数列的范围是从 0 - sqrt(target)。
+  1. 确认左右指针指向数列的头尾。
+  2. 左右指针平方后相加与目标比对。
+  3. 如果过大则 r--，反之 l++。
+  4. 如果 l == r，则表明不存在。
+
+- 总结：此题是典型的思路转换，将其转化为可以用双指针进行查找的数列。
+
+### [680_ValidPalindromeII](./Src/DoublePointer/680_ValidPalindromeII.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/valid-palindrome-ii/)
+
+- 思路：回文问题往往采用双指针，左右指针实时比对。此题有个机会可以删除一个不对称的字符，由此产生两种情况**删掉左侧**与**删掉右侧**执行的字符，因此我们当遇到不相同的字符时，可以将这两种情况都进行计算最终得出结果，其中一种可以即能返回 true，反之 false。
+  1. 设定左右两指针，指向字符串的头尾。
+  2. 遍历字符串，比对每个字符。
+  3. 当出现不相同的字符时，先尝试去掉左侧字符后遍历剩余字符串能否确认是回文。
+  4. 同样遍历右侧，最后得出结果。
+
+- 总结：回文字符串经典题型，可以判断字符串是否为回文以及如何修改成回文。
+
+### [524_LongestWordInDictionaryThroughDeleting](./Src/DoublePointer/524_LongestWordInDicThroughtDel.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/)
+
+- 思路：查找子字符串与 76 题类似，不过本题有多个目标且不需要在源字符串中查找最短的情况，因此需要遍历目标集合，分别在源字符串中进行查找，最后再通过比对字符序来选取答案。
+  1. 遍历目标集合。
+  2. 双指针判断是否包含此字符串。
+  3. 判断长度与字符序来确认最优答案。
+
+- 总结：此题可以与 76 题对比来看，76 题是通过滑动窗口来找出包含目标字符串所有字符的最小子串，而本体使通过双指针判断所有在源字符串中包括的目标字符串找出其中最长的。

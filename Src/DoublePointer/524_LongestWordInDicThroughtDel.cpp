@@ -21,19 +21,20 @@
 
 string findLongestWord(string s, vector<string>& dictionary)
 {
-    vector<string> a;
     string res;
     for (auto& x : dictionary)
     {
-        size_t j = 0;
+        size_t cnt = 0;
         for (size_t i = 0; i < s.length(); i++)
         {
-            if (x[j] == s[i])
-                j++;
+            if (s[i] == x[cnt])
+            {
+                cnt++;
+            }
         }
-        if (j == x.length())
+        if (cnt == x.length())
         {
-            if (res.length() == x.length())
+            if (x.length() == res.length())
             {
                 res = res < x ? res : x;
             }

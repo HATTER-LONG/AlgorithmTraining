@@ -21,9 +21,13 @@ bool judgeSquareSum(int c)
     {
         sum = l * l + r * r;
         if (sum == c)
+        {
             return true;
+        }
         if (sum < c)
+        {
             l++;
+        }
         else
         {
             r--;

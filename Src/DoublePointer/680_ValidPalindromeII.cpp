@@ -15,29 +15,36 @@
  * 解释: 你可以删除c字符。
  *
  */
-
-bool check(string s, int l, int r)
+bool check(int l, int r, string& s)
 {
-    while (l < r)
+    while (l <= r)
     {
-        if (s[l] != s[r])
+        if (s[l] == s[r])
+        {
+            ++l;
+            --r;
+        }
+        else
         {
             return false;
         }
-        l++;
-        r--;
     }
     return true;
 }
 bool validPalindrome(string s)
 {
     int l = 0, r = s.length() - 1;
-    while (l < r)
+    while (l <= r)
     {
-        if (s[l] != s[r])
-            return check(s, l + 1, r) || check(s, l, r - 1);
-        l++;
-        r--;
+        if (s[l] == s[r])
+        {
+            ++l;
+            --r;
+        }
+        else
+        {
+            return check(l + 1, r, s) || check(l, r - 1, s);
+        }
     }
     return true;
 }

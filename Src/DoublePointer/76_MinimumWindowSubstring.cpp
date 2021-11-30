@@ -2,43 +2,45 @@
 
 string minWindow(string s, string t)
 {
-    VecInt charInput(128, 0);
-    vector<bool> flags(128, false);
+    vector<int> target(128, 0);
+    vector<bool> flag(128, false);
+
     int tSize = t.length();
     int sSize = s.length();
+
     for (int i = 0; i < tSize; i++)
     {
-        charInput[t[i]]++;
-        flags[t[i]] = true;
+        target[t[i]]++;
+        flag[t[i]] = true;
     }
 
-    int cnt = 0, l = 0, minL = 0, minSize = sSize + 1;
+    int l = 0, cnt = 0, minL = 0, minLen = sSize + 1;
     for (int r = 0; r < sSize; r++)
     {
-        if (flags[s[r]])
+        if (flag[s[r]])
         {
-            if (--charInput[s[r]] >= 0)
+            if (--target[s[r]] >= 0)
+                ++cnt;
+            if (cnt == tSize)
             {
-                cnt++;
-            }
-
-            while (cnt == tSize)
-            {
-                if (r - l + 1 < minSize)
+                while (cnt == tSize)
                 {
-                    minL = l;
-                    minSize = r - l + 1;
-                }
+                    if (r - l + 1 < minLen)
+                    {
+                        minL = l;
+                        minLen = r - l + 1;
+                    }
 
-                if (flags[s[l]] && ++charInput[s[l]] > 0)
-                {
-                    cnt--;
+                    if (flag[s[l]] && ++target[s[l]] > 0)
+                    {
+                        --cnt;
+                    }
+                    ++l;
                 }
-                l++;
             }
         }
     }
-    return minSize > sSize ? "" : s.substr(minL, minSize);
+    return minLen > sSize ? "" : s.substr(minL, minLen);
 }
 
 
