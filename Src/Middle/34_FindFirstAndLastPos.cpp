@@ -14,29 +14,30 @@
  */
 int lowerBound(vector<int>& nums, int target)
 {
-    int l = 0, r = nums.size(), mid;
+    int l = 0, r = nums.size(), mid = 0;
     while (l < r)
     {
         mid = l + (r - l) / 2;
-        if (nums[mid] >= target)   // 取低位 就 大于等于，将中心向左偏移
+        if (nums[mid] >= target)
         {
+
             r = mid;
         }
         else
         {
             l = mid + 1;
         }
-        /* LOG(INFO) << "lower " << mid << "||" << l << "|" << r; */
+        /* LOG(INFO) << "l = " << l << " | r = " << r << " | mid = " << mid; */
     }
     return l;
 }
 int upperBound(vector<int>& nums, int target)
 {
-    int l = 0, r = nums.size(), mid;
+    int l = 0, r = nums.size(), mid = 0;
     while (l < r)
     {
         mid = l + (r - l) / 2;
-        if (nums[mid] > target)   // 取高位 就 大于，将中心向右偏移
+        if (nums[mid] > target)
         {
             r = mid;
         }
@@ -44,17 +45,17 @@ int upperBound(vector<int>& nums, int target)
         {
             l = mid + 1;
         }
-        /* LOG(INFO) << "upper " << mid << "||" << l << "|" << r; */
+        /* LOG(INFO) << "l = " << l << " | r = " << r << " | mid = " << mid; */
     }
     return l;
 }
 vector<int> searchRange(vector<int>& nums, int target)
 {
     if (nums.empty())
+    {
         return { -1, -1 };
-
+    }
     int lower = lowerBound(nums, target);
-    // 由于中心向右偏移 l = mid + 1, 这里要 - 1
     int upper = upperBound(nums, target) - 1;
     if (lower == static_cast<int>(nums.size()) || nums[lower] != target)
     {
@@ -72,7 +73,8 @@ TEST_CASE("test search range func")
 
 
     tie(input, target, result) = GENERATE(table<VecInt, int, VecInt>(
-        { make_tuple(VecInt { 5, 7, 7, 8, 8, 10 }, 8, VecInt { 3, 4 }) }));
+        { make_tuple(VecInt { 5, 7, 7, 8, 8, 10 }, 8, VecInt { 3, 4 }),
+            make_tuple(VecInt { 1 }, 1, VecInt { 0, 0 }) }));
     CAPTURE(input, target, result);
     REQUIRE_THAT(searchRange(input, target), Catch::Equals(result));
 }
