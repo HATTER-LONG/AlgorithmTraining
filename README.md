@@ -49,6 +49,7 @@
   - [Binary search method 二分查找法](#binary-search-method-二分查找法)
     - [69_Sqrt](#69_sqrt)
     - [34_FindFirstAndLastPositionOfElementInSortedArray](#34_findfirstandlastpositionofelementinsortedarray)
+    - [81_SearchInRotatedSortedArrayII](#81_searchinrotatedsortedarrayii)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -231,7 +232,7 @@
 
 - [leetcode](https://leetcode-cn.com/problems/sqrtx/)
 
-- 思路：二分查找法也是先确定左右边界，与双指针不同之处在于它取中间值，如果中间值过大或过小来移动左右边界。此题可以先从输入的 x/2 判断其平方后是否等于 x，如果大于则移动 r 到 middle 的位置，再重新取 middle 进行计算，反之左侧同理。
+- 思路：二分查找法也是先确定左右边界，与双指针不同之处在于它取中间值，如果中间值过大或过小来移动左右边界。此题可以先从输入的 x/2 判断其平方后是否等于 x，如果大于则移动 r 到 middle 的位置，再重新取 middle 进行计算，反之左侧同理。= 0
 
 - 总结：计算中间值可以采用 `mid = l + (r-l)/2` 的方式避免 l + r 溢出。
 
@@ -258,3 +259,17 @@
 - 总结：对于二分法的左右边界考虑是难点。就此题而言，使用左开右闭的方式可以使左侧边界向前移动避免死循环，计算低位时采用小于时左侧才动，这样当左右相交时必然是 r 处于 target 的地位。计算高位时同理，使得 r 处于高位 +1 的位置上，也正是因此当返回 upper 后还要记得 -1。⚠️ 请思考下为什么 r = nums.size() 而不用 -1。
 
 > 因为当数组仅有一个数据时如果 size - 1，则会直接返回导致 upper 返回值 -1 变成负数。
+
+### [81_SearchInRotatedSortedArrayII](./Src/Middle/81_SearchInRotatedSortedArrayII.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+
+- 思路：即使是旋转过的数组也可以利用已有的递增性质，进行二分查找。对于当前的中点， 如果它指向的值小于等于右端，那么说明右区间是排好序的;反之，那么说明左区间是排好序的。 如果目标值位于排好序的区间内，我们可以对这个区间继续二分查找;反之，我们对于另一半区 间继续二分查找。⚠️ 注意，因为数组存在重复数字，如果中点和左端的数字相同，我们并不能确定是左区间全部 相同，还是右区间完全相同。在这种情况下，我们可以简单地将左端点右移一位，然后继续进行 二分查找。
+  1. 先确定左右边界为0、size - 1。
+  2. 循环条件为 l <= r。
+  3. 求中间值。
+  4. 判断 mid 是否与 l 相等，如果相等无法判断左右是否有递增性，将 l + 1。
+  5. 如果不想等则判断 l、r 位置的数字哪侧比 mid 大。
+  6. 偏移左右边界，得出结果。
+
+- 总结：此题为经典的二分查找法应用，难点在于如何在翻转后的数组中找到升序列，切记其中 `nums[mid] == nums[l]` 时无法判断升序的情况。

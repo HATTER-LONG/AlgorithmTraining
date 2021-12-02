@@ -16,23 +16,22 @@
 
 bool search(vector<int>& nums, int target)
 {
-    int l = 0, r = nums.size() - 1, mid;
-    while (l <= r)   // 由于可能存在 mid +/- 1 后正好 l/r 重合的情况
+    int l = 0, r = nums.size() - 1, mid = 0;
+    while (l <= r)
     {
         mid = l + (r - l) / 2;
         if (nums[mid] == target)
+        {
             return true;
-
-        if (nums[l] == nums[mid] && nums[mid] == nums[r])
-        {
-            //此种情况没法分别左侧是否为递增排序
-            l++;
-            r--;
         }
-        else if (nums[mid] <= nums[r])
+        if (nums[mid] == nums[l])
         {
-            // right 为递增排序的情况
-            if (nums[mid] < target && target <= nums[r])
+            ++l;
+            continue;
+        }
+        if (nums[mid] <= nums[r])
+        {
+            if (target > nums[mid] && target <= nums[r])
             {
                 l = mid + 1;
             }
@@ -43,8 +42,7 @@ bool search(vector<int>& nums, int target)
         }
         else
         {
-            // left 为递增排序的情况
-            if (nums[mid] > target && target >= nums[l])
+            if (target < nums[mid] && target >= nums[l])
             {
                 r = mid - 1;
             }
