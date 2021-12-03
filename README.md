@@ -50,6 +50,8 @@
     - [69_Sqrt](#69_sqrt)
     - [34_FindFirstAndLastPositionOfElementInSortedArray](#34_findfirstandlastpositionofelementinsortedarray)
     - [81_SearchInRotatedSortedArrayII](#81_searchinrotatedsortedarrayii)
+    - [154_FindMinimumInRotatedSortedArrayII](#154_findminimuminrotatedsortedarrayii)
+    - [540_SingleElementInASortedArray](#540_singleelementinasortedarray)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -273,3 +275,28 @@
   6. 偏移左右边界，得出结果。
 
 - 总结：此题为经典的二分查找法应用，难点在于如何在翻转后的数组中找到升序列，切记其中 `nums[mid] == nums[l]` 时无法判断升序的情况。
+
+### [154_FindMinimumInRotatedSortedArrayII](./Src/Middle/154_FindMinimumInRotatedSortedArrayII.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+
+- 思路：此题与 81 不同在于查找最小值，而最小值伴随着数组的旋转后往往处于无序的那一侧，因此本题左右边界移动的条件便是当判断出一侧为有序后将范围缩小到相反的一侧。
+  1. 确定左右边界。
+  2. 循环条件为 l < r，左开右闭。
+  3. 求取中值，判断 num[r] > num[r]，更新 l 反之更新 r。
+  4. 如果相等判断不出则进行 r--。
+  5. 最终 l 处即为最小值。
+
+- 思路：结合 81 题分析，这两道题的难点在于如何找到旋转后的有序方向，其中 81 题判断 `nums[mid] == nums[l]` 这种情况无法判断时当前中值在左侧旋转后的数列还是在旋转前的数列中，因为存在重复的数。而此题是判断 `nums[mid] == nums[r]` 的时候缩小 r--，同理是因为存在重复数据无法判断当前中值是否被旋转过，需要继续 r-- 来缩小范围。
+
+### [540_SingleElementInASortedArray](./Src/Middle/540_SingleElmentInASortedArray.cpp)
+
+- [leetcode](https://leetcode-cn.com/problems/single-element-in-a-sorted-array/)
+
+- 思路：出现单数的前后每一对数的奇偶性有变化，11 22 偶奇 偶奇，1122 3 4455，偶奇偶奇 偶 奇偶奇偶。根据此特性进行二分法查找即可。
+  1. 确定左右边界。
+  2. 循环条件为 l < r。
+  3. 判断 mid 处是双数中的位置，判断当前位置是处于单数前还是后。
+  4. 依据位置调整 l、r 边界。
+
+- 总结：主要难点在于找出这个数列在单数前后的区分特点，用来进行左右边界调整的判断条件。注意其中边界 +1 -1 主要考虑要将数对包含或者排除，避免边界调整切割出单个数。

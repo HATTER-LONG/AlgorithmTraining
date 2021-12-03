@@ -18,22 +18,12 @@
 
 int singleNonDuplicate(vector<int>& nums)
 {
-    int l = 0, r = nums.size() - 1, mid;
+    int l = 0, r = nums.size() - 1, mid = 0;
+
     while (l < r)
     {
         mid = l + (r - l) / 2;
-        if (nums[mid] == nums[mid - 1])
-        {
-            if (mid % 2 == 0)
-            {
-                r = mid;
-            }
-            else
-            {
-                l = mid + 1;
-            }
-        }
-        else if (nums[mid] == nums[mid + 1])
+        if (nums[mid] == nums[mid + 1])
         {
             if (mid % 2 != 0)
             {
@@ -42,6 +32,17 @@ int singleNonDuplicate(vector<int>& nums)
             else
             {
                 l = mid;
+            }
+        }
+        else if (nums[mid] == nums[mid - 1])
+        {
+            if (mid % 2 == 0)
+            {
+                r = mid;
+            }
+            else
+            {
+                l = mid + 1;
             }
         }
         else

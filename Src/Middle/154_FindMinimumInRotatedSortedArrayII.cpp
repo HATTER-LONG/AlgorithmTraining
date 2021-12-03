@@ -1,5 +1,7 @@
 #include "Tools/Tools.hpp"
 
+#include <tuple>
+
 /*
  * 已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转
  * 后，得到输入数组。例如，原数组 nums = [0,1,4,4,5,6,7] 在变化后可能得到：
@@ -28,7 +30,33 @@
 
 int findMin(vector<int>& nums)
 {
-    int l = 0, r = nums.size() - 1, mid;
+    int l = 0, r = nums.size() - 1, mid = 0;
+    while (l < r)
+    {
+        mid = l + (r - l) / 2;
+        /* LOG(INFO) << "l = " << l << " mid = " << mid << " r = " << r; */
+        // mid != l 避免当计算mid == l 时导致 l++
+        if (nums[mid] == nums[l] && mid != l)
+        {
+            ++l;
+            continue;
+        }
+        if (nums[mid] <= nums[r])
+        {
+            r = mid;
+        }
+        else
+        {
+            l = mid + 1;
+        }
+        /* LOG(INFO) << "l = " << l << " mid = " << mid << " r = " << r; */
+    }
+    /* LOG(INFO) << "l = " << l; */
+    return nums[l];
+}
+int findMinRight(vector<int>& nums)
+{
+    int l = 0, r = nums.size() - 1, mid = 0;
     while (l < r)
     {
         mid = l + (r - l) / 2;
@@ -45,7 +73,6 @@ int findMin(vector<int>& nums)
             r--;
         }
     }
-
     return nums[l];
 }
 
@@ -57,7 +84,9 @@ TEST_CASE("test find Min")
     tie(input, result) =
         GENERATE(table<VecInt, int>({ make_tuple(VecInt { 1, 3, 5 }, 1),
             make_tuple(VecInt { 2, 2, 2, 0, 1 }, 0),
-            make_tuple(VecInt { 4, 4, 4, 4, 4, 4, 0, 1, 2, 3, 4 }, 0) }));
+            make_tuple(VecInt { 4, 4, 4, 4, 4, 4, 0, 1, 2, 3, 4 }, 0),
+            make_tuple(VecInt { 3, 3, 1, 3 }, 1),
+            make_tuple(VecInt { 3, 1 }, 1) }));
 
     CAPTURE(input, result);
     REQUIRE(findMin(input) == result);
