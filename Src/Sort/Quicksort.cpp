@@ -6,27 +6,31 @@ void quickSort(vector<int>& nums, int l, int r)   // NOLINT
     {
         return;
     }
-
     int first = l, last = r - 1, key = nums[first];
     while (first < last)
     {
         while (first < last && nums[last] >= key)
         {
-            last--;
+            --last;
         }
         nums[first] = nums[last];
+
         while (first < last && nums[first] <= key)
         {
-            first++;
+            ++first;
         }
         nums[last] = nums[first];
     }
-
     nums[first] = key;
+    ToolBox<int> a;
+    LOG(INFO) << a.transVector2String(nums);
     quickSort(nums, l, first);
     quickSort(nums, first + 1, r);
 }
-
+// [2, 1, 5, 4, 6, 3]
+// [1, 2, 5, 4, 6, 3]
+// [1, 2, 3, 4, 5, 6]
+// [1, 2, 3, 4, 5, 6]
 TEST_CASE("test quick sort")
 {
     VecInt input;

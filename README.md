@@ -52,6 +52,9 @@
     - [81_SearchInRotatedSortedArrayII](#81_searchinrotatedsortedarrayii)
     - [154_FindMinimumInRotatedSortedArrayII](#154_findminimuminrotatedsortedarrayii)
     - [540_SingleElementInASortedArray](#540_singleelementinasortedarray)
+  - [Sorting algorithm 排序算法](#sorting-algorithm-排序算法)
+    - [Quicksort 快速排序](#quicksort-快速排序)
+    - [[]](#)
 
 ## [Greedy 贪心算法](./Src/Greedy)
 
@@ -300,3 +303,10 @@
   4. 依据位置调整 l、r 边界。
 
 - 总结：主要难点在于找出这个数列在单数前后的区分特点，用来进行左右边界调整的判断条件。注意其中边界 +1 -1 主要考虑要将数对包含或者排除，避免边界调整切割出单个数。
+
+## [Sorting algorithm 排序算法](./Src/Sort)
+
+首先了解下基本的排序算法，虽说刷题很少自己手写排序算法，但是熟悉各种排序可以加深对算法的基本理解，以及解决由这些排序算法引申出的题目。
+
+### [Quicksort 快速排序](./Src/Sort/Quicksort.cpp)
+### []
