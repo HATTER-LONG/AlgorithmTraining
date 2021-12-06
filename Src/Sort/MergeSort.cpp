@@ -28,6 +28,11 @@ void mergeSort(vector<int>& nums, int l, int r, vector<int>& temp)
     }
 }
 
+//[0, 1, 5, 0, 0, 0]
+//[1, 2, 5, 0, 0, 0]
+//[1, 2, 5, 0, 3, 6]
+//[1, 2, 5, 3, 4, 6]
+//[1, 2, 3, 4, 5, 6]
 
 TEST_CASE("test merge sort")
 {

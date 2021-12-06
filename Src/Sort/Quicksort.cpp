@@ -22,8 +22,6 @@ void quickSort(vector<int>& nums, int l, int r)   // NOLINT
         nums[last] = nums[first];
     }
     nums[first] = key;
-    ToolBox<int> a;
-    LOG(INFO) << a.transVector2String(nums);
     quickSort(nums, l, first);
     quickSort(nums, first + 1, r);
 }
