@@ -76,7 +76,7 @@ private:
 };
 
 
-TEST_CASE("test read write buffer")
+TEST_CASE("test read write buffer", "[.]")
 {
     /* ReadWriteBuffer buf; */
     ReadWriteBufferII buf;

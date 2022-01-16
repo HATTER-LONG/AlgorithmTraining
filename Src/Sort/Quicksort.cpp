@@ -1,5 +1,7 @@
 #include "Tools/Tools.hpp"
 
+#include <map>
+
 void quickSort(vector<int>& nums, int l, int r)   // NOLINT
 {
     if (l + 1 >= r)
@@ -25,6 +27,7 @@ void quickSort(vector<int>& nums, int l, int r)   // NOLINT
     quickSort(nums, l, first);
     quickSort(nums, first + 1, r);
 }
+
 // [2, 1, 5, 4, 6, 3]
 // [1, 2, 5, 4, 6, 3]
 // [1, 2, 3, 4, 5, 6]
