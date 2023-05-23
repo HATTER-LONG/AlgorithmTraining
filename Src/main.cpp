@@ -2,7 +2,7 @@
 
 #include "Tools/GLogInit.h"
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 int main(int argc, char* argv[])
 {

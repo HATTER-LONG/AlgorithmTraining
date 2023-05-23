@@ -1,10 +1,11 @@
-#include <catch2/catch.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_vector.hpp>
 #include <unordered_map>
 #include <vector>
 
 using namespace Catch;
 using namespace std;
-//桶
+// 桶
 class Solution
 {
 public:
@@ -36,6 +37,6 @@ TEST_CASE("Check Solution twoSum method work successfully")
     vector<int> inputParam { 2, 7, 11, 15 };
     int target = 9;
 
-    REQUIRE_THAT(
-        solution.twoSum(inputParam, target), Equals(vector<int> { 0, 1 }));
+    REQUIRE_THAT(solution.twoSum(inputParam, target),
+        Catch::Matchers::Equals(vector<int> { 0, 1 }));
 }
