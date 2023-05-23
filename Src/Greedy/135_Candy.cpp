@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <numeric>
 using namespace std;
 /*
@@ -34,7 +34,7 @@ int candy(std::vector<int>& ratings)
         }
     }
 
-    //右侧遍历
+    // 右侧遍历
     for (int i = size - 1; i > 0; i--)
     {
         if (ratings[i] < ratings[i - 1])
