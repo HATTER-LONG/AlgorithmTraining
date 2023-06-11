@@ -36,8 +36,7 @@ inline std::string transListNode2Str(const ListNode& listNodeParam)
     const ListNode* tmpNode = &listNodeParam;
     const int deepth = 1000;
     int i = 0;
-    while (tmpNode != nullptr && i++ < deepth)
-    {
+    while (tmpNode != nullptr && i++ < deepth) {
         retStr += std::to_string(tmpNode->val);
         if (tmpNode->next)
             retStr += " -> ";
@@ -48,8 +47,7 @@ inline std::string transListNode2Str(const ListNode& listNodeParam)
 
 inline void releaseListNode(ListNode* node)
 {
-    while (node != nullptr)
-    {
+    while (node != nullptr) {
         ListNode* nextPtr = node->m_nextback;
         delete node;
         node = nextPtr;
@@ -62,8 +60,7 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
     ListNode* retVal = nullptr;
     ListNode* loopNode = nullptr;
     ListNode* lastNode = nullptr;
-    for (int i = param.size() - 1; i >= 0; i--)
-    {
+    for (int i = param.size() - 1; i >= 0; i--) {
         retVal = new ListNode(param[i], retVal);
         if (loop == i)
             loopNode = retVal;
@@ -79,8 +76,7 @@ inline ListNode* findListNode(ListNode* headList, int pos)
 {
     ListNode* res = pos == -1 ? nullptr : headList;
 
-    for (int i = 0; i < pos; i++)
-    {
+    for (int i = 0; i < pos; i++) {
         if (res == nullptr)
             break;
         res = res->next;
@@ -88,12 +84,12 @@ inline ListNode* findListNode(ListNode* headList, int pos)
     return res;
 }
 
-#undef CATCH_CONFIG_FALLBACK_STRINGIFIER
-#define CATCH_CONFIG_FALLBACK_STRINGIFIER(value) transListNode2Str(value)
+// #undef CATCH_CONFIG_FALLBACK_STRINGIFIER
+// #define CATCH_CONFIG_FALLBACK_STRINGIFIER(value) transListNode2Str(value)
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
-class IsEqualListNode : public Catch::MatcherBase<ListNode>
+class IsEqualListNode : public Catch::Matchers::MatcherBase<ListNode>
 {
 public:
     IsEqualListNode(ListNode& listNodeParam)
@@ -104,17 +100,14 @@ public:
     {
         const ListNode* leftPtr = &arg;
         const ListNode* rightPtr = &m_listNode;
-        while (leftPtr != nullptr && rightPtr != nullptr)
-        {
-            if (leftPtr->val != rightPtr->val)
-            {
+        while (leftPtr != nullptr && rightPtr != nullptr) {
+            if (leftPtr->val != rightPtr->val) {
                 return false;
             }
             leftPtr = leftPtr->next;
             rightPtr = rightPtr->next;
         }
-        if (leftPtr != nullptr || rightPtr != nullptr)
-        {
+        if (leftPtr != nullptr || rightPtr != nullptr) {
             return false;
         }
         return true;

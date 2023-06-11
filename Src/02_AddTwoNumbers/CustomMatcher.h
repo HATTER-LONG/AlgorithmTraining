@@ -4,9 +4,9 @@
 #undef CATCH_CONFIG_FALLBACK_STRINGIFIER
 #define CATCH_CONFIG_FALLBACK_STRINGIFIER(value) transListNode2Str(value)
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
-class IsEqualListNode : public Catch::MatcherBase<ListNode>
+class IsEqualListNode : public Catch::Matchers::MatcherBase<ListNode>
 {
 public:
     IsEqualListNode(ListNode& ListNodeParam)
@@ -17,17 +17,14 @@ public:
     {
         const ListNode* LeftPtr = &Arg;
         const ListNode* RightPtr = &m_listNode;
-        while (LeftPtr != nullptr && RightPtr != nullptr)
-        {
-            if (LeftPtr->val != RightPtr->val)
-            {
+        while (LeftPtr != nullptr && RightPtr != nullptr) {
+            if (LeftPtr->val != RightPtr->val) {
                 return false;
             }
             LeftPtr = LeftPtr->next;
             RightPtr = RightPtr->next;
         }
-        if (LeftPtr != nullptr || RightPtr != nullptr)
-        {
+        if (LeftPtr != nullptr || RightPtr != nullptr) {
             return false;
         }
         return true;

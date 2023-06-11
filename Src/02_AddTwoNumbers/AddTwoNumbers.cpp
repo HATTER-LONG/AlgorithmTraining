@@ -14,13 +14,15 @@ public:
         ListNode* beginPtr = nullptr;
         ListNode* endPtr = nullptr;
 
-        initBeginWithEndPtr(&beginPtr, &endPtr, getNodeValueAndUpdateNextPush(leftPtr, rightPtr, pushNext));
+        initBeginWithEndPtr(&beginPtr, &endPtr,
+            getNodeValueAndUpdateNextPush(leftPtr, rightPtr, pushNext));
         leftPtr = getNextNode(leftPtr);
         rightPtr = getNextNode(rightPtr);
 
         while (isComplete(leftPtr, rightPtr))
         {
-            int nodeValue = getNodeValueAndUpdateNextPush(leftPtr, rightPtr, pushNext);
+            int nodeValue =
+                getNodeValueAndUpdateNextPush(leftPtr, rightPtr, pushNext);
 
             updateEndPtr(&endPtr, nodeValue);
 
@@ -41,15 +43,18 @@ public:
         (*endPtr) = (*endPtr)->next;
     }
 
-    void initBeginWithEndPtr(ListNode** beginPtr, ListNode** endPtr, int nodeValue)
+    void initBeginWithEndPtr(
+        ListNode** beginPtr, ListNode** endPtr, int nodeValue)
     {
         (*endPtr) = new ListNode(nodeValue);
         (*beginPtr) = (*endPtr);
     }
 
-    int getNodeValueAndUpdateNextPush(ListNode* leftPtr, ListNode* rightPtr, int& pushNext)
+    int getNodeValueAndUpdateNextPush(
+        ListNode* leftPtr, ListNode* rightPtr, int& pushNext)
     {
-        int nodeValue = (getNodeValue(leftPtr) + getNodeValue(rightPtr) + pushNext);
+        int nodeValue =
+            (getNodeValue(leftPtr) + getNodeValue(rightPtr) + pushNext);
 
         pushNext = nodeValue / 10;
         return nodeValue % 10;
@@ -102,5 +107,6 @@ TEST_CASE("Check Solution addTwoNumbers method work successfully")
     ListNodePtr LeftVal = initListNode(LeftParm);
     ListNodePtr RightVal = initListNode(RightParm);
     ListNodePtr ResultVal = initListNode(ResultParm);
-    REQUIRE_THAT(*(solution.addTwoNumbers(LeftVal.get(), RightVal.get())), IsEqualListNode(*ResultVal));
+    REQUIRE_THAT(*(solution.addTwoNumbers(LeftVal.get(), RightVal.get())),
+        IsEqualListNode(*ResultVal));
 }
