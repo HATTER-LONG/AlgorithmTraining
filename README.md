@@ -29,6 +29,8 @@
 
 ## 数组和字符串
 
+### 数组
+
 1. [寻找数组的中心索引](https://leetcode.cn/problems/find-the-middle-index-in-array/)--[code](./Src/1_ArrayAndString/1991_FindTheMiddleIndexInArray.cpp):
 
    给你一个整数数组  nums ，请计算数组的 中心下标 。
@@ -71,7 +73,10 @@
 
    ```
 
-2. [搜索插入位置](https://leetcode.cn/leetbook/read/array-and-string/cxqdh/)--[code](./Src/1_ArrayAndString/0000_SearchInsertPos.cpp):
+   - 解题思路：主要在于优化计算量，先计算总和，然后遍历计算 left 总和，如果 left 总和 ×2 加当前值等于总和，就返回当前值
+
+2. [搜索插入位置](https://leetcode.cn/problems/search-insert-position/)--[code](./Src/1_ArrayAndString/0000_SearchInsertPos.cpp):
+
    给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
 
    请必须使用时间复杂度为 O(log n) 的算法。
@@ -100,3 +105,28 @@
    输出: 4
 
    ```
+
+   - 解题思路：从有序数组和时间复杂度来看可以判断使用二分法，重点在 `while` 循环条件 `lo <= hi` 这样保证 `lo` 最后会被更新，避免返回 `lo` 出错。
+
+3. [合并区间](https://leetcode.cn/leetbook/read/array-and-string/c5tv3/)--[code](./Src/1_ArrayAndString/0056_MergeIntervals.cpp):
+
+   以数组 intervals 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
+
+   ```text
+   1 <= intervals.length <= 104
+   intervals[i].length == 2
+   0 <= starti <= endi <= 104
+
+   ------------------------------------------
+
+   输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+   输出：[[1,6],[8,10],[15,18]]
+   解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+
+   ------------------------------------------
+
+   输入：intervals = [[1,4],[4,5]]
+   输出：[[1,5]]
+   解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
+   ```
+   - 解题思路：合并重叠的区域，首先想到排序使得可以合并的区域相邻，在使用双指针查找两个区域重叠即可。
