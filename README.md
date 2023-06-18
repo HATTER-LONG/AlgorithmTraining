@@ -256,10 +256,39 @@
    输出：[1,2,3,4]
    ```
 
-   - 解题思路：按对角线的方向进行遍历，可以发现偶数对角线向右上，奇数对角线向右下:
+   - [解题思路](https://leetcode.cn/problems/diagonal-traverse/solution/by-lin-shen-shi-jian-lu-k-laf5/)：按对角线的方向进行遍历，可以发现偶数对角线向右上，奇数对角线向右下:
 
      - 对于每条序号为 i 的对角线，判断其奇偶性：
      - 如果是偶数对角线 ，确定其横坐标 x，从下往上遍历，将 `mat[x][i - x]` 加入 res 中。
      - 如果是奇数对角线 ，确定其横坐标 x，从上往下遍历，将 `mat[x][i - x]` 加入 res 中。
 
      ![](https://pic.leetcode-cn.com/1652665232-EcMafx-image-20210820224609655.png)
+     ![](https://pic.leetcode-cn.com/1652665284-HSqlDR-image-20210821151601039.png)
+
+### 字符串
+
+1. [0014\_最长公共前缀](https://leetcode.cn/problems/longest-common-prefix/)--[code](./Src/1_ArrayAndString/0014_LongestCommonPrefix.cpp):
+
+   编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 ""。
+
+   ```text
+   1 <= strs.length <= 200
+   0 <= strs[i].length <= 200
+   strs[i] 仅由小写英文字母组成
+
+   -------------------------------------
+
+   输入：strs = ["flower","flow","flight"]
+   输出："fl"
+
+   -------------------------------------
+
+   输入：strs = ["dog","racecar","car"]
+   输出：""
+   解释：输入不存在公共前缀。
+   ```
+
+   - 解题思路：选中第一个字符串为模版比对其他字符串同一偏移字符是否一致：
+     1. 其他字符串长度结束，返回当前相同长度的子字符串；
+     2. 其他字符串中有不同的字符；
+     3. 所有第一个字符串的字符比对结束。

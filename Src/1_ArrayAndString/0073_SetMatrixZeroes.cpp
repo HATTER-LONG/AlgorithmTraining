@@ -9,10 +9,6 @@ public:
         vector<int> result;
         if (matrix.empty() || matrix[0].empty())
             return result;
-        // 1. 按照对角线的方向遍历
-        // 2. 从左上角开始，每次遍历的方向都是向右上或者向左下
-        // 3. 如果向右上，那么下一个位置是(i - 1, j + 1)
-        // 4. 如果向左下，那么下一个位置是(i + 1, j - 1)
         size_t row = matrix.size();                    // 行数
         size_t col = matrix[0].size();                 // 列数
         for (size_t i = 0; i < row + col - 1; i++) {   // 对角线的个数
