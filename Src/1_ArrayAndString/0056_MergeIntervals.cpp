@@ -9,24 +9,17 @@ public:
     {
         sort(intervals.begin(),
              intervals.end(),
-             [](const vector<int>& a, const vector<int>& b) {
-                 return a[0] < b[0];
-             });
-        vector<vector<int>> ans;
-        size_t n = intervals.size();
-        for (size_t i = 0; i < n;)
-        {
-            int big = intervals[i][1];
-            size_t j = i + 1;
-            while (j < n && intervals[j][0] <= big)
-            {
-                big = max(big, intervals[j][1]);
-                j++;
+             [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
+
+        vector<vector<int>> merged;
+        for (vector<int>& interval : intervals) {
+            if (merged.empty() || merged.back()[1] < interval[0]) {
+                merged.push_back(interval);
+            } else {
+                merged.back()[1] = max(merged.back()[1], interval[1]);
             }
-            ans.push_back({ intervals[i][0], big });
-            i = j;
         }
-        return ans;
+        return merged;
     }
 };
 
