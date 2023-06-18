@@ -31,7 +31,7 @@
 
 ### 数组
 
-1. [寻找数组的中心索引](https://leetcode.cn/problems/find-the-middle-index-in-array/)--[code](./Src/1_ArrayAndString/1991_FindTheMiddleIndexInArray.cpp):
+1. [1991\_寻找数组的中心索引](https://leetcode.cn/problems/find-the-middle-index-in-array/)--[code](./Src/1_ArrayAndString/1991_FindTheMiddleIndexInArray.cpp):
 
    给你一个整数数组  nums ，请计算数组的 中心下标 。
 
@@ -75,7 +75,7 @@
 
    - 解题思路：主要在于优化计算量，先计算总和，然后遍历计算 left 总和，如果 left 总和 ×2 加当前值等于总和，就返回当前值
 
-2. [搜索插入位置](https://leetcode.cn/problems/search-insert-position/)--[code](./Src/1_ArrayAndString/0000_SearchInsertPos.cpp):
+2. [0035\_搜索插入位置](https://leetcode.cn/problems/search-insert-position/)--[code](./Src/1_ArrayAndString/0035_SearchInsertPos.cpp):
 
    给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
 
@@ -108,7 +108,7 @@
 
    - 解题思路：从有序数组和时间复杂度来看可以判断使用二分法，重点在 `while` 循环条件 `lo <= hi` 这样保证 `lo` 最后会被更新，避免返回 `lo` 出错。
 
-3. [合并区间](https://leetcode.cn/leetbook/read/array-and-string/c5tv3/)--[code](./Src/1_ArrayAndString/0056_MergeIntervals.cpp):
+3. [0056\_合并区间](https://leetcode.cn/leetbook/read/array-and-string/c5tv3/)--[code](./Src/1_ArrayAndString/0056_MergeIntervals.cpp):
 
    以数组 intervals 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
 
@@ -134,7 +134,7 @@
 
 ### 二维数组
 
-1. [旋转矩阵](https://leetcode.cn/problems/rotate-image/)--[code](./Src/1_ArrayAndString/48_RotateImage.cpp):
+1. [0048\_旋转矩阵](https://leetcode.cn/problems/rotate-image/)--[code](./Src/1_ArrayAndString/0048_RotateImage.cpp):
 
    给定一个 `n × n` 的二维矩阵  matrix 表示一个图像。请你将图像顺时针旋转 90 度。
 
@@ -195,7 +195,7 @@
    注意分解顺序是不能换的。
    ```
 
-2. [矩阵置零](https://leetcode.cn/problems/set-matrix-zeroes/)--[code](./Src/1_ArrayAndString/0073_SetMatrixZeroes.cpp):
+2. [0073\_矩阵置零](https://leetcode.cn/problems/set-matrix-zeroes/)--[code](./Src/1_ArrayAndString/0073_SetMatrixZeroes.cpp):
 
    编写一种算法，若 M × N 矩阵中某个元素为 0，则将其所在的行与列清零。
 
@@ -231,3 +231,29 @@
    ```
 
    - 解题思路：当前行或列上存在 0 就将当前行和列上均清 0，因此不必记录具体哪些坐标 `pos[x][y]` 需要清零，只需要记录哪些行与列清 0 即可。
+
+3. [0498\_对角线遍历](https://leetcode.cn/problems/diagonal-traverse/comments/)--[code](./Src/1_ArrayAndString/0498_DiagonalTraverse.cpp):
+
+   给你一个大小为 m x n 的矩阵 mat ，请以对角线遍历的顺序，用一个数组返回这个矩阵中的所有元素。
+
+   ![](https://assets.leetcode.com/uploads/2021/04/10/diag1-grid.jpg)
+
+   ```text
+   m == mat.length
+   n == mat[i].length
+   1 <= m, n <= 104
+   1 <= m * n <= 104
+   -105 <= mat[i][j] <= 105
+
+   -------------------------------------
+
+   输入：mat = [[1,2,3],[4,5,6],[7,8,9]]
+   输出：[1,2,4,7,5,3,6,8,9]
+
+   -------------------------------------
+
+   输入：mat = [[1,2],[3,4]]
+   输出：[1,2,3,4]
+   ```
+
+   - 解题思路：按对角线的方向进行遍历，可以发现偶数对角线向右上，奇数对角线向右下，右上的位置变化为 `(i - 1, j + 1)`，坐下的位置变化为 `(i + 1, j - 1)`。
