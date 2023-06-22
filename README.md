@@ -132,6 +132,36 @@
 
    - 解题思路：合并重叠的区域，首先想到排序使得可以合并的区域相邻，在比对相邻区域是否重合即可。
 
+4. [0704\_二分查找](https://leetcode.cn/problems/binary-search/)--[code](./Src/1_ArrayAndString/0704_BinarySearch.cpp):
+
+   给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+
+   ```text
+   你可以假设 nums 中的所有元素是不重复的。
+   n 将在 [1, 10000]之间。
+   nums 的每个元素都将在 [-9999, 9999]之间。
+
+   ----------------------------------------
+
+   输入: nums = [-1,0,3,5,9,12], target = 9
+   输出: 4
+   解释: 9 出现在 nums 中并且下标为 4
+
+   ----------------------------------------
+
+   输入: nums = [-1,0,3,5,9,12], target = 2
+   输出: -1
+   解释: 2 不存在 nums 中因此返回 -1
+   ```
+
+   - 解题思路: 题目的前提是数组为有序数组，同时题目还强调数组中无重复元素，因为一旦有重复元素，使用二分查找法返回的元素下标可能不是唯一的，这些都是使用二分法的前提条件。写二分法，区间的定义一般为两种，左闭右闭即 `[left, right]`，或者左闭右开即 `[left, right)`。
+     - `[left, right]` 左闭右闭区间：
+       1. `while (left <= right)` 要使用 `<=` ，因为 `left == right` 是有意义的，所以使用 `<=`；
+       2. `if (nums[middle] > target)`，right 要赋值为 `middle - 1`，因为当前这个 `nums[middle]` 一定不是 target，那么接下来要查找的左区间结束下标位置就是 middle - 1。
+     - `[left, right)` 左闭右开区间：
+       1. `while (left < right)`，这里使用 `<` ,因为 `left == right` 在区间 `[left, right)` 是没有意义的；
+       2. `if (nums[middle] > target)`， right 更新为 middle，因为当前 `nums[middle]` 不等于 target，去左区间继续寻找，而寻找区间是左闭右开区间，所以 right 更新为 middle，即：下一个查询区间不会去比较 `nums[middle]`。
+
 ### 二维数组
 
 1. [0048\_旋转矩阵](https://leetcode.cn/problems/rotate-image/)--[code](./Src/1_ArrayAndString/0048_RotateImage.cpp):
