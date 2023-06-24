@@ -189,6 +189,26 @@
 
      ![sample](https://code-thinking.cdn.bcebos.com/gifs/27.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0-%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95.gif)
 
+6. [0977\_有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/)--[code](./Src/1_ArrayAndString/0977_SquaresOfASortedArray.cpp):
+
+   给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
+
+   ```text
+   示例 1： 输入：nums = [-4,-1,0,3,10] 输出：[0,1,9,16,100] 解释：平方后，数组变为 [16,1,0,9,100]，排序后，数组变为 [0,1,9,16,100]
+
+   示例 2： 输入：nums = [-7,-3,2,3,11] 输出：[4,9,9,49,121]
+   ```
+
+   - 解题思路：数组是有序的，只不过平方后负数可能成为最大数，想要在单词循环中完成比对左右平后大小需要使用 **双指针**，
+
+     ```text
+     如果A[i] * A[i] < A[j] * A[j] 那么result[k--] = A[j] * A[j]; 。
+
+     如果A[i] * A[i] >= A[j] * A[j] 那么result[k--] = A[i] * A[i]; 。
+     ```
+
+     ![sample](https://code-thinking.cdn.bcebos.com/gifs/977.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.gif)
+
 ### 二维数组
 
 1. [0048\_旋转矩阵](https://leetcode.cn/problems/rotate-image/)--[code](./Src/1_ArrayAndString/0048_RotateImage.cpp):
