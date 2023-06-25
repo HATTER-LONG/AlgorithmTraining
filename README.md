@@ -209,6 +209,28 @@
 
      ![sample](https://code-thinking.cdn.bcebos.com/gifs/977.%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.gif)
 
+7. [0209\_长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)--[code](./Src/1_ArrayAndString/0209_MinimumSizeSubarraySum.cpp):
+
+   给定一个含有  n  个正整数的数组和一个正整数 target 。
+
+   找出该数组中满足其和 `≥ target` 的长度最小的 连续子数组 `[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
+
+   ```text
+   输入：target = 7, nums = [2,3,1,2,4,3]
+   输出：2
+   解释：子数组 [4,3] 是该条件下的长度最小的子数组。
+
+   -----------------------------------------------
+
+   输入：target = 4, nums = [1,4,4]
+   输出：1
+
+   -----------------------------------------------
+
+   输入：target = 11, nums = [1,1,1,1,1,1,1,1]
+   输出：0
+   ```
+
 ### 二维数组
 
 1. [0048\_旋转矩阵](https://leetcode.cn/problems/rotate-image/)--[code](./Src/1_ArrayAndString/0048_RotateImage.cpp):
