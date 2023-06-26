@@ -402,7 +402,7 @@
        ```
      - 这里一圈下来，我们要画每四条边，这四条边怎么画，每画一条边都要坚持一致的左闭右开，或者左开右闭的原则，这样这一圈才能按照统一的规则画下来。
 
-       ![sample](https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png =400x300)
+       <img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20220922102236.png" width="400" height="300" alt="sample"/><br/>
 
 ### 字符串
 
