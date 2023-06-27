@@ -10,9 +10,10 @@ public:
         int total = accumulate(numsL.begin(), numsL.end(), 0);
         int leftSum = 0;
         for (size_t i = 0; i < numsL.size(); i++) {
-            leftSum += numsL[i];
-            if (total - leftSum == leftSum - numsL[i])
+            // 由于不包括当前元素，所以需要先比较再相加
+            if (total - leftSum == leftSum)
                 return static_cast<int>(i);
+            leftSum += numsL[i];
         }
         return -1;
     }

@@ -8,12 +8,13 @@ public:
     int searchInsert(vector<int>& nums, int target)
     {
         int lo = 0, hi = nums.size() - 1;
+        // 二分查找重点在于右侧边界是否闭合，当前为左闭右闭，因此 lo == hi 是有意义的
         while (lo <= hi) {
-            int mid = (lo + hi) / 2;
+            int mid = lo + ((hi - lo) >> 1);
             if (nums[mid] < target)
                 lo = mid + 1;
             else if (nums[mid] > target)
-                hi = mid - 1;
+                hi = mid - 1;   // 右闭区间不需要包含 mid，右开区间需要包括 mid
             else
                 return mid;
         }
