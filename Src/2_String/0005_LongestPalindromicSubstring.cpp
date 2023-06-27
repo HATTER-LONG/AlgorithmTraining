@@ -19,19 +19,12 @@ TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ", "
 
     string inputStr;
     string result;
-    // clang-format off
-    tie(inputStr, result) = 
-        GENERATE(table<string, string>
-            (
-                {
-                    make_tuple("babad","bab"),
-                    make_tuple("cbbd", "bb"),
-                    make_tuple("a", "a"),
-                    make_tuple("ac", "a"),
-                }
-            )
-        );
-    // clang-format on;
+    tie(inputStr, result) = GENERATE(table<string, string>({
+        make_tuple("babad", "bab"),
+        make_tuple("cbbd", "bb"),
+        make_tuple("a", "a"),
+        make_tuple("ac", "a"),
+    }));
 
     REQUIRE_THAT(solution.longestPalindrome(inputStr), Matchers::Equals(result));
 }
