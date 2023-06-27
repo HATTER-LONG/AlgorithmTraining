@@ -7,9 +7,9 @@ class Solution
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals)
     {
-        sort(intervals.begin(),
-             intervals.end(),
-             [](vector<int>& a, vector<int>& b) { return a[0] < b[0]; });
+        sort(intervals.begin(), intervals.end(), [](vector<int>& a, vector<int>& b) {
+            return a[0] < b[0];
+        });
 
         vector<vector<int>> merged;
         for (vector<int>& interval : intervals) {
@@ -31,16 +31,12 @@ TEST_CASE("Check Solution merge method work successfully")
 
     vector<vector<int>> resultParm;
 
-    tie(inputParm,
-        resultParm) = GENERATE(table<vector<vector<int>>, vector<vector<int>>>({
-        make_tuple(
-            vector<vector<int>> { { 1, 3 }, { 2, 6 }, { 8, 10 }, { 15, 18 } },
-            vector<vector<int>> { { 1, 6 }, { 8, 10 }, { 15, 18 } }),
+    tie(inputParm, resultParm) = GENERATE(table<vector<vector<int>>, vector<vector<int>>>({
+        make_tuple(vector<vector<int>> { { 1, 3 }, { 2, 6 }, { 8, 10 }, { 15, 18 } },
+                   vector<vector<int>> { { 1, 6 }, { 8, 10 }, { 15, 18 } }),
 
-        make_tuple(vector<vector<int>> { { 1, 4 }, { 4, 5 } },
-                   vector<vector<int>> { { 1, 5 } }),
-        make_tuple(vector<vector<int>> { { 1, 4 }, { 0, 4 } },
-                   vector<vector<int>> { { 0, 4 } }),
+        make_tuple(vector<vector<int>> { { 1, 4 }, { 4, 5 } }, vector<vector<int>> { { 1, 5 } }),
+        make_tuple(vector<vector<int>> { { 1, 4 }, { 0, 4 } }, vector<vector<int>> { { 0, 4 } }),
     }));
 
     CAPTURE(inputParm, resultParm);

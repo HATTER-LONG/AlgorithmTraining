@@ -132,6 +132,7 @@
       - `[left, right)` 左闭右开区间：
         1. `while (left < right)`，这里使用 `<` ,因为 `left == right` 在区间 `[left, right)` 是没有意义的；
         2. `if (nums[middle] > target)`， right 更新为 middle，因为当前 `nums[middle]` 不等于 target，去左区间继续寻找，而寻找区间是左闭右开区间，所以 right 更新为 middle，即：下一个查询区间不会去比较 `nums[middle]`。
+    - 相似题型：[0034\_在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 5.  [0027\_移除元素](https://leetcode.cn/problems/remove-element/)--[code](./0027_RemoveElement.cpp):
 
