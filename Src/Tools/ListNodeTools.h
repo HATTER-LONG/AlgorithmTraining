@@ -1,39 +1,37 @@
 #pragma once
+#include <cstddef>
 #include <functional>
+#include <glog/logging.h>
 #include <memory>
 #include <string>
 #include <vector>
-
 struct ListNode
 {
     int val;
     ListNode* next;
-    // NOTE 用于删除链表释放内存
-    ListNode* m_nextback;
     ListNode()
             : val(0)
             , next(nullptr)
-            , m_nextback(next)
     {
     }
     ListNode(int x)
             : val(x)
             , next(nullptr)
-            , m_nextback(next)
     {
     }
     ListNode(int x, ListNode* next)
             : val(x)
             , next(next)
-            , m_nextback(next)
     {
     }
 };
 
-inline std::string transListNode2Str(const ListNode& listNodeParam)
+inline std::string transListNode2Str(const ListNode* listNodeParam)
 {
+    if (listNodeParam == nullptr)
+        return std::string("nullptr");
     std::string retStr;
-    const ListNode* tmpNode = &listNodeParam;
+    const ListNode* tmpNode = listNodeParam;
     const int deepth = 1000;
     int i = 0;
     while (tmpNode != nullptr && i++ < deepth) {
@@ -48,14 +46,13 @@ inline std::string transListNode2Str(const ListNode& listNodeParam)
 inline void releaseListNode(ListNode* node)
 {
     while (node != nullptr) {
-        ListNode* nextPtr = node->m_nextback;
+        ListNode* nextPtr = node->next;
         delete node;
         node = nextPtr;
     }
 }
 
-using ListNodePtr = std::unique_ptr<ListNode, std::function<void(ListNode*)>>;
-inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
+inline ListNode* initListNode(std::vector<int> param, int loop = -1)
 {
     ListNode* retVal = nullptr;
     ListNode* loopNode = nullptr;
@@ -69,7 +66,7 @@ inline ListNodePtr initListNode(std::vector<int> param, int loop = -1)
     }
     if (lastNode)
         lastNode->next = loopNode;
-    return ListNodePtr(retVal, std::function<void(ListNode*)>(releaseListNode));
+    return retVal;
 }
 
 inline ListNode* findListNode(ListNode* headList, int pos)
@@ -84,22 +81,20 @@ inline ListNode* findListNode(ListNode* headList, int pos)
     return res;
 }
 
-// #undef CATCH_CONFIG_FALLBACK_STRINGIFIER
-// #define CATCH_CONFIG_FALLBACK_STRINGIFIER(value) transListNode2Str(value)
 
 #include <catch2/catch_all.hpp>
 
 class IsEqualListNode : public Catch::Matchers::MatcherBase<ListNode>
 {
 public:
-    IsEqualListNode(ListNode& listNodeParam)
+    IsEqualListNode(ListNode* listNodeParam)
             : m_listNode(listNodeParam)
     {
     }
     bool match(ListNode const& arg) const override
     {
         const ListNode* leftPtr = &arg;
-        const ListNode* rightPtr = &m_listNode;
+        const ListNode* rightPtr = m_listNode;
         while (leftPtr != nullptr && rightPtr != nullptr) {
             if (leftPtr->val != rightPtr->val) {
                 return false;
@@ -121,5 +116,13 @@ public:
     }
 
 private:
-    const ListNode& m_listNode;
+    const ListNode* m_listNode;
 };
+
+
+#define checkListNode(LEFT, RIGHT)                                                                 \
+    CAPTURE(transListNode2Str(LEFT), transListNode2Str(RIGHT));                                    \
+    if (ans != nullptr)                                                                            \
+        REQUIRE_THAT(*ans, IsEqualListNode(resultNode));                                           \
+    else if (ans == nullptr)                                                                       \
+        REQUIRE(resultNode == ans);
