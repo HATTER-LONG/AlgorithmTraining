@@ -122,7 +122,7 @@ private:
 
 #define checkListNode(LEFT, RIGHT)                                                                 \
     CAPTURE(transListNode2Str(LEFT), transListNode2Str(RIGHT));                                    \
-    if (ans != nullptr)                                                                            \
-        REQUIRE_THAT(*ans, IsEqualListNode(resultNode));                                           \
-    else if (ans == nullptr)                                                                       \
-        REQUIRE(resultNode == ans);
+    if (LEFT != nullptr)                                                                           \
+        REQUIRE_THAT(*LEFT, IsEqualListNode(RIGHT));                                               \
+    else if (LEFT == nullptr)                                                                      \
+        REQUIRE(LEFT == RIGHT);
