@@ -39,3 +39,17 @@
    - 解题思路：通过双指针改变链表每个节点的指向，从指向后一个改为指向前一个节点即可完成翻转而不需要重新建立链表。
 
    ![sample](https://code-thinking.cdn.bcebos.com/gifs/206.%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.gif)
+
+4. [0024\_两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs)--[code](./0024_SwapNodesInPairs.cpp):
+
+   给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+
+   ```text
+   输入：head = [1,2,3,4]
+   输出：[2,1,4,3]
+   ```
+
+   - 解题思路：纯模拟题，可以利用虚拟头节点方便处理，主要操作模拟为如下三步：
+
+   ![sample1](https://code-thinking.cdn.bcebos.com/pics/24.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B91.png)
+   ![sample2](https://code-thinking.cdn.bcebos.com/pics/24.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B93.png)
