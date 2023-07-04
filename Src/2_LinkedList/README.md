@@ -70,3 +70,17 @@
      - 注意可以让 fast 多向前走一步，这样 slow 就会停到需要删除节点的前一位，方便操作。
 
    ![sample](https://code-thinking.cdn.bcebos.com/pics/19.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B92.png)
+
+6. [160\_链表相交](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)--[code](./0160_IntersectionOfTwoLinkedListsIcci.cpp):
+
+   给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
+
+   ![sample](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)
+
+   题目数据 保证 整个链式结构中不存在环。
+
+   注意，函数返回结果后，链表必须 保持其原始结构 。
+
+   - 解题思路：想要同时遍历两个链表比对节点是否存在相同的，但是困难点在于链表长度不一致，因此需要想办法尾对其下，从短链表的头部开始遍历，检查是否有相同节点，即相交。
+     - 求出两个链表的长度，并求出两个链表长度的差值，然后让 curA 移动到，和 curB 末尾对齐的位置。此时我们就可以比较 curA 和 curB 是否相同，如果不相同，同时向后移动 curA 和 curB，如果遇到 curA == curB，则找到交点。
+       ![sample2](https://code-thinking.cdn.bcebos.com/pics/%E9%9D%A2%E8%AF%95%E9%A2%9802.07.%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4_2.png)
