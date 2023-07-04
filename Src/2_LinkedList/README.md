@@ -53,3 +53,20 @@
 
    ![sample1](https://code-thinking.cdn.bcebos.com/pics/24.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B91.png)
    ![sample2](https://code-thinking.cdn.bcebos.com/pics/24.%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B93.png)
+
+5. [0019\_删除链表的倒数第 N 个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)--[code](./0019_RemoveNthNodefromEndOfList.cpp):
+
+   给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+   ```text
+   输入：head = [1,2,3,4,5], n = 2 输出：[1,2,3,5]
+
+   输入：head = [1], n = 1 输出：[]
+
+   输入：head = [1,2], n = 1 输出：[1]
+   ```
+
+   - 解题思路：双指针的经典应用，如果要删除倒数第 n 个节点，让 fast 移动 n 步，然后让 fast 和 slow 同时移动，直到 fast 指向链表末尾。删掉 slow 所指向的节点就可以了。
+     - 注意可以让 fast 多向前走一步，这样 slow 就会停到需要删除节点的前一位，方便操作。
+
+   ![sample](https://code-thinking.cdn.bcebos.com/pics/19.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B92.png)
