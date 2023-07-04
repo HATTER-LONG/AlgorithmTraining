@@ -84,3 +84,13 @@
    - 解题思路：想要同时遍历两个链表比对节点是否存在相同的，但是困难点在于链表长度不一致，因此需要想办法尾对其下，从短链表的头部开始遍历，检查是否有相同节点，即相交。
      - 求出两个链表的长度，并求出两个链表长度的差值，然后让 curA 移动到，和 curB 末尾对齐的位置。此时我们就可以比较 curA 和 curB 是否相同，如果不相同，同时向后移动 curA 和 curB，如果遇到 curA == curB，则找到交点。
        ![sample2](https://code-thinking.cdn.bcebos.com/pics/%E9%9D%A2%E8%AF%95%E9%A2%9802.07.%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4_2.png)
+
+7. [142_LinkedListCycleII](https://leetcode.cn/problems/linked-list-cycle-ii/)--[code](./0142_LinkedListCycleII.cpp):
+
+   题意： 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+
+   为了表示给定链表中的环，使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。
+
+   说明：不允许修改给定的链表。
+
+   ![sample](https://code-thinking-1253855093.file.myqcloud.com/pics/20200816110112704.png)
