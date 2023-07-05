@@ -94,3 +94,13 @@
    说明：不允许修改给定的链表。
 
    ![sample](https://code-thinking-1253855093.file.myqcloud.com/pics/20200816110112704.png)
+
+   - 解题思路：
+
+     1. 判断是否有环，可以通过快慢指针进行，快指针一次前进两个节点，慢指针一次前进一个，如果有环那么肯定会相遇：
+
+     ![sample1](https://code-thinking.cdn.bcebos.com/gifs/141.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8.gif)
+
+     2. 查找环的入口，从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。
+
+     ![sample2](https://code-thinking.cdn.bcebos.com/gifs/142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II%EF%BC%88%E6%B1%82%E5%85%A5%E5%8F%A3%EF%BC%89.gif)
