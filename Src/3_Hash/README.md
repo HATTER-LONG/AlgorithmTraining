@@ -108,3 +108,31 @@
    ```
 
    - 解题思路：由于本体不需要考虑有重复的四个元素相加等于 0 的情况，所以直接通过 map 记录前两个数组之和，然后计算后两个数组和时在 map 中查找需要的即可。
+
+6. [0383\_赎金信](https://leetcode.cn/problems/ransom-note/description/)--[code](./0383_RansomNote.cpp):
+
+   给你两个字符串：ransomNote 和 magazine ，判断 ransomNote 能不能由 magazine 里面的字符构成。
+
+   如果可以，返回 true ；否则返回 false 。
+
+   magazine 中的每个字符只能在 ransomNote 中使用一次。
+
+   ```test
+   输入：ransomNote = "a", magazine = "b"
+   输出：false
+
+   -----------------------------------------
+
+   输入：ransomNote = "aa", magazine = "ab"
+   输出：false
+
+   -----------------------------------------
+
+   输入：ransomNote = "aa", magazine = "aab"
+   输出：true
+   ```
+
+   - 解题思路：本题判断第一个字符串 ransom 能不能由第二个字符串 magazines 里面的字符构成，但是这里需要注意两点：
+     1. 杂志字符串中的字母不能重复使用；
+     2. 只有小写字母。
+   - 包含以上两点就可以放心使用桶来记录出现过的字母，因为只有 26 个不用操心存放的问题。
