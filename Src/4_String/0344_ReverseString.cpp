@@ -22,7 +22,7 @@ public:
 };
 
 
-TEST_CASE("Check Solution reverseString method work successfully ", "[.]")
+TEST_CASE("Check Solution reverseString method work successfully ")
 {
     Solution solution;
 

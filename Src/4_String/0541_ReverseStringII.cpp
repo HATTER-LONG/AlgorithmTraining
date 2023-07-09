@@ -25,7 +25,7 @@ public:
 };
 
 
-TEST_CASE("Check Solution 541reverseString method work successfully ", "[.]")
+TEST_CASE("Check Solution 541reverseString method work successfully ")
 {
     Solution solution;
 

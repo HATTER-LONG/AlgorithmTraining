@@ -38,3 +38,16 @@
    ```
 
    - 解题思路：技巧是在遍历过程中步长可以设定为 2 \* k，这样只需要处理每次前进的字符串不需要单独记录字符数量。
+
+3. [剑指*05*替换空格](https://leetcode.cn/problems/ti-huan-kong-ge-lcof/)--[code](./ZJ05_ReplaceSpace.cpp):
+
+   请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+   ```text
+   输入：s = "We are happy."
+   输出："We%20are%20happy."
+   ```
+
+   - 解题思路：这道题重点在于要从后向前进行替换，可以有效避免多余的内存拷贝否则时间复杂度将 On 变为 On^2。
+
+   ![sample](https://code-thinking.cdn.bcebos.com/gifs/%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC.gif)
