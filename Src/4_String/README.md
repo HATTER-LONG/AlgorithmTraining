@@ -83,3 +83,24 @@
 
    1. 多余空格去重，采用双指针方法，快指针跳过所有空格，慢指针拷贝有效单词并补上间隔空格；
    2. 反转整个空格去重后的字符串，在快慢指针单独反转所有空格分割的单词。
+
+5. [剑指*58*左旋字符串 II](https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/)--[code](./ZJ58_ReverseLeftWords.cpp):
+
+   字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字 2，该函数将返回左旋转两位得到的结果"cdefgab"。
+
+   ```test
+   输入: s = "abcdefg", k = 2
+   输出: "cdefgab"
+
+   ---------------------------------
+
+   输入: s = "lrloseumgh", k = 6
+   输出: "umghlrlose"
+   ```
+
+   - 解题思路：原地操作字符串左旋，大体分为以下步骤：
+     1. 旋转指定的前 k 个字符；
+     2. 旋转 k 到末尾的字符；
+     3. 旋转整个字符串。
+
+   ![sample](https://code-thinking.cdn.bcebos.com/pics/%E5%89%91%E6%8C%87Offer58-II.%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
