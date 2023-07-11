@@ -104,3 +104,22 @@
      3. 旋转整个字符串。
 
    ![sample](https://code-thinking.cdn.bcebos.com/pics/%E5%89%91%E6%8C%87Offer58-II.%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.png)
+
+6. [0028\_找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)--[code](./0028_FindTheIndexOfTheFirstOccurrenceInAString.cpp):
+
+   给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回 -1 。
+
+   ```text
+   输入：haystack = "sadbutsad", needle = "sad"
+   输出：0
+   解释："sad" 在下标 0 和 6 处匹配。
+   第一个匹配项的下标是 0 ，所以返回 0 。
+
+   --------------------------------------
+
+   输入：haystack = "leetcode", needle = "leeto"
+   输出：-1
+   解释："leeto" 没有在 "leetcode" 中出现，所以返回 -1 。
+   ```
+
+   - 解题思路：KMP 经典应用待补充
