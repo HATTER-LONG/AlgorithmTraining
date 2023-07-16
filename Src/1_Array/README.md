@@ -79,7 +79,7 @@
 
     - 解题思路：从有序数组和时间复杂度来看可以判断使用二分法，重点在 `while` 循环条件 `lo <= hi` 这样保证 `lo` 最后会被更新，避免返回 `lo` 出错。
 
-3.  [0056\_合并区间](https://leetcode.cn/leetbook/read/array-and-string/c5tv3/)--[code](./0056_MergeIntervals.cpp):
+3.  [0056\_合并区间](https://leetcode.cn/problems/merge-intervals/)--[code](./0056_MergeIntervals.cpp):
 
     以数组 intervals 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]` 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
 

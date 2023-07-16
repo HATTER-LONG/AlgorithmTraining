@@ -34,6 +34,25 @@ public:
         }
         return leftIndex;
     }
+    // 反向双指针
+    int removeElement_revert(vector<int>& nums, int val)
+    {
+        int len = nums.size();
+        int fast = len - 1, slow = len - 1;
+        while (fast >= 0) {
+            if (nums[fast] == val && nums[slow] != val) {
+                nums[fast] = nums[slow];
+                fast--;
+                slow--;
+            } else if (nums[fast] == val && fast == slow) {
+                fast--;
+                slow--;
+            } else {
+                fast--;
+            }
+        }
+        return slow + 1;
+    }
 };
 
 TEST_CASE("Check Solution removeElement method work successfully")
@@ -47,6 +66,6 @@ TEST_CASE("Check Solution removeElement method work successfully")
         make_tuple(vector<int> { 3, 2, 2, 3 }, 3, 2),
         make_tuple(vector<int> { 0, 1, 2, 2, 3, 0, 4, 2 }, 2, 5),
     }));
-
-    REQUIRE(solution.removeElement_over(param, target) == result);
+    CAPTURE(param, target, result);
+    REQUIRE(solution.removeElement_revert(param, target) == result);
 }
