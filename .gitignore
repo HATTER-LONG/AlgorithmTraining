@@ -1,6 +1,8 @@
 build
+cmake_build*
 .cache
 .vscode
 bin
 Src/.*
 .DS_Store
+compile_commands.json
