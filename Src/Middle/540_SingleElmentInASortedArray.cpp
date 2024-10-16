@@ -15,53 +15,37 @@
  * 输出: 10
  */
 
-
-int singleNonDuplicate(vector<int>& nums)
-{
+int singleNonDuplicate(vector<int>& nums) {
     int l = 0, r = nums.size() - 1, mid = 0;
 
-    while (l < r)
-    {
+    while(l < r) {
         mid = l + (r - l) / 2;
-        if (nums[mid] == nums[mid + 1])
-        {
-            if (mid % 2 != 0)
-            {
+        if(nums[mid] == nums[mid + 1]) {
+            if(mid % 2 != 0) {
                 r = mid - 1;
-            }
-            else
-            {
+            } else {
                 l = mid;
             }
-        }
-        else if (nums[mid] == nums[mid - 1])
-        {
-            if (mid % 2 == 0)
-            {
+        } else if(nums[mid] == nums[mid - 1]) {
+            if(mid % 2 == 0) {
                 r = mid;
-            }
-            else
-            {
+            } else {
                 l = mid + 1;
             }
-        }
-        else
-        {
+        } else {
             return nums[mid];
         }
     }
     return nums[l];
 }
 
-TEST_CASE("test single nonduplicate func")
-{
+TEST_CASE("test single nonduplicate func") {
     VecInt input;
     int result;
 
     tie(input, result) = GENERATE(table<VecInt, int>(
-        { make_tuple(VecInt { 1, 1, 2, 3, 3, 4, 4, 8, 8 }, 2),
-            make_tuple(VecInt { 3, 3, 7, 7, 10, 11, 11 }, 10),
-            make_tuple(VecInt { 1, 1, 2, 2, 3 }, 3) }));
+        {make_tuple(VecInt{1, 1, 2, 3, 3, 4, 4, 8, 8}, 2),
+         make_tuple(VecInt{3, 3, 7, 7, 10, 11, 11}, 10), make_tuple(VecInt{1, 1, 2, 2, 3}, 3)}));
 
     CAPTURE(input, result);
     REQUIRE(singleNonDuplicate(input) == result);

@@ -9,31 +9,24 @@ using namespace Catch;
 
 // 栈
 
-class Solution
-{
+class Solution {
 public:
-    bool isValid(string s)
-    {
+    bool isValid(string s) {
         int n = s.size();
-        if (n % 2 == 1)
-        {
+        if(n % 2 == 1) {
             return false;
         }
 
-        unordered_map<char, char> pairs = { { ')', '(' }, { ']', '[' }, { '}', '{' } };
+        unordered_map<char, char> pairs = {{')', '('}, {']', '['}, {'}', '{'}};
         stack<char> stk;
-        for (char ch : s)
-        {
-            if (pairs.count(ch))   // 判断是否有此类型右括号
+        for(char ch : s) {
+            if(pairs.count(ch)) // 判断是否有此类型右括号
             {
-                if (stk.empty() || stk.top() != pairs[ch])
-                {
+                if(stk.empty() || stk.top() != pairs[ch]) {
                     return false;
                 }
                 stk.pop();
-            }
-            else
-            {
+            } else {
                 stk.push(ch);
             }
         }
@@ -41,9 +34,7 @@ public:
     }
 };
 
-
-TEST_CASE("Check Solution isValid method work successfully ")
-{
+TEST_CASE("Check Solution isValid method work successfully ") {
     Solution solution;
 
     string inputStr;

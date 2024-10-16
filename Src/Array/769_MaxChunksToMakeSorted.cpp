@@ -13,28 +13,23 @@
  * 在这个样例中，最多分割是 [1, 0], [2], [3], [4]。
  */
 
-int maxChunksToSorted(vector<int>& arr)
-{
+int maxChunksToSorted(vector<int>& arr) {
     int chunks = 0, curMax = 0;
-    for (size_t i = 0; i < arr.size(); i++)
-    {
+    for(size_t i = 0; i < arr.size(); i++) {
         curMax = max(curMax, arr[i]);
-        if (curMax == static_cast<int>(i))
-        {
+        if(curMax == static_cast<int>(i)) {
             chunks++;
         }
     }
     return chunks;
 }
 
-TEST_CASE("test max chunks to sorted")
-{
+TEST_CASE("test max chunks to sorted") {
     VecInt input;
     int result;
 
-    tie(input, result) =
-        GENERATE(table<VecInt, int>({ make_tuple(VecInt { 1, 0, 2, 3, 4 }, 4),
-            make_tuple(VecInt { 1, 2, 0, 3 }, 2) }));
+    tie(input, result) = GENERATE(table<VecInt, int>(
+        {make_tuple(VecInt{1, 0, 2, 3, 4}, 4), make_tuple(VecInt{1, 2, 0, 3}, 2)}));
 
     CAPTURE(input, result);
 

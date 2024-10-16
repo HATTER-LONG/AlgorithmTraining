@@ -18,28 +18,19 @@
  *
  */
 
-
-string findLongestWord(string s, vector<string>& dictionary)
-{
+string findLongestWord(string s, vector<string>& dictionary) {
     string res;
-    for (auto& x : dictionary)
-    {
+    for(auto& x : dictionary) {
         size_t cnt = 0;
-        for (size_t i = 0; i < s.length(); i++)
-        {
-            if (s[i] == x[cnt])
-            {
+        for(size_t i = 0; i < s.length(); i++) {
+            if(s[i] == x[cnt]) {
                 cnt++;
             }
         }
-        if (cnt == x.length())
-        {
-            if (x.length() == res.length())
-            {
+        if(cnt == x.length()) {
+            if(x.length() == res.length()) {
                 res = res < x ? res : x;
-            }
-            else
-            {
+            } else {
                 res = res.length() < x.length() ? x : res;
             }
         }
@@ -47,16 +38,14 @@ string findLongestWord(string s, vector<string>& dictionary)
     return res;
 }
 
-TEST_CASE("test find longest word func")
-{
+TEST_CASE("test find longest word func") {
     string input;
     vector<string> dic;
 
     string result;
 
-    tie(input, dic, result) =
-        GENERATE(table<string, vector<string>, string>({ make_tuple("abpcplea",
-            vector<string> { "ale", "apple", "monkey", "plea" }, "apple") }));
+    tie(input, dic, result) = GENERATE(table<string, vector<string>, string>(
+        {make_tuple("abpcplea", vector<string>{"ale", "apple", "monkey", "plea"}, "apple")}));
 
     CAPTURE(input, dic, result);
     REQUIRE(findLongestWord(input, dic) == result);

@@ -1,30 +1,32 @@
 #https://clang.llvm.org/extra/clang-tidy/checks/list.html
-Checks: "-*,clang-diagnostic-*,llvm-*,misc-*,
+Checks: "-*,clang-diagnostic-*,llvm-*,misc-*,google-*,
   -misc-non-private-member-variables-in-classes,
   readability-identifier-naming,
   readability-function-size"
-# CheckOptions:
-#   - key:             readability-identifier-naming.ClassCase
-#     value:           CamelCase
-#   - key:             readability-identifier-naming.NamespaceCase
-#     value:           CamelCase
-#   - key:             readability-identifier-naming.EnumCase
-#     value:           UPPER_CASE
-#   - key:             readability-identifier-naming.UnionCase
-#     value:           UPPER_CASE
-#   - key:             readability-identifier-naming.GlobalConstantCase
-#     value:           UPPER_CASE
-#   - key:             readability-identifier-naming.FunctionCase
-#     value:           camelBack
-#   - key:             readability-identifier-naming.MemberCase
-#     value:           camelBack
-#   - key:             readability-identifier-naming.MemberPrefix
-#     value:           m_
-#   - key:             readability-identifier-naming.ParameterCase
-#     value:           camelBack
-#   - key:             readability-identifier-naming.VariableCase
-#     value:           camelBack
-#   - key:             readability-function-size.StatementThreshold
-#     value:           100
-#   - key:             readability-function-size.ParameterThreshold
-#     value:           5'
+CheckOptions:
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.NamespaceCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key: readability-identifier-naming.MemberCase
+    value: camelBack
+  - key: readability-identifier-naming.MemberPrefix
+    value: m_
+  - key: readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.LocalVariableCase
+    value: lower_case
+  - key: readability-function-size.StatementThreshold
+    value: 100
+  - key: readability-function-size.ParameterThreshold
+    value: 5

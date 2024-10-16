@@ -2,17 +2,12 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int test(vector<int>& numsL, vector<int>& numsR)
-    {
-        return numsL[0] + numsR[0];
-    }
+    int test(vector<int>& numsL, vector<int>& numsR) { return numsL[0] + numsR[0]; }
 };
 
-TEST_CASE("Check Solution test method work successfully")
-{
+TEST_CASE("Check Solution test method work successfully") {
     Solution solution;
 
     vector<int> LeftParm, RightParm;

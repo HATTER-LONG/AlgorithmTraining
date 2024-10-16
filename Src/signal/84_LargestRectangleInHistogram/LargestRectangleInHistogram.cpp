@@ -9,21 +9,17 @@
 using namespace Catch;
 using namespace std;
 
-//最终优化版本
-class Solution
-{
+// 最终优化版本
+class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights)
-    {
+    int largestRectangleArea(vector<int>& heights) {
         int n = heights.size();
         vector<int> left(n), right(n, n);
 
         stack<int> mono_stack;
-        for (int i = 0; i < n; ++i)
-        {
-            while (!mono_stack.empty() && heights[mono_stack.top()] >= heights[i])
-            {
-                right[mono_stack.top()] = i;   //通过这一个 循环更新掉 right 边界
+        for(int i = 0; i < n; ++i) {
+            while(!mono_stack.empty() && heights[mono_stack.top()] >= heights[i]) {
+                right[mono_stack.top()] = i; // 通过这一个 循环更新掉 right 边界
                 mono_stack.pop();
             }
             left[i] = (mono_stack.empty() ? -1 : mono_stack.top());
@@ -31,8 +27,7 @@ public:
         }
 
         int ans = 0;
-        for (int i = 0; i < n; ++i)
-        {
+        for(int i = 0; i < n; ++i) {
             ans = max(ans, (right[i] - left[i] - 1) * heights[i]);
         }
         return ans;
@@ -47,26 +42,23 @@ public:
 // 2. 当栈顶出栈时，栈内为空那么其能扩散到数组两端，此为数组中最小的。
 // 3. 栈中存在高度相等的元素。需要对其特殊处理
 //
-class Solution_Stack
-{
+class Solution_Stack {
 public:
-    int largestRectangleArea(vector<int>& heights)
-    {
+    int largestRectangleArea(vector<int>& heights) {
         size_t n = heights.size();
-        if (n == 0)
-        {
+        if(n == 0) {
             return 0;
         }
-        if (n == 1)
-        {
+        if(n == 1) {
             return heights[0];
         }
         vector<int> left(n), right(n);
         int ans = 0;
         stack<int> lstack;
-        for (int i = 0; i < static_cast<int>(n); i++)   // 计算左边
+        for(int i = 0; i < static_cast<int>(n); i++) // 计算左边
         {
-            while (!lstack.empty() && heights[lstack.top()] >= heights[i])   //等于是为了避免连续高相等的柱体
+            while(!lstack.empty() &&
+                  heights[lstack.top()] >= heights[i]) // 等于是为了避免连续高相等的柱体
             {
                 lstack.pop();
             }
@@ -74,60 +66,47 @@ public:
             lstack.push(i);
         }
         lstack = stack<int>();
-        for (int i = static_cast<int>(n - 1); i >= 0; i--)
-        {
-            while (!lstack.empty() && heights[lstack.top()] >= heights[i])
-            {
+        for(int i = static_cast<int>(n - 1); i >= 0; i--) {
+            while(!lstack.empty() && heights[lstack.top()] >= heights[i]) {
                 lstack.pop();
             }
             right[i] = (lstack.empty() ? n : lstack.top());
             lstack.push(i);
         }
-        for (size_t i = 0; i < n; i++)
-        {
+        for(size_t i = 0; i < n; i++) {
             ans = max(ans, (right[i] - left[i] - 1) * heights[i]);
         }
         return ans;
     }
 };
 
-
 // 暴力
-class Solution_Crash
-{
+class Solution_Crash {
 public:
-    int findNextPos(vector<int>& heights, size_t beginPos)
-    {
+    int findNextPos(vector<int>& heights, size_t beginPos) {
         int pos = beginPos;
-        while (pos < static_cast<int>(heights.size()))
-        {
-            if (heights[pos] < heights[beginPos])
-            {
+        while(pos < static_cast<int>(heights.size())) {
+            if(heights[pos] < heights[beginPos]) {
                 break;
             }
             pos++;
         }
         return --pos;
     }
-    int findPrePos(vector<int>& heights, size_t beginPos)
-    {
+    int findPrePos(vector<int>& heights, size_t beginPos) {
         int pos = beginPos;
-        while (pos >= 0)
-        {
-            if (heights[pos] < heights[beginPos])
-            {
+        while(pos >= 0) {
+            if(heights[pos] < heights[beginPos]) {
                 break;
             }
             pos--;
         }
         return ++pos;
     }
-    int largestRectangleArea(vector<int>& heights)
-    {
+    int largestRectangleArea(vector<int>& heights) {
         size_t n = heights.size();
         int ans = 0;
-        for (size_t i = 0; i < n; i++)
-        {
+        for(size_t i = 0; i < n; i++) {
             int height = heights[i];
             ans = max(ans, (findNextPos(heights, i) - findPrePos(heights, i) + 1) * height);
         }
@@ -136,14 +115,13 @@ public:
     }
 };
 
-TEST_CASE("Check Solution largestRectangleArea method work successfully")
-{
+TEST_CASE("Check Solution largestRectangleArea method work successfully") {
     Solution solution;
 
     vector<int> inputParm;
     int resultParm = 0;
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, int>({
-        make_tuple(vector<int> { 2, 1, 5, 6, 2, 3 }, 10),
+        make_tuple(vector<int>{2, 1, 5, 6, 2, 3}, 10),
     }));
 
     CAPTURE(inputParm, resultParm);

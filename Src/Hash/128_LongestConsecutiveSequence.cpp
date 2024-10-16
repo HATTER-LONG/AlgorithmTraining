@@ -12,28 +12,23 @@
  * 在这个样例中，最长连续序列是 [1,2,3,4]。
  */
 
-int longestConsecutive(vector<int>& nums)
-{
+int longestConsecutive(vector<int>& nums) {
     unordered_set<int> hash;
 
-    for (const auto& num : nums)
-    {
-        //去重
+    for(const auto& num : nums) {
+        // 去重
         hash.insert(num);
     }
 
     int ans = 0;
-    while (!hash.empty())
-    {
+    while(!hash.empty()) {
         int cur = *(hash.begin());
         hash.erase(cur);
         int next = cur + 1, prev = cur - 1;
-        while (hash.count(next))
-        {
+        while(hash.count(next)) {
             hash.erase(next++);
         }
-        while (hash.count(prev))
-        {
+        while(hash.count(prev)) {
             hash.erase(prev--);
         }
         ans = max(ans, next - prev - 1);
@@ -41,15 +36,13 @@ int longestConsecutive(vector<int>& nums)
     return ans;
 }
 
-
-TEST_CASE("Check Solution longestConsecutive method work successfully")
-{
+TEST_CASE("Check Solution longestConsecutive method work successfully") {
     vector<int> inputParm;
     int resultParm = 0;
 
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, int>({
-        make_tuple(vector<int> { 100, 4, 200, 1, 3, 2 }, 4),
-        make_tuple(vector<int> { 0, 3, 7, 2, 5, 8, 4, 6, 0, 1 }, 9),
+        make_tuple(vector<int>{100, 4, 200, 1, 3, 2}, 4),
+        make_tuple(vector<int>{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}, 9),
     }));
 
     CAPTURE(inputParm, resultParm);

@@ -14,18 +14,15 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int maxDepth(TreeNode* root)
-    {
-        if (!root)
+    int maxDepth(TreeNode* root) {
+        if(!root)
             return 0;
         return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }
 };
-TEST_CASE("Check Solution maxDepth method work successfully")
-{
+TEST_CASE("Check Solution maxDepth method work successfully") {
     Solution solution;
     string imputParm;
     int result;

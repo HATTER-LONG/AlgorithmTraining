@@ -7,35 +7,28 @@
 using namespace std;
 using namespace Catch;
 
-//动态规划
-class Solution
-{
+// 动态规划
+class Solution {
 public:
-    pair<int, int> expainStr(const string& s, int left, int right)
-    {
-        while (left >= 0 && right < static_cast<int>(s.length()) && s[left] == s[right])
-        {
+    pair<int, int> expainStr(const string& s, int left, int right) {
+        while(left >= 0 && right < static_cast<int>(s.length()) && s[left] == s[right]) {
             left--;
             right++;
         }
-        return { left + 1, right - 1 };   // left right 时已经不匹配的字符位置了  需要剪掉
+        return {left + 1, right - 1}; // left right 时已经不匹配的字符位置了  需要剪掉
     }
-    string longestPalindrome(string s)
-    {
+    string longestPalindrome(string s) {
         int begin = 0;
         int end = 0;
-        for (size_t index = 0; index < s.length(); index++)
-        {
+        for(size_t index = 0; index < s.length(); index++) {
             auto [left1, right1] = expainStr(s, index, index);
             auto [left2, right2] = expainStr(s, index, index + 1);
 
-            if (right1 - left1 > end - begin)
-            {
+            if(right1 - left1 > end - begin) {
                 begin = left1;
                 end = right1;
             }
-            if (right2 - left2 > end - begin)
-            {
+            if(right2 - left2 > end - begin) {
                 begin = left2;
                 end = right2;
             }
@@ -44,9 +37,7 @@ public:
     }
 };
 
-
-TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ")
-{
+TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ") {
     Solution solution;
 
     string inputStr;

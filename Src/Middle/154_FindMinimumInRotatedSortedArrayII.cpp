@@ -27,26 +27,19 @@
  *
  */
 
-
-int findMin(vector<int>& nums)
-{
+int findMin(vector<int>& nums) {
     int l = 0, r = nums.size() - 1, mid = 0;
-    while (l < r)
-    {
+    while(l < r) {
         mid = l + (r - l) / 2;
         /* LOG(INFO) << "l = " << l << " mid = " << mid << " r = " << r; */
         // mid != l 避免当计算mid == l 时导致 l++
-        if (nums[mid] == nums[l] && mid != l)
-        {
+        if(nums[mid] == nums[l] && mid != l) {
             ++l;
             continue;
         }
-        if (nums[mid] <= nums[r])
-        {
+        if(nums[mid] <= nums[r]) {
             r = mid;
-        }
-        else
-        {
+        } else {
             l = mid + 1;
         }
         /* LOG(INFO) << "l = " << l << " mid = " << mid << " r = " << r; */
@@ -54,39 +47,29 @@ int findMin(vector<int>& nums)
     /* LOG(INFO) << "l = " << l; */
     return nums[l];
 }
-int findMinRight(vector<int>& nums)
-{
+int findMinRight(vector<int>& nums) {
     int l = 0, r = nums.size() - 1, mid = 0;
-    while (l < r)
-    {
+    while(l < r) {
         mid = l + (r - l) / 2;
-        if (nums[mid] < nums[r])
-        {
+        if(nums[mid] < nums[r]) {
             r = mid;
-        }
-        else if (nums[mid] > nums[r])
-        {
+        } else if(nums[mid] > nums[r]) {
             l = mid + 1;
-        }
-        else
-        {
+        } else {
             r--;
         }
     }
     return nums[l];
 }
 
-TEST_CASE("test find Min")
-{
+TEST_CASE("test find Min") {
     VecInt input;
     int result;
 
-    tie(input, result) =
-        GENERATE(table<VecInt, int>({ make_tuple(VecInt { 1, 3, 5 }, 1),
-            make_tuple(VecInt { 2, 2, 2, 0, 1 }, 0),
-            make_tuple(VecInt { 4, 4, 4, 4, 4, 4, 0, 1, 2, 3, 4 }, 0),
-            make_tuple(VecInt { 3, 3, 1, 3 }, 1),
-            make_tuple(VecInt { 3, 1 }, 1) }));
+    tie(input, result) = GENERATE(
+        table<VecInt, int>({make_tuple(VecInt{1, 3, 5}, 1), make_tuple(VecInt{2, 2, 2, 0, 1}, 0),
+                            make_tuple(VecInt{4, 4, 4, 4, 4, 4, 0, 1, 2, 3, 4}, 0),
+                            make_tuple(VecInt{3, 3, 1, 3}, 1), make_tuple(VecInt{3, 1}, 1)}));
 
     CAPTURE(input, result);
     REQUIRE(findMin(input) == result);

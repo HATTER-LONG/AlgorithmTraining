@@ -3,11 +3,9 @@
 using namespace std;
 using namespace Catch;
 
-class Solution
-{
+class Solution {
 public:
-    string reverseLeftWords(string s, int n)
-    {
+    string reverseLeftWords(string s, int n) {
         reverse(s.begin(), s.begin() + n);
         reverse(s.begin() + n, s.end());
         reverse(s.begin(), s.end());
@@ -15,9 +13,7 @@ public:
     }
 };
 
-
-TEST_CASE("Check Solution reverseLeftWords method work successfully ")
-{
+TEST_CASE("Check Solution reverseLeftWords method work successfully ") {
     Solution solution;
 
     string input;

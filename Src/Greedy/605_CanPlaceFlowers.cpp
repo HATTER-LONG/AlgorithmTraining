@@ -21,47 +21,36 @@ true ，不能则返回 false。
 
 */
 
-bool canPlaceFlowers(std::vector<int>& flowerbed, int n)
-{
+bool canPlaceFlowers(std::vector<int>& flowerbed, int n) {
     int s = flowerbed.size();
-    if (s < n)
-    {
+    if(s < n) {
         return false;
     }
 
     int prev = -1, count = 0;
-    for (int i = 0; i < s; i++)
-    {
-        if (flowerbed[i] == 1)
-        {
-            if (prev < 0)
-            {
+    for(int i = 0; i < s; i++) {
+        if(flowerbed[i] == 1) {
+            if(prev < 0) {
                 count += i / 2;
-            }
-            else
-            {
+            } else {
                 count += (i - prev - 2) / 2;
             }
-            if (count >= n)
+            if(count >= n)
                 return true;
             prev = i;
         }
     }
 
-    if (prev < 0)
-    {
+    if(prev < 0) {
         count += (s + 1) / 2;
-    }
-    else
-    {
+    } else {
         count += (s - 1 - prev) / 2;
     }
     return count >= n;
 }
 
-TEST_CASE("test can place flowers func")
-{
-    std::vector<int> flowerbed { 1, 0, 0, 0, 0, 1 };
+TEST_CASE("test can place flowers func") {
+    std::vector<int> flowerbed{1, 0, 0, 0, 0, 1};
 
     int n = 3;
 

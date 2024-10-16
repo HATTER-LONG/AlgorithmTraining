@@ -1,25 +1,19 @@
 #include <catch2/catch_all.hpp>
-#include <glog/logging.h>
 #include <string>
 #include <vector>
 using namespace std;
 using VecInt = vector<int>;
-template <class T>
-class ToolBox
-{
+template <class T> class ToolBox {
 public:
-    std::string transVector2String(const std::vector<T>& inVec)
-    {
-        std::string retStr = "[";
-        for (std::size_t index = 0; index < inVec.size(); index++)
-        {
-            retStr += std::to_string(inVec[index]);
-            if (index != inVec.size() - 1)
-            {
-                retStr += ", ";
+    std::string trans_vector2_string(const std::vector<T>& in_vec) {
+        std::string ret_str = "[";
+        for(std::size_t index = 0; index < in_vec.size(); index++) {
+            ret_str += std::to_string(in_vec[index]);
+            if(index != in_vec.size() - 1) {
+                ret_str += ", ";
             }
         }
-        retStr += "]";
-        return retStr;
+        ret_str += "]";
+        return ret_str;
     }
 };

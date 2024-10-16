@@ -3,27 +3,24 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int getSum(int n)
-    {
+    int getSum(int n) {
         int sum = 0;
-        while (n) {
+        while(n) {
             sum += (n % 10) * (n % 10);
             n /= 10;
         }
         return sum;
     }
 
-    bool isHappy(int n)
-    {
+    bool isHappy(int n) {
         unordered_set<int> set;
-        while (1) {
+        while(1) {
             int sum = getSum(n);
-            if (sum == 1)
+            if(sum == 1)
                 return true;
-            if (set.find(sum) != set.end())
+            if(set.find(sum) != set.end())
                 return false;
             set.insert(sum);
 
@@ -32,8 +29,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution isHappy method work successfully")
-{
+TEST_CASE("Check Solution isHappy method work successfully") {
     Solution solution;
 
     int param = 0;

@@ -4,7 +4,7 @@
 using namespace Catch;
 using namespace std;
 
-//貪心
+// 貪心
 /*
 给定一个非负整数数组 nums ，你最初位于数组的 第一个下标 。
 数组中的每个元素代表你在该位置可以跳跃的最大长度。
@@ -21,31 +21,27 @@ using namespace std;
 时返回。
 */
 
-bool canJump(vector<int>& nums)
-{
+bool canJump(vector<int>& nums) {
     int size = nums.size();
     int rightpos = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if (i <= rightpos)
-        {
+    for(int i = 0; i < size; i++) {
+        if(i <= rightpos) {
             rightpos = max(rightpos, i + nums[i]);
-            if (rightpos >= size)
+            if(rightpos >= size)
                 return true;
         }
     }
     return false;
 }
 
-TEST_CASE("Check Solution canJump method work successfully")
-{
+TEST_CASE("Check Solution canJump method work successfully") {
     vector<int> inputParm;
 
     bool resultParm;
 
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, bool>({
-        make_tuple(vector<int> { 2, 3, 1, 1, 4 }, true),
-        make_tuple(vector<int> { 3, 2, 1, 0, 4 }, false),
+        make_tuple(vector<int>{2, 3, 1, 1, 4}, true),
+        make_tuple(vector<int>{3, 2, 1, 0, 4}, false),
     }));
 
     CAPTURE(inputParm, resultParm);

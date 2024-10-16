@@ -14,13 +14,9 @@ buffer，初始化值buffer="hello1"，
 // 要求尽量考虑程序整体的性能最优，同时不允许出现脏读幻读。
 */
 
-
-
-class ReadWriteBuffer
-{
+class ReadWriteBuffer {
 public:
-    void write(const std::string& str)
-    {
+    void write(const std::string& str) {
         std::vector<char> tmp(10);
         tmp.assign(str.begin(), str.end());
         {
@@ -29,8 +25,7 @@ public:
         }
     }
 
-    std::string read()
-    {
+    std::string read() {
         std::string str;
         {
             std::lock_guard<std::mutex> lk(m_mReadMutex);
@@ -40,17 +35,14 @@ public:
     }
 
 private:
-    std::vector<char> m_buf { 'h', 'e', 'l', 'l', 'o',   // NO_LINT
-        ' ', ' ', ' ', ' ', ' ' };
+    std::vector<char> m_buf{'h', 'e', 'l', 'l', 'o', // NO_LINT
+                            ' ', ' ', ' ', ' ', ' '};
     std::mutex m_mReadMutex;
 };
 
-
-class ReadWriteBufferII
-{
+class ReadWriteBufferII {
 public:
-    void write(const std::string& str)
-    {
+    void write(const std::string& str) {
         std::vector<char> tmp(10);
         tmp.assign(str.begin(), str.end());
         {
@@ -59,8 +51,7 @@ public:
         }
     }
 
-    std::string read()
-    {
+    std::string read() {
         std::string str;
         {
             std::shared_lock<std::shared_mutex> lk(m_mReadMutex);
@@ -70,48 +61,40 @@ public:
     }
 
 private:
-    std::vector<char> m_buf { 'h', 'e', 'l', 'l', 'o',   // NO_LINT
-        ' ', ' ', ' ', ' ', ' ' };
+    std::vector<char> m_buf{'h', 'e', 'l', 'l', 'o', // NO_LINT
+                            ' ', ' ', ' ', ' ', ' '};
     std::shared_mutex m_mReadMutex;
 };
 
-
-TEST_CASE("test read write buffer", "[.]")
-{
+TEST_CASE("test read write buffer", "[.]") {
     /* ReadWriteBuffer buf; */
     ReadWriteBufferII buf;
     ThreadCompetition write(3);
     ThreadCompetition read(10);
 
     std::vector<std::future<bool>> result;
-    auto randStr = [](std::string& str, const int len, uint64_t tid)
-    {
+    auto randStr = [](std::string& str, const int len, uint64_t tid) {
         srand(time(nullptr) + tid);
         int i;
-        for (i = 0; i < len; ++i)
-        {
-            switch ((rand() % 3))
-            {
-                case 1:
-                    str[i] = 'A' + rand() % 26;
-                    break;
-                case 2:
-                    str[i] = 'a' + rand() % 26;
-                    break;
-                default:
-                    str[i] = '0' + rand() % 10;
-                    break;
+        for(i = 0; i < len; ++i) {
+            switch((rand() % 3)) {
+            case 1:
+                str[i] = 'A' + rand() % 26;
+                break;
+            case 2:
+                str[i] = 'a' + rand() % 26;
+                break;
+            default:
+                str[i] = '0' + rand() % 10;
+                break;
             }
         }
     };
 
-    for (int i = 0; i < 3; i++)
-    {
+    for(int i = 0; i < 3; i++) {
         result.emplace_back(write.enqueue(
-            [&]
-            {
-                while (true)
-                {
+            [&] {
+                while(true) {
                     sleep(1);
                     std::string str = "1234567890";
                     uint64_t tid = 0;
@@ -123,13 +106,10 @@ TEST_CASE("test read write buffer", "[.]")
             },
             i));
     }
-    for (int i = 0; i < 10; i++)
-    {
+    for(int i = 0; i < 10; i++) {
         result.emplace_back(read.enqueue(
-            [&]
-            {
-                while (true)
-                {
+            [&] {
+                while(true) {
                     usleep(100);
                     std::string str = buf.read();
                     LOG(INFO) << "read = " << str;

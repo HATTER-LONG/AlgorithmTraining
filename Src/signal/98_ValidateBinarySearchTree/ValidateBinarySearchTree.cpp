@@ -12,28 +12,23 @@
 using namespace Catch;
 using namespace std;
 
-//中序遍历
-// 中序遍历必然有序，如无序则不符合
-class Solution
-{
+// 中序遍历
+//  中序遍历必然有序，如无序则不符合
+class Solution {
 public:
-    bool isValidBST(TreeNode* root)
-    {
+    bool isValidBST(TreeNode* root) {
         stack<TreeNode*> stack;
         long long inorder = LONG_MIN;
 
-        while (!stack.empty() || root != nullptr)
-        {
-            while (root != nullptr)
-            {
+        while(!stack.empty() || root != nullptr) {
+            while(root != nullptr) {
                 stack.push(root);
                 root = root->left;
             }
             root = stack.top();
             stack.pop();
             // 如果中序遍历得到的节点的值小于等于前一个 inorder，说明不是二叉搜索树
-            if (root->val <= inorder)
-            {
+            if(root->val <= inorder) {
                 return false;
             }
             inorder = root->val;
@@ -43,18 +38,15 @@ public:
     }
 };
 
-//递归
-// 注意其上界 下界如何保存
-class Solution_Depth
-{
+// 递归
+//  注意其上界 下界如何保存
+class Solution_Depth {
 public:
-    bool helper(TreeNode* root, long long lower, long long upper)
-    {
-        if (root == nullptr)
+    bool helper(TreeNode* root, long long lower, long long upper) {
+        if(root == nullptr)
             return true;
 
-        if (root->val <= lower || root->val >= upper)
-        {
+        if(root->val <= lower || root->val >= upper) {
             return false;
         }
 
@@ -63,8 +55,7 @@ public:
     bool isValidBST(TreeNode* root) { return helper(root, LONG_MIN, LONG_MAX); }
 };
 
-TEST_CASE("Check Solution isValidBST method work successfully")
-{
+TEST_CASE("Check Solution isValidBST method work successfully") {
     Solution solution;
 
     string imputParm;

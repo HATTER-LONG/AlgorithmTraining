@@ -14,35 +14,28 @@
  *
  */
 
-bool judgeSquareSum(int c)
-{
+bool judgeSquareSum(int c) {
     int l = 0, r = sqrt(c), sum = 0;
-    while (l <= r)
-    {
+    while(l <= r) {
         sum = l * l + r * r;
-        if (sum == c)
-        {
+        if(sum == c) {
             return true;
         }
-        if (sum < c)
-        {
+        if(sum < c) {
             l++;
-        }
-        else
-        {
+        } else {
             r--;
         }
     }
     return false;
 }
 
-TEST_CASE("test judge square sum func")
-{
+TEST_CASE("test judge square sum func") {
     int input;
     bool result;
 
-    tie(input, result) = GENERATE(table<int, bool>({ make_tuple(5, true),
-        make_tuple(3, false), make_tuple(2, true), make_tuple(1, true) }));
+    tie(input, result) = GENERATE(table<int, bool>(
+        {make_tuple(5, true), make_tuple(3, false), make_tuple(2, true), make_tuple(1, true)}));
 
     REQUIRE(judgeSquareSum(input) == result);
 }

@@ -11,35 +11,29 @@
  *
  */
 
-vector<int> findDisappearedNumbers(vector<int>& nums)
-{
+vector<int> findDisappearedNumbers(vector<int>& nums) {
     vector<int> ans;
 
-    for (const int& num : nums)
-    {
+    for(const int& num : nums) {
         int pos = abs(num) - 1;
-        if (nums[pos] > 0)
-        {
+        if(nums[pos] > 0) {
             nums[pos] = -nums[pos];
         }
     }
-    for (size_t i = 0; i < nums.size(); i++)
-    {
-        if (nums[i] > 0)
-        {
+    for(size_t i = 0; i < nums.size(); i++) {
+        if(nums[i] > 0) {
             ans.push_back(i + 1);
         }
     }
     return ans;
 }
 
-TEST_CASE("test find disappeared numbers")
-{
+TEST_CASE("test find disappeared numbers") {
     VecInt input;
     VecInt res;
 
-    tie(input, res) = GENERATE(table<VecInt, VecInt>(
-        { make_tuple(VecInt { 4, 3, 2, 7, 8, 2, 3, 1 }, VecInt { 5, 6 }) }));
+    tie(input, res) =
+        GENERATE(table<VecInt, VecInt>({make_tuple(VecInt{4, 3, 2, 7, 8, 2, 3, 1}, VecInt{5, 6})}));
 
     CAPTURE(input, res);
 

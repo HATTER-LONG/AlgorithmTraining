@@ -21,40 +21,31 @@ using namespace std;
  * - 10 ^ 5 <= nums[i] <= 10 ^ 5
  */
 
-
-bool checkPossibility(vector<int>& nums)
-{
+bool checkPossibility(vector<int>& nums) {
     int size = nums.size();
     int count = 0;
-    for (int i = 1; i < size && count < 2; i++)
-    {
-        if (nums[i] >= nums[i - 1])
-        {
+    for(int i = 1; i < size && count < 2; i++) {
+        if(nums[i] >= nums[i - 1]) {
             continue;
         }
 
         count++;
-        if (i >= 2 && nums[i] < nums[i - 2])
-        {
+        if(i >= 2 && nums[i] < nums[i - 2]) {
             nums[i] = nums[i - 1];
-        }
-        else
-        {
+        } else {
             nums[i - 1] = nums[i];
         }
     }
     return count <= 1;
 }
 
-TEST_CASE("test check possibility func")
-{
+TEST_CASE("test check possibility func") {
     vector<int> input;
     bool result;
 
-    tie(input, result) = GENERATE(
-        table<vector<int>, bool>({ make_tuple(vector<int> { 4, 2, 1 }, false),
-            make_tuple(vector<int> { 4, 2, 3 }, true),
-            make_tuple(vector<int> { 1, 1, 1 }, true) }));
+    tie(input, result) = GENERATE(table<vector<int>, bool>(
+        {make_tuple(vector<int>{4, 2, 1}, false), make_tuple(vector<int>{4, 2, 3}, true),
+         make_tuple(vector<int>{1, 1, 1}, true)}));
 
     REQUIRE(checkPossibility(input) == result);
 }

@@ -10,39 +10,32 @@
  * Output: true
  */
 
-
-bool isAnagram(string s, string t)
-{
-    if (s.length() != t.length())
-    {
+bool isAnagram(string s, string t) {
+    if(s.length() != t.length()) {
         return false;
     }
 
     vector<int> counts(26, 0);
     int sSize = s.length();
-    for (int i = 0; i < sSize; i++)
-    {
+    for(int i = 0; i < sSize; i++) {
         ++counts[s[i] - 'a'];
         --counts[t[i] - 'a'];
     }
 
-    for (int i : counts)
-    {
-        if (i != 0)
-        {
+    for(int i : counts) {
+        if(i != 0) {
             return false;
         }
     }
     return true;
 }
 
-TEST_CASE("test isAnagram func")
-{
+TEST_CASE("test isAnagram func") {
     string s, t;
     bool res;
 
-    tie(s, t, res) = GENERATE(table<string, string, bool>(
-        { make_tuple("anagram", "nagaram", true) }));
+    tie(s, t, res) =
+        GENERATE(table<string, string, bool>({make_tuple("anagram", "nagaram", true)}));
 
     CAPTURE(s, t, res);
     REQUIRE(isAnagram(s, t) == res);

@@ -16,15 +16,13 @@
 using namespace Catch;
 using namespace std;
 
-//右向遍历，反向思维
+// 右向遍历，反向思维
 
-class Solution
-{
+class Solution {
 public:
     TreeNode* last = nullptr;
-    void flatten(TreeNode* root)
-    {
-        if (root == nullptr)
+    void flatten(TreeNode* root) {
+        if(root == nullptr)
             return;
         flatten(root->right);
         flatten(root->left);
@@ -34,8 +32,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution flatten method work successfully")
-{
+TEST_CASE("Check Solution flatten method work successfully") {
     Solution solution;
 
     string imputParm;
@@ -48,7 +45,7 @@ TEST_CASE("Check Solution flatten method work successfully")
 
     solution.flatten(inputTreeNode);
 
-    if (inputTreeNode == nullptr || resultTreeNode == nullptr)
+    if(inputTreeNode == nullptr || resultTreeNode == nullptr)
         REQUIRE(inputTreeNode == resultTreeNode);
     else
         REQUIRE_THAT(*inputTreeNode, IsEqualTreeNode(*resultTreeNode));

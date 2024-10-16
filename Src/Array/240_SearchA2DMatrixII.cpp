@@ -16,44 +16,38 @@
  *   [18, 21, 23, 26, 30]], target = 5 Output: true
  */
 
-bool searchMatrix(vector<vector<int>>& matrix, int target)
-{
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
     int m = matrix.size();
-    if (m == 0)
-    {
+    if(m == 0) {
         return false;
     }
 
     int n = matrix[0].size();
     int i = 0, j = n - 1;
-    while (i < m && j >= 0)
-    {
-        if (matrix[i][j] == target)
-        {
+    while(i < m && j >= 0) {
+        if(matrix[i][j] == target) {
             return true;
         }
-        if (matrix[i][j] > target)
-        {
+        if(matrix[i][j] > target) {
             j--;
-        }
-        else
-        {
+        } else {
             i--;
         }
     }
     return false;
 }
 
-TEST_CASE("test search matrix")
-{
+TEST_CASE("test search matrix") {
     vector<vector<int>> input;
     int target;
 
     bool result;
 
-    tie(input, target, result) = GENERATE(table<vector<vector<int>>, int, bool>(
-        { make_tuple(vector<vector<int>> { { 1, 4, 7, 11, 15 },
-                         { 2, 5, 8, 12, 19 }, { 3, 6, 9, 16, 22 },
-                         { 10, 13, 14, 17, 24 }, { 18, 21, 23, 26, 30 } },
-            5, true) }));
+    tie(input, target, result) = GENERATE(
+        table<vector<vector<int>>, int, bool>({make_tuple(vector<vector<int>>{{1, 4, 7, 11, 15},
+                                                                              {2, 5, 8, 12, 19},
+                                                                              {3, 6, 9, 16, 22},
+                                                                              {10, 13, 14, 17, 24},
+                                                                              {18, 21, 23, 26, 30}},
+                                                          5, true)}));
 }

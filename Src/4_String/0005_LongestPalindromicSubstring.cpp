@@ -3,18 +3,12 @@
 using namespace std;
 using namespace Catch;
 
-class Solution
-{
+class Solution {
 public:
-    string longestPalindrome(string s)
-    {
-        return s;
-    }
+    string longestPalindrome(string s) { return s; }
 };
 
-
-TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ", "[.]")
-{
+TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ", "[.]") {
     Solution solution;
 
     string inputStr;

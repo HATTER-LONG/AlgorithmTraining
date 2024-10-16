@@ -5,8 +5,7 @@
 using namespace Catch;
 using namespace std;
 
-class MyLinkedList
-{
+class MyLinkedList {
 public:
     // struct ListNode
     // {
@@ -28,46 +27,38 @@ public:
     //     {
     //     }
     // };
-    MyLinkedList()
-            : dummyhead(new ListNode(0))
-            , size(0)
-    {
-    }
+    MyLinkedList() : dummyhead(new ListNode(0)), size(0) {}
 
-    int get(int index)
-    {
-        if (index < 0 || index > size - 1)
+    int get(int index) {
+        if(index < 0 || index > size - 1)
             return -1;
         ListNode* tmp = dummyhead->next;
-        while (index--) {
+        while(index--) {
             tmp = tmp->next;
         }
         return tmp->val;
     }
 
-    void addAtHead(int val)
-    {
+    void addAtHead(int val) {
         dummyhead->next = new ListNode(val, dummyhead->next);
         ++size;
     }
 
-    void addAtTail(int val)
-    {
+    void addAtTail(int val) {
         ListNode* tmp = dummyhead;
-        while (tmp->next != nullptr)
+        while(tmp->next != nullptr)
             tmp = tmp->next;
         tmp->next = new ListNode(val);
         ++size;
     }
 
-    void addAtIndex(int index, int val)
-    {
-        if (index < 0 || index > size)
+    void addAtIndex(int index, int val) {
+        if(index < 0 || index > size)
             return;
 
         ListNode* tmp = dummyhead;
 
-        while (index--) {
+        while(index--) {
             tmp = tmp->next;
         }
 
@@ -75,14 +66,13 @@ public:
         ++size;
     }
 
-    void deleteAtIndex(int index)
-    {
-        if (index < 0 || index >= size)
+    void deleteAtIndex(int index) {
+        if(index < 0 || index >= size)
             return;
 
         ListNode* cur = dummyhead;
 
-        while (index--) {
+        while(index--) {
             cur = cur->next;
         }
 
@@ -106,24 +96,23 @@ public:
  * obj->deleteAtIndex(index);
  */
 
-TEST_CASE("Check Solution MyLinkedList class all method work successfully")
-{
+TEST_CASE("Check Solution MyLinkedList class all method work successfully") {
     MyLinkedList solution;
     solution.addAtHead(1);
     auto* left = solution.dummyhead;
-    auto* right = initListNode(vector<int> { 0, 1 });
+    auto* right = initListNode(vector<int>{0, 1});
     checkListNode(left, right);
     REQUIRE(solution.size == 1);
 
     solution.addAtTail(3);
     left = solution.dummyhead;
-    right = initListNode(vector<int> { 0, 1, 3 });
+    right = initListNode(vector<int>{0, 1, 3});
     checkListNode(left, right);
     REQUIRE(solution.size == 2);
 
     solution.addAtIndex(1, 2);
     left = solution.dummyhead;
-    right = initListNode(vector<int> { 0, 1, 2, 3 });
+    right = initListNode(vector<int>{0, 1, 2, 3});
     checkListNode(left, right);
     REQUIRE(solution.size == 3);
 
@@ -131,7 +120,7 @@ TEST_CASE("Check Solution MyLinkedList class all method work successfully")
 
     solution.deleteAtIndex(1);
     left = solution.dummyhead;
-    right = initListNode(vector<int> { 0, 1, 3 });
+    right = initListNode(vector<int>{0, 1, 3});
     checkListNode(left, right);
     REQUIRE(solution.size == 2);
 
@@ -139,7 +128,7 @@ TEST_CASE("Check Solution MyLinkedList class all method work successfully")
 
     solution.deleteAtIndex(0);
     left = solution.dummyhead;
-    right = initListNode(vector<int> { 0, 3 });
+    right = initListNode(vector<int>{0, 3});
     checkListNode(left, right);
     REQUIRE(solution.size == 1);
 }

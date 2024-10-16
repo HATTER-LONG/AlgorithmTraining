@@ -17,28 +17,22 @@ using namespace std;
  * 在这个样例中，最少的糖果分法是 [2,1,2]。
  */
 
-int candy(std::vector<int>& ratings)
-{
+int candy(std::vector<int>& ratings) {
     int size = ratings.size();
-    if (size < 2)
-    {
+    if(size < 2) {
         return size;
     }
     vector<int> num(size, 1);
     // 左侧遍历
-    for (int i = 1; i < size; i++)
-    {
-        if (ratings[i] > ratings[i - 1])
-        {
+    for(int i = 1; i < size; i++) {
+        if(ratings[i] > ratings[i - 1]) {
             num[i] = num[i - 1] + 1;
         }
     }
 
     // 右侧遍历
-    for (int i = size - 1; i > 0; i--)
-    {
-        if (ratings[i] < ratings[i - 1])
-        {
+    for(int i = size - 1; i > 0; i--) {
+        if(ratings[i] < ratings[i - 1]) {
             num[i - 1] = max(num[i - 1], num[i] + 1);
         }
     }
@@ -46,9 +40,8 @@ int candy(std::vector<int>& ratings)
     return accumulate(num.begin(), num.end(), 0);
 }
 
-TEST_CASE("Distribute candy")
-{
-    std::vector<int> ratings { 1, 0, 2 };
+TEST_CASE("Distribute candy") {
+    std::vector<int> ratings{1, 0, 2};
 
     int resultCandy = 5;
     REQUIRE(candy(ratings) == resultCandy);

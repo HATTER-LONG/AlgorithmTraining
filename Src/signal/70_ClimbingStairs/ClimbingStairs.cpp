@@ -8,14 +8,11 @@ using namespace std;
 
 // 动态规划 f(x)=f(x−1)+f(x−2)
 
-class Solution
-{
+class Solution {
 public:
-    int climbStairs(int n)
-    {
+    int climbStairs(int n) {
         int p = 0, q = 0, r = 1;
-        for (int i = 1; i <= n; i++)
-        {
+        for(int i = 1; i <= n; i++) {
             p = q;
             q = r;
             r = p + q;
@@ -23,29 +20,25 @@ public:
         return r;
     }
 
-    int climbStairsDP(int n)
-    {
-        if (n == 1)
+    int climbStairsDP(int n) {
+        if(n == 1)
             return n;
         vector<int> dp(n);
         dp[1] = 1;
         dp[2] = 2;
-        for (int i = 3; i <= n; i++)
-        {
+        for(int i = 3; i <= n; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
     }
 
     // 斐波那契，向前滚动结果总和
-    int climbStairsFB(int n)
-    {
-        if (n == 1)
+    int climbStairsFB(int n) {
+        if(n == 1)
             return n;
         int first = 1;
         int second = 2;
-        for (int i = 1; i <= n; i++)
-        {
+        for(int i = 1; i <= n; i++) {
             int third = first + second;
             first = second;
             second = third;
@@ -54,9 +47,7 @@ public:
     }
 };
 
-
-TEST_CASE("Check Solution climbStairs method work successfully")
-{
+TEST_CASE("Check Solution climbStairs method work successfully") {
     Solution solution;
 
     int inputParm;

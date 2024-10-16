@@ -5,35 +5,29 @@
 using namespace Catch;
 using namespace std;
 
-//回溯
+// 回溯
 
-class Solution
-{
+class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums)
-    {
+    vector<vector<int>> permute(vector<int>& nums) {
         auto len = nums.size();
         vector<vector<int>> res;
-        if (len == 0)
-        {
+        if(len == 0) {
             return res;
         }
         vector<bool> used(len, false);
         vector<int> path;
 
         function<void(size_t)> dfs = [&](size_t depth) {
-            if (depth == len)
-            {
+            if(depth == len) {
                 res.push_back(path);
                 return;
             }
             // 在非叶子结点处，产生不同的分支，这一操作的语义是：
             // 在还未选择的数中依次选择一个元素作为下一个位置的元素，这显然得通过一个循环实现。
 
-            for (size_t i = 0; i < len; i++)
-            {
-                if (!used[i])
-                {
+            for(size_t i = 0; i < len; i++) {
+                if(!used[i]) {
                     path.push_back(nums[i]);
                     used[i] = true;
 
@@ -52,8 +46,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution permute method work successfully")
-{
+TEST_CASE("Check Solution permute method work successfully") {
     Solution solution;
 
     vector<int> inputParm;
@@ -61,8 +54,9 @@ TEST_CASE("Check Solution permute method work successfully")
     vector<vector<int>> resultParm;
 
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, vector<vector<int>>>({
-        make_tuple(vector<int> { 1, 2, 3 }, vector<vector<int>> { { 1, 2, 3 }, { 1, 3, 2 }, { 2, 1, 3 },
-                                                { 2, 3, 1 }, { 3, 1, 2 }, { 3, 2, 1 } }),
+        make_tuple(
+            vector<int>{1, 2, 3},
+            vector<vector<int>>{{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2}, {3, 2, 1}}),
     }));
 
     CAPTURE(inputParm, resultParm);

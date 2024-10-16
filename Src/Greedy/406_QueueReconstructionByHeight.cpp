@@ -35,43 +35,33 @@ using namespace std;
  *
  */
 
-vector<vector<int>> reconstructQueue(vector<vector<int>>& people)
-{
+vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
     int s = people.size();
-    if (s == 0)
+    if(s == 0)
         return {};
 
-    sort(people.begin(), people.end(),
-        [](vector<int>& a, vector<int>& b)
-        { return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]); });
+    sort(people.begin(), people.end(), [](vector<int>& a, vector<int>& b) {
+        return a[0] > b[0] || (a[0] == b[0] && a[1] < b[1]);
+    });
 
     vector<vector<int>> ans;
 
-    for (auto& person : people)
-    {
-        if (ans.size() <= static_cast<size_t>(person[1]))
-        {
+    for(auto& person : people) {
+        if(ans.size() <= static_cast<size_t>(person[1])) {
             ans.push_back(person);
-        }
-        else
-        {
+        } else {
             ans.insert(ans.begin() + person[1], person);
         }
     }
     return ans;
 }
 
-TEST_CASE("test reconstruct queue")
-{
+TEST_CASE("test reconstruct queue") {
     vector<vector<int>> people;
     vector<vector<int>> result;
 
-
-    tie(people, result) =
-        GENERATE(table<vector<vector<int>>, vector<vector<int>>>(
-            { make_tuple(vector<vector<int>> { { 7, 0 }, { 4, 4 }, { 7, 1 },
-                             { 5, 0 }, { 6, 1 }, { 5, 2 } },
-                vector<vector<int>> { { 5, 0 }, { 7, 0 }, { 5, 2 }, { 6, 1 },
-                    { 4, 4 }, { 7, 1 } }) }));
+    tie(people, result) = GENERATE(table<vector<vector<int>>, vector<vector<int>>>(
+        {make_tuple(vector<vector<int>>{{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}},
+                    vector<vector<int>>{{5, 0}, {7, 0}, {5, 2}, {6, 1}, {4, 4}, {7, 1}})}));
     REQUIRE_THAT(reconstructQueue(people), Catch::Equals(result));
 }

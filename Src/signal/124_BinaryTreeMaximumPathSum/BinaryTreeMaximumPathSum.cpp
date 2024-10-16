@@ -16,7 +16,7 @@
 using namespace Catch;
 using namespace std;
 
-//递归
+// 递归
 
 /**
     对于任意一个节点, 如果最大和路径包含该节点, 那么只可能是两种情况:
@@ -24,14 +24,12 @@ using namespace std;
     2. 左右子树都在最大路径中, 加上该节点的值构成了最终的最大路径
 **/
 
-class Solution
-{
+class Solution {
 public:
     int maxSum = INT_MIN;
 
-    int maxGain(TreeNode* node)
-    {
-        if (node == nullptr)
+    int maxGain(TreeNode* node) {
+        if(node == nullptr)
             return 0;
 
         int leftGain = max(maxGain(node->left), 0);
@@ -44,14 +42,12 @@ public:
         return node->val + max(leftGain, rightGain);
     }
 
-    int maxPathSum(TreeNode* root)
-    {
+    int maxPathSum(TreeNode* root) {
         maxGain(root);
         return maxSum;
     }
 };
-TEST_CASE("Check Solution maxPathSum method work successfully")
-{
+TEST_CASE("Check Solution maxPathSum method work successfully") {
     Solution solution;
 
     string imputParm;

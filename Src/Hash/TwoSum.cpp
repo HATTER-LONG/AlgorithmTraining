@@ -5,24 +5,20 @@
 using namespace Catch;
 using namespace std;
 // hash 表
-class Solution
-{
+class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target)
-    {
+    vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> record;
-        for (size_t i = 0; i < nums.size(); i++)
-        {
+        for(size_t i = 0; i < nums.size(); i++) {
             int complement = target - nums[i];
             auto iter = record.find(complement);
-            if (iter != record.end())
-            {
+            if(iter != record.end()) {
                 int l = i;
                 int r = iter->second;
-                if (l > r)
+                if(l > r)
                     swap(l, r);
 
-                return { l, r };
+                return {l, r};
             }
             record[nums[i]] = static_cast<int>(i);
         }
@@ -30,12 +26,10 @@ public:
     }
 };
 
-TEST_CASE("Check Solution twoSum method work successfully")
-{
+TEST_CASE("Check Solution twoSum method work successfully") {
     Solution solution;
-    vector<int> inputParam { 2, 7, 11, 15 };
+    vector<int> inputParam{2, 7, 11, 15};
     int target = 9;
 
-    REQUIRE_THAT(
-        solution.twoSum(inputParam, target), Equals(vector<int> { 0, 1 }));
+    REQUIRE_THAT(solution.twoSum(inputParam, target), Equals(vector<int>{0, 1}));
 }

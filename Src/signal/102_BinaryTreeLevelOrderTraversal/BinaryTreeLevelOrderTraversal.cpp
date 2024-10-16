@@ -14,35 +14,31 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root)
-    {
+    vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         pre(root, 0, ans);
         return ans;
     }
 
-    void pre(TreeNode* root, int depth, vector<vector<int>>& ans)
-    {
-        if (!root)
+    void pre(TreeNode* root, int depth, vector<vector<int>>& ans) {
+        if(!root)
             return;
-        if (depth >= static_cast<int>(ans.size()))
-            ans.push_back(vector<int> {});
+        if(depth >= static_cast<int>(ans.size()))
+            ans.push_back(vector<int>{});
         ans[depth].push_back(root->val);
         pre(root->left, depth + 1, ans);
         pre(root->right, depth + 1, ans);
     }
 };
-TEST_CASE("Check Solution levelOrder method work successfully")
-{
+TEST_CASE("Check Solution levelOrder method work successfully") {
     Solution solution;
 
     string imputParm;
     vector<vector<int>> result;
     tie(imputParm, result) = GENERATE(table<string, vector<vector<int>>>({
-        make_tuple("3(9,20(15,7))", vector<vector<int>> { { 3 }, { 9, 20 }, { 15, 7 } }),
+        make_tuple("3(9,20(15,7))", vector<vector<int>>{{3}, {9, 20}, {15, 7}}),
     }));
     auto* treeNode = createTreeNode(imputParm);
 

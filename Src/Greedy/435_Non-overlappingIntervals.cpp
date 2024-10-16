@@ -18,19 +18,16 @@ using namespace std;
  * 互不重叠。
  */
 
-int eraseOverlapIntervals(std::vector<std::vector<int>>& intervals)
-{
-    if (intervals.empty())
+int eraseOverlapIntervals(std::vector<std::vector<int>>& intervals) {
+    if(intervals.empty())
         return 0;
 
     sort(intervals.begin(), intervals.end(),
-        [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
+         [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
 
     int res = 0, cur = 0;
-    for (int i = 1; i < static_cast<int>(intervals.size()); i++)
-    {
-        if (intervals[cur][1] > intervals[i][0])
-        {
+    for(int i = 1; i < static_cast<int>(intervals.size()); i++) {
+        if(intervals[cur][1] > intervals[i][0]) {
             res++;
             continue;
         }
@@ -39,10 +36,8 @@ int eraseOverlapIntervals(std::vector<std::vector<int>>& intervals)
     return res;
 }
 
-TEST_CASE("test erase overlap intervals")
-{
-    std::vector<std::vector<int>> intervals { { 1, 2 }, { 2, 3 }, { 3, 4 },
-        { 1, 3 } };
+TEST_CASE("test erase overlap intervals") {
+    std::vector<std::vector<int>> intervals{{1, 2}, {2, 3}, {3, 4}, {1, 3}};
 
     int result = 1;
     REQUIRE(eraseOverlapIntervals(intervals) == result);

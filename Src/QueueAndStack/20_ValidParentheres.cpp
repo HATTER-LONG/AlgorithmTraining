@@ -2,7 +2,6 @@
 
 #include <stack>
 
-
 /*
  * 题目描述
  * 给定一个只由左右原括号、花括号和方括号组成的字符串，求这个字符串是否合法。合法的
@@ -15,28 +14,20 @@
  *
  */
 
-bool isValid(string s)
-{
+bool isValid(string s) {
     stack<char> parsed;
 
-    for (size_t i = 0; i < s.length(); i++)
-    {
-        if (s[i] == '{' || s[i] == '[' || s[i] == '(')
-        {
+    for(size_t i = 0; i < s.length(); i++) {
+        if(s[i] == '{' || s[i] == '[' || s[i] == '(') {
             parsed.push(s[i]);
-        }
-        else
-        {
-            if (parsed.empty())
+        } else {
+            if(parsed.empty())
                 return false;
             char c = parsed.top();
-            if ((s[i] == '}' && c == '{') || (s[i] == ']' && c == '[')
-                || (s[i] == ')' && c == '('))
-            {
+            if((s[i] == '}' && c == '{') || (s[i] == ']' && c == '[') ||
+               (s[i] == ')' && c == '(')) {
                 parsed.pop();
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
@@ -44,8 +35,7 @@ bool isValid(string s)
     return true;
 }
 
-TEST_CASE("Check Solution isValid method work successfully ")
-{
+TEST_CASE("Check Solution isValid method work successfully ") {
     string inputStr;
     bool result;
 

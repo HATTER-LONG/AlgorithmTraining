@@ -5,18 +5,16 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    bool canConstruct(string ransomNote, string magazine)
-    {
-        int box[26] = { 0 };
-        for (auto c : magazine) {
+    bool canConstruct(string ransomNote, string magazine) {
+        int box[26] = {0};
+        for(auto c : magazine) {
             box[c - 'a']++;
         }
 
-        for (auto c : ransomNote) {
-            if (--box[c - 'a'] < 0) {
+        for(auto c : ransomNote) {
+            if(--box[c - 'a'] < 0) {
                 return false;
             }
         }
@@ -24,8 +22,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution canConstruct method work successfully")
-{
+TEST_CASE("Check Solution canConstruct method work successfully") {
     Solution solution;
 
     string param, param2;

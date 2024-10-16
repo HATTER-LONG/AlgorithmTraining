@@ -28,20 +28,15 @@ using namespace std;
 输出：4
 */
 using namespace std;
-int findMinArrowShots(std::vector<std::vector<int>>& points)
-{
+int findMinArrowShots(std::vector<std::vector<int>>& points) {
     int s = points.size();
-    if (s == 0)
-    {
+    if(s == 0) {
         return 0;
     }
-    sort(points.begin(), points.end(),
-        [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
+    sort(points.begin(), points.end(), [](vector<int>& a, vector<int>& b) { return a[1] < b[1]; });
     int cur = 0, count = 1;
-    for (int i = 1; i < s; i++)
-    {
-        if (points[i][0] > points[cur][1])
-        {
+    for(int i = 1; i < s; i++) {
+        if(points[i][0] > points[cur][1]) {
             count++;
             cur = i;
         }
@@ -49,24 +44,17 @@ int findMinArrowShots(std::vector<std::vector<int>>& points)
     return count;
 }
 
-
-TEST_CASE("test find min arrow shots func")
-{
-    std::vector<std::vector<int>> points {};
+TEST_CASE("test find min arrow shots func") {
+    std::vector<std::vector<int>> points{};
     vector<vector<int>> list;
     int resultParm;
     tie(list, resultParm) = GENERATE(table<vector<vector<int>>, int>(
-        { make_tuple(
-              vector<vector<int>> { { 10, 16 }, { 2, 8 }, { 1, 6 }, { 7, 12 } },
-              2),
-            make_tuple(
-                vector<vector<int>> { { 1, 2 }, { 3, 4 }, { 4, 5 }, { 6, 7 } },
-                3),
-            make_tuple(vector<vector<int>> { { 3, 9 }, { 7, 12 }, { 3, 8 },
-                           { 6, 8 }, { 9, 10 }, { 2, 9 }, { 0, 9 }, { 3, 9 },
-                           { 0, 6 }, { 2, 8 } },
-                2) }));
-
+        {make_tuple(vector<vector<int>>{{10, 16}, {2, 8}, {1, 6}, {7, 12}}, 2),
+         make_tuple(vector<vector<int>>{{1, 2}, {3, 4}, {4, 5}, {6, 7}}, 3),
+         make_tuple(
+             vector<vector<int>>{
+                 {3, 9}, {7, 12}, {3, 8}, {6, 8}, {9, 10}, {2, 9}, {0, 9}, {3, 9}, {0, 6}, {2, 8}},
+             2)}));
 
     REQUIRE(findMinArrowShots(list) == resultParm);
 }

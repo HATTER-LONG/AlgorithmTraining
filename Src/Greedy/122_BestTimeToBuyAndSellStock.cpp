@@ -28,31 +28,26 @@
  * 因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。
  */
 
-int maxProfit(vector<int>& prices)
-{
+int maxProfit(vector<int>& prices) {
     int s = prices.size();
-    if (s == 0)
+    if(s == 0)
         return 0;
 
     int res = 0;
-    for (int i = 1; i < s; i++)
-    {
-        if (prices[i] > prices[i - 1])
-        {
+    for(int i = 1; i < s; i++) {
+        if(prices[i] > prices[i - 1]) {
             res += prices[i] - prices[i - 1];
         }
     }
     return res;
 }
 
-TEST_CASE("test maxProfit")
-{
+TEST_CASE("test maxProfit") {
     VecInt input;
     int res;
 
-    tie(input, res) = GENERATE(
-        table<VecInt, int>({ make_tuple(VecInt { 7, 1, 5, 3, 6, 4 }, 7),
-            make_tuple(VecInt { 1, 2, 3, 4, 5 }, 4) }));
+    tie(input, res) = GENERATE(table<VecInt, int>(
+        {make_tuple(VecInt{7, 1, 5, 3, 6, 4}, 7), make_tuple(VecInt{1, 2, 3, 4, 5}, 4)}));
 
     CAPTURE(input, res);
     REQUIRE(maxProfit(input) == res);

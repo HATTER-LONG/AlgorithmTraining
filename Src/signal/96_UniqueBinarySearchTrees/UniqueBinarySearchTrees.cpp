@@ -14,18 +14,14 @@ using namespace std;
 
 // 将其分解为：遍历根节点，左子树为 G(i-1) 右子树为 G(n-i)，进行笛卡尔乘积算出总和 G(i-1) * G(n-i)
 
-class Solution
-{
+class Solution {
 public:
-    int numTrees(int n)
-    {
+    int numTrees(int n) {
         vector<int> G(n + 1, 0);
         G[0] = 1;
         G[1] = 1;
-        for (int i = 2; i <= n; i++)
-        {
-            for (int j = 1; j <= i; j++)
-            {
+        for(int i = 2; i <= n; i++) {
+            for(int j = 1; j <= i; j++) {
                 G[i] += G[j - 1] * G[i - j];
             }
         }
@@ -33,8 +29,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution numTrees method work successfully")
-{
+TEST_CASE("Check Solution numTrees method work successfully") {
     Solution solution;
     int inputParm = 0, result = 0;
 

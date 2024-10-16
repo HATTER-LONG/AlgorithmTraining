@@ -19,10 +19,8 @@
  *
  */
 
-double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
-{
-    if (nums1.size() > nums2.size())
-    {
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    if(nums1.size() > nums2.size()) {
         return findMedianSortedArrays(nums2, nums1);
     }
 
@@ -33,8 +31,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
     // median2：后一部分的最小值
     int median1 = 0, median2 = 0;
 
-    while (left <= right)
-    {
+    while(left <= right) {
         // 前一部分包含 nums1[0 .. i-1] 和 nums2[0 .. j-1]
         // 后一部分包含 nums1[i .. m-1] 和 nums2[j .. n-1]
         int i = (left + right) / 2;
@@ -47,14 +44,11 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
         int numsJm1 = (j == 0 ? INT_MIN : nums2[j - 1]);
         int numsJ = (j == n ? INT_MAX : nums2[j]);
 
-        if (numsIm1 <= numsJ)
-        {
+        if(numsIm1 <= numsJ) {
             median1 = max(numsIm1, numsJm1);
             median2 = min(numsI, numsJ);
             left = i + 1;
-        }
-        else
-        {
+        } else {
             right = i - 1;
         }
     }
@@ -62,8 +56,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
     return (m + n) % 2 == 0 ? (median1 + median2) / 2.0 : median1;
 }
 
-TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ")
-{
+TEST_CASE("Check Solution lengthOfLongestSubstring method work successfully ") {
     vector<int> leftParm, rightParm;
     double result = -1;
     // clang-format off

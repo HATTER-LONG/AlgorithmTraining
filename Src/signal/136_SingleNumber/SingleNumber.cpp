@@ -11,28 +11,25 @@ using namespace std;
 
 // 异或使用
 
-class Solution
-{
+class Solution {
 public:
-    int singleNumber(vector<int>& nums)
-    {
+    int singleNumber(vector<int>& nums) {
         int ret = 0;
-        for (auto& e : nums)
+        for(auto& e : nums)
             ret ^= e;
         return ret;
     }
 };
 
-TEST_CASE("Check Solution singleNumber method work successfully")
-{
+TEST_CASE("Check Solution singleNumber method work successfully") {
     Solution solution;
 
     vector<int> inputParm;
     int resultParm = 0;
 
     tie(inputParm, resultParm) = GENERATE(table<vector<int>, int>({
-        make_tuple(vector<int> { 2, 2, 1 }, 1),
-        make_tuple(vector<int> { 4, 1, 2, 1, 2 }, 4),
+        make_tuple(vector<int>{2, 2, 1}, 1),
+        make_tuple(vector<int>{4, 1, 2, 1, 2}, 4),
     }));
 
     CAPTURE(inputParm, resultParm);

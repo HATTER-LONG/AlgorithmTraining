@@ -2,23 +2,21 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    bool isAnagram(string s, string t)
-    {
-        int hash[26] = { 0 };
+    bool isAnagram(string s, string t) {
+        int hash[26] = {0};
 
-        for (auto c : s) {
+        for(auto c : s) {
             hash[c - 'a']++;
         }
 
-        for (auto c : t) {
+        for(auto c : t) {
             hash[c - 'a']--;
         }
 
-        for (int i = 0; i < 26; i++) {
-            if (hash[i] != 0)
+        for(int i = 0; i < 26; i++) {
+            if(hash[i] != 0)
                 return false;
         }
 
@@ -26,8 +24,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution isAnagram method work successfully")
-{
+TEST_CASE("Check Solution isAnagram method work successfully") {
     Solution solution;
 
     string param, param2;

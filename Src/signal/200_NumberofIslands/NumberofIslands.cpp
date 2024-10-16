@@ -11,33 +11,26 @@
 using namespace Catch;
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    void infect(vector<vector<char>>& grid, size_t i, size_t j)
-    {
-        if (i >= grid.size() || j >= grid[0].size() || grid[i][j] != '1')
-        {
+    void infect(vector<vector<char>>& grid, size_t i, size_t j) {
+        if(i >= grid.size() || j >= grid[0].size() || grid[i][j] != '1') {
             return;
         }
         grid[i][j] = '2';
         infect(grid, i + 1, j);
-        if (i != 0)
+        if(i != 0)
             infect(grid, i - 1, j);
         infect(grid, i, j + 1);
-        if (j != 0)
+        if(j != 0)
             infect(grid, i, j - 1);
     }
 
-    int numIslands(vector<vector<char>>& grid)
-    {
+    int numIslands(vector<vector<char>>& grid) {
         int islandNum = 0;
-        for (size_t i = 0; i < grid.size(); i++)
-        {
-            for (size_t j = 0; j < grid[0].size(); j++)
-            {
-                if (grid[i][j] == '1')
-                {
+        for(size_t i = 0; i < grid.size(); i++) {
+            for(size_t j = 0; j < grid[0].size(); j++) {
+                if(grid[i][j] == '1') {
                     infect(grid, i, j);
                     islandNum++;
                 }
@@ -47,8 +40,7 @@ public:
     }
 };
 
-TEST_CASE("Check Solution numIslands method work successfully")
-{
+TEST_CASE("Check Solution numIslands method work successfully") {
     Solution solution;
     vector<vector<char>> inputParmA;
     int result = 0;

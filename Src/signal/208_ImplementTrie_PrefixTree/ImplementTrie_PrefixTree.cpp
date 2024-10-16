@@ -14,20 +14,16 @@ using namespace std;
 
 // 前缀树
 
-class Trie
-{
+class Trie {
 public:
     /** Initialize your data structure here. */
-    Trie() { }
+    Trie() {}
 
     /** Inserts a word into the trie. */
-    void insert(string word)
-    {
+    void insert(string word) {
         Trie* root = this;
-        for (const auto& c : word)
-        {
-            if (root->next[c - 'a'] == nullptr)
-            {
+        for(const auto& c : word) {
+            if(root->next[c - 'a'] == nullptr) {
                 root->next[c - 'a'] = new Trie();
             }
             root = root->next[c - 'a'];
@@ -36,12 +32,10 @@ public:
     }
 
     /** Returns if the word is in the trie. */
-    bool search(string word)
-    {
+    bool search(string word) {
         Trie* root = this;
-        for (const auto& w : word)
-        {
-            if (root->next[w - 'a'] == nullptr)
+        for(const auto& w : word) {
+            if(root->next[w - 'a'] == nullptr)
                 return false;
             root = root->next[w - 'a'];
         }
@@ -49,12 +43,10 @@ public:
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
-    bool startsWith(string prefix)
-    {
+    bool startsWith(string prefix) {
         Trie* root = this;
-        for (const auto& p : prefix)
-        {
-            if (root->next[p - 'a'] == nullptr)
+        for(const auto& p : prefix) {
+            if(root->next[p - 'a'] == nullptr)
                 return false;
             root = root->next[p - 'a'];
         }
@@ -62,7 +54,7 @@ public:
     }
 
 private:
-    Trie* next[26] = { nullptr };
+    Trie* next[26] = {nullptr};
     bool is_string = false;
 };
 
@@ -73,8 +65,7 @@ private:
  * bool param_2 = obj->search(word);
  * bool param_3 = obj->startsWith(prefix);
  */
-TEST_CASE("Check Trie method work successfully")
-{
+TEST_CASE("Check Trie method work successfully") {
     Trie trie;
     string insert;
     string search;
@@ -88,12 +79,9 @@ TEST_CASE("Check Trie method work successfully")
     }));
     trie.insert(insert);
     bool resultGet = false;
-    if (search != "")
-    {
+    if(search != "") {
         resultGet = trie.search(search);
-    }
-    else
-    {
+    } else {
         resultGet = trie.startsWith(startsWith);
     }
     REQUIRE(resultGet == result);

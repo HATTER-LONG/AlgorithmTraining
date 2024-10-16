@@ -24,25 +24,21 @@ using namespace std;
  * S只包含小写字母 'a' 到 'z' 。
  */
 
-vector<int> partitionLabels(string s)
-{
+vector<int> partitionLabels(string s) {
     int size = s.length();
-    if (size == 0)
+    if(size == 0)
         return {};
 
     unordered_map<char, int> map;
-    for (int i = 0; i < size; i++)
-    {
+    for(int i = 0; i < size; i++) {
         map[s[i]] = i;
     }
 
     int start = 0, end = 0;
     vector<int> res;
-    for (int i = 0; i < size; i++)
-    {
+    for(int i = 0; i < size; i++) {
         end = max(end, map[s[i]]);
-        if (i == end)
-        {
+        if(i == end) {
             res.push_back(end - start + 1);
             start = i + 1;
         }
@@ -50,12 +46,11 @@ vector<int> partitionLabels(string s)
     return res;
 }
 
-TEST_CASE("test partiton labels func")
-{
+TEST_CASE("test partiton labels func") {
     string ins;
     vector<int> result;
-    tie(ins, result) = GENERATE(table<string, vector<int>>(
-        { make_tuple("ababcbacadefegdehijhklij", vector<int> { 9, 7, 8 }) }));
+    tie(ins, result) = GENERATE(
+        table<string, vector<int>>({make_tuple("ababcbacadefegdehijhklij", vector<int>{9, 7, 8})}));
 
     REQUIRE_THAT(partitionLabels(ins), Catch::Equals(result));
 }

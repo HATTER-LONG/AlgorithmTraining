@@ -14,27 +14,22 @@
  * 在这个样例中，我们可以给两个孩子喂 [1,2]、[1,3]、[2,3] 这三种组合的任意一种。
  */
 
-int findContentChildren(std::vector<int>& children, std::vector<int>& cookies)
-{
+int findContentChildren(std::vector<int>& children, std::vector<int>& cookies) {
     sort(children.begin(), children.end());
     sort(cookies.begin(), cookies.end());
 
     int child = 0, cookie = 0;
-    while (child < static_cast<int>(children.size())
-           && cookie < static_cast<int>(cookies.size()))
-    {
-        if (children[child] <= cookies[cookie])
+    while(child < static_cast<int>(children.size()) && cookie < static_cast<int>(cookies.size())) {
+        if(children[child] <= cookies[cookie])
             ++child;
         ++cookie;
     }
     return child;
 }
 
-
-TEST_CASE("Test find content children")
-{
-    std::vector<int> children { 1, 2 };
-    std::vector<int> cookies { 1, 2, 3 };
+TEST_CASE("Test find content children") {
+    std::vector<int> children{1, 2};
+    std::vector<int> cookies{1, 2, 3};
     int result = 2;
     REQUIRE(findContentChildren(children, cookies) == result);
 }

@@ -15,17 +15,13 @@ Input: [73, 74, 75, 71, 69, 72, 76, 73]
 Output: [1, 1, 4, 2, 1, 1, 0, 0]
 */
 
-
-vector<int> dailyTemperatures(vector<int>& temperatures)
-{
+vector<int> dailyTemperatures(vector<int>& temperatures) {
     int n = temperatures.size();
     stack<int> st;
     vector<int> result(n, 0);
     st.push(0);
-    for (int i = 1; i < n; i++)
-    {
-        while (!st.empty() && temperatures[i] > temperatures[st.top()])
-        {
+    for(int i = 1; i < n; i++) {
+        while(!st.empty() && temperatures[i] > temperatures[st.top()]) {
             result[st.top()] = i - st.top();
             st.pop();
         }
@@ -34,13 +30,11 @@ vector<int> dailyTemperatures(vector<int>& temperatures)
     return result;
 }
 
-TEST_CASE("test daily temperatures")
-{
+TEST_CASE("test daily temperatures") {
     VecInt input;
     VecInt res;
 
     tie(input, res) = GENERATE(table<VecInt, VecInt>(
-        { make_tuple(VecInt { 73, 74, 75, 71, 69, 72, 76, 73 },
-            VecInt { 1, 1, 4, 2, 1, 1, 0, 0 }) }));
+        {make_tuple(VecInt{73, 74, 75, 71, 69, 72, 76, 73}, VecInt{1, 1, 4, 2, 1, 1, 0, 0})}));
     REQUIRE_THAT(dailyTemperatures(input), Catch::Equals(res));
 }

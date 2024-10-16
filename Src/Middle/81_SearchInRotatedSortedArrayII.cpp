@@ -14,40 +14,27 @@
  * Output: true
  */
 
-bool search(vector<int>& nums, int target)
-{
+bool search(vector<int>& nums, int target) {
     int l = 0, r = nums.size() - 1, mid = 0;
-    while (l <= r)
-    {
+    while(l <= r) {
         mid = l + (r - l) / 2;
-        if (nums[mid] == target)
-        {
+        if(nums[mid] == target) {
             return true;
         }
-        if (nums[mid] == nums[l])
-        {
+        if(nums[mid] == nums[l]) {
             ++l;
             continue;
         }
-        if (nums[mid] <= nums[r])
-        {
-            if (target > nums[mid] && target <= nums[r])
-            {
+        if(nums[mid] <= nums[r]) {
+            if(target > nums[mid] && target <= nums[r]) {
                 l = mid + 1;
-            }
-            else
-            {
+            } else {
                 r = mid - 1;
             }
-        }
-        else
-        {
-            if (target < nums[mid] && target >= nums[l])
-            {
+        } else {
+            if(target < nums[mid] && target >= nums[l]) {
                 r = mid - 1;
-            }
-            else
-            {
+            } else {
                 l = mid + 1;
             }
         }
@@ -55,15 +42,14 @@ bool search(vector<int>& nums, int target)
     return false;
 }
 
-TEST_CASE("test search func")
-{
+TEST_CASE("test search func") {
     VecInt nums;
     int target;
     bool result;
 
-    tie(nums, target, result) = GENERATE(table<VecInt, int, bool>(
-        { make_tuple(VecInt { 2, 5, 6, 0, 0, 2, 3 }, 0, true),
-            make_tuple(VecInt { 1, 0, 1, 1, 1 }, 0, true) }));
+    tie(nums, target, result) =
+        GENERATE(table<VecInt, int, bool>({make_tuple(VecInt{2, 5, 6, 0, 0, 2, 3}, 0, true),
+                                           make_tuple(VecInt{1, 0, 1, 1, 1}, 0, true)}));
 
     CAPTURE(nums, target, result);
     REQUIRE(search(nums, target) == result);
